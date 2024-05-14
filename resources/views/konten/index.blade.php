@@ -9,14 +9,14 @@
     <div class="card">
         <div class="card-header">
             Manage Konten
-            {{-- <a href="{{ route('user.create') }}" class="btn btn-primary float-right">+ Add User</a> --}}
         </div>
         <div class="card-body">
-            {{ $dataTable->table() }}
+            {!! $dataTable->table(['class' => 'table table-bordered table-striped']) !!}
         </div>
     </div>
 </div>
 @endsection
+
 @push('scripts')
-{{ $dataTable->scripts()}}
+{!! $dataTable->scripts() !!}
 @endpush
