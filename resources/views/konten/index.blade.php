@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-@section('subtitle', 'Kategori')
+@section('subtitle', 'Konten')
 @section('content_header_title', 'Home')
-@section('content_header_subtitle', 'User')
+@section('content_header_subtitle', 'Konten')
 
 @section('content')
 <div class="container">

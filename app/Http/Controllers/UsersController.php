@@ -16,7 +16,10 @@ class UsersController extends Controller
 
     public function create()
     {
-        return view('users.create');
+        $levelUsersOptions = UsersModel::getLevelUsersOptions();
+        $statusOptions = UsersModel::getStatusOptions();
+
+        return view('users.create', compact('levelUsersOptions', 'statusOptions'));
     }
 
     public function store(Request $request)
@@ -26,6 +29,10 @@ class UsersController extends Controller
             'password' => Hash::make($request->password),
             'level_users' => $request->level_users,
             'status' => $request->status,
+            'id_admin' => null,
+            'id_ketua_pkk' => null,
+            'id_bendahara' => null,
+            'id_anggota' => null,
         ]);
 
         return redirect('/users');
@@ -34,7 +41,10 @@ class UsersController extends Controller
     public function edit($id)
     {
         $user = UsersModel::find($id);
-        return view('users.edit', ['data' => $user]);
+        $levelUsersOptions = UsersModel::getLevelUsersOptions();
+        $statusOptions = UsersModel::getStatusOptions();
+
+        return view('users.edit', ['data' => $user, 'levelUsersOptions' => $levelUsersOptions, 'statusOptions' => $statusOptions]);
     }
 
     public function edit_simpan($id, Request $request)
