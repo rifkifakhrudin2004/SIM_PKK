@@ -22,21 +22,29 @@
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="text" class="form-control @error('password') is-invalid @enderror" id="password" name="password" placeholder="Password">
+                    <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" placeholder="Password">
                     @error('password')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="form-group">
                     <label for="level_users">Level Users</label>
-                    <input type="text" class="form-control @error('level_users') is-invalid @enderror" id="level_users" name="level_users" placeholder="level_users">
+                    <select class="form-control @error('level_users') is-invalid @enderror" id="level_users" name="level_users">
+                        @foreach($levelUsersOptions as $value => $label)
+                            <option value="{{ $value }}">{{ $label }}</option>
+                        @endforeach
+                    </select>
                     @error('level_users')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="form-group">
                     <label for="status">Status</label>
-                    <input type="text" class="form-control @error('status') is-invalid @enderror" id="status" name="status" placeholder="status">
+                    <select class="form-control @error('status') is-invalid @enderror" id="status" name="status">
+                        @foreach($statusOptions as $value => $label)
+                            <option value="{{ $value }}">{{ $label }}</option>
+                        @endforeach
+                    </select>
                     @error('status')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
