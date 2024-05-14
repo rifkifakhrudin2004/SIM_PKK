@@ -46,10 +46,31 @@ class KontenDataTable extends DataTable
     /**
      * Optional method if you want to use the html builder.
      */
+
+     public function html(): HtmlBuilder
+     {
+         return $this->builder()
+                     ->setTableId('konten-table')
+                     ->columns($this->getColumns())
+                     ->minifiedAjax()
+                     //->dom('Bfrtip')
+                     ->orderBy(1)
+                     ->selectStyleSingle()
+                     ->buttons([
+                         Button::make('excel'),
+                         Button::make('csv'),
+                         Button::make('pdf'),
+                         Button::make('print'),
+                         Button::make('reset'),
+                         Button::make('reload')
+                     ]);
+     }
+
     public function getColumns(): array
     {
         return [
             Column::make('id_konten'),
+            Column::make('nama'),
             Column::make('tgl_konten'),
             Column::make('foto_konten'),
             Column::make('deskripsi_konten'),

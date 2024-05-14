@@ -28,4 +28,9 @@ Route::put('/user/{id}', [UsersController::class, 'edit_simpan'])->name('user.ed
 Route::get('/user/delete/{id}', [UsersController::class, 'delete'])->name('user.delete');
 
 //manage Konten
-Route::get('/konten', [KontenController::class, 'index']);
+Route::get('/konten', [KontenController::class, 'index'])->name('konten.index');
+Route::get('/konten/create', [KontenController::class, 'create'])->name('konten.create');
+Route::post('/konten', [KontenController::class, 'store'])->name('konten.store');
+Route::get('/konten/{id}/edit', [KontenController::class, 'edit'])->name('konten.edit');
+Route::put('/konten/{id}', [KontenController::class, 'update'])->name('konten.update');
+Route::delete('/konten/{id}', [KontenController::class, 'destroy'])->name('konten.destroy');
