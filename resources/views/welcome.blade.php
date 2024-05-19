@@ -1,4 +1,4 @@
-@extends('layouts1.template')
+@extends('layoutsWarga.template')
 
 @section('content')
     <div class="card">
