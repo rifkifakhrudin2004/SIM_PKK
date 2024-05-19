@@ -7,7 +7,7 @@
                     <div class="card-tools"></div>
         </div>
         <div class="card-body">
-            Selamat datang semua, ini adalah halaman utama dari aplikasi ini agung.
+            Selamat datang semua, ini adalah halaman utama dari aplikasi ini agung.2222
         </div>
     </div>
 @endsection
