@@ -11,7 +11,7 @@ class KontenModel extends Model
     use HasFactory;
     protected $table = "m_konten";
     protected $primaryKey = "id_konten";
-    protected $fillable = ['tgl_konten', 'foto_konten','deskripsi_konten',];
+    protected $fillable = ['nama','tgl_konten', 'foto_konten','deskripsi_konten',];
 
     public function konten(): HasMany
     {
