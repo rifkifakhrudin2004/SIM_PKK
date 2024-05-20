@@ -12,13 +12,12 @@ class UsersModel extends Model
 
     protected $table = "m_users";
     protected $primaryKey = "id_users";
-    protected $fillable = ['username', 'password', 'level_users', 'status'];
+    protected $fillable = ['username', 'nama','password', 'level_id', 'status','id_admin'];
 
     const LEVEL_USERS = [
-        'admin' => 'Admin',
-        'anggota' => 'Anggota',
-        'ketua_pkk' => 'Ketua_pkk',
-        'bendahara_pkk' => 'Bendahara_pkk',
+        '1' => 'Anggota',
+        '2' => 'Bendahara PKK',
+        '3' => 'Ketua PKK',
     ];
 
     const STATUS = [
@@ -26,11 +25,8 @@ class UsersModel extends Model
         'tidak aktif' => 'Tidak aktif',
         
     ];
-    protected $attributes = [
-        'id_admin' => null,
-        'id_ketua_pkk' => null,
-        'id_bendahara' => null,
-        'id_anggota' => null,
+    const Admin = [
+        '1' => 'AdminPKK',
     ];
 
     public static function getLevelUsersOptions()
@@ -42,9 +38,21 @@ class UsersModel extends Model
     {
         return self::STATUS;
     }
+    public static function getAdminOptions()
+    {
+        return self::Admin;
+    }
 
     public function users(): HasMany
     {
         return $this->hasMany(User::class);
+    }
+    public function level()
+    {
+        return $this->belongsTo(LevelModel::class, 'level_id', 'level_id');
+    }
+    public function admin()
+    {
+        return $this->belongsTo(AdminModel::class, 'id_admin', 'id_admin');
     }
 }

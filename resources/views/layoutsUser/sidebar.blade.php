@@ -34,7 +34,7 @@
                   <p>Validasi Konten</p> 
                 </a> 
               </li> 
-              <li class="nav-header">Data Barang</li> 
+              <li class="nav-header"></li> 
               <li class="nav-item"> 
                 <a href="{{ url('/kategori') }}" class="nav-link {{ ($activeMenu == 
         'kategori')? 'active' : '' }} "> 

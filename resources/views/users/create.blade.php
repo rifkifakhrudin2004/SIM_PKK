@@ -21,6 +21,13 @@
                     @enderror
                 </div>
                 <div class="form-group">
+                    <label for="nama">Nama</label>
+                    <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" name="nama" placeholder="Nama">
+                    @error('nama')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="form-group">
                     <label for="password">Password</label>
                     <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" placeholder="Password">
                     @error('password')
@@ -28,8 +35,8 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="level_users">Level Users</label>
-                    <select class="form-control @error('level_users') is-invalid @enderror" id="level_users" name="level_users">
+                    <label for="level_id">Level ID</label>
+                    <select class="form-control @error('level_id') is-invalid @enderror" id="level_id" name="level_id">
                         @foreach($levelUsersOptions as $value => $label)
                             <option value="{{ $value }}">{{ $label }}</option>
                         @endforeach
@@ -48,6 +55,16 @@
                     @error('status')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
+                    <div class="form-group">
+                        <label for="id_admin">Nama Admin</label>
+                        <select class="form-control @error('id_admin') is-invalid @enderror" id="id_admin" name="id_admin">
+                            @foreach($AdminOptions as $value => $label)
+                                <option value="{{ $value }}">{{ $label }}</option>
+                            @endforeach
+                        </select>
+                        @error('id_admin')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror   
                 </div>
             </div>
             <div class="card-footer">

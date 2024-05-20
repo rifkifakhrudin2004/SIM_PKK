@@ -2,15 +2,12 @@
 
 namespace App\DataTables;
 
-use App\Models\User;
 use App\Models\UsersModel;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
 class UsersDataTable extends DataTable
@@ -21,19 +18,19 @@ class UsersDataTable extends DataTable
      * @param QueryBuilder $query Results from query() method.
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
-{
-    return (new EloquentDataTable($query))
-        ->addColumn('action', function ($user) {
-            return '<a href="' . route('/users/edit', ['id' => $user->id_users]) . '" class="btn btn-primary mr-2">
-                        <i class="fa fa-pencil-alt" style="color: white; font-size: 12px;"></i>
-                    </a>' .
-                    '<a href="' . route('/users/delete', ['id' => $user->id_users]) . '" class="btn btn-danger" onclick="return confirm(\'Are you sure want to delete?\')">
-                        <i class="fa fa-trash" style="color: white; font-size: 12px;"></i>
-                    </a>';
-        })
-        ->rawColumns(['action'])
-        ->setRowId('id');
-}
+    {
+        return (new EloquentDataTable($query))
+            ->addColumn('action', function ($user) {
+                return '<a href="' . route('users.edit', ['id' => $user->id_users]) . '" class="btn btn-primary mr-2">
+                            <i class="fa fa-pencil-alt" style="color: white; font-size: 12px;"></i>
+                        </a>' .
+                        '<a href="' . route('users.delete', ['id' => $user->id_users]) . '" class="btn btn-danger" onclick="return confirm(\'Are you sure want to delete?\')">
+                            <i class="fa fa-trash" style="color: white; font-size: 12px;"></i>
+                        </a>';
+            })
+            ->rawColumns(['action'])
+            ->setRowId('id');
+    }
 
     /**
      * Get the query source of dataTable.
@@ -71,10 +68,10 @@ class UsersDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('id_users'),
+            Column::make('id_users')->title('User ID'),
             Column::make('username'),
-            Column::make('password'),
-            Column::make('level_users'),
+            Column::make('nama'),
+            Column::make('level_id')->title('Level ID'),
             Column::make('status'),
             Column::computed('action')
                   ->exportable(false)
