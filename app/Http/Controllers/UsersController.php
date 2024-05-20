@@ -21,14 +21,14 @@ class UsersController extends Controller
     
     public function create()
     {
-<<<<<<< HEAD
+
         return view('users.create', ['activeMenu' => 'users']);
-=======
+
         $levelUsersOptions = UsersModel::getLevelUsersOptions();
         $statusOptions = UsersModel::getStatusOptions();
 
         return view('users.create', compact('levelUsersOptions', 'statusOptions'));
->>>>>>> 29ce79cc221e42ba5bed6fb0e3633394ed573d85
+
     }
 
     public function store(Request $request)
@@ -50,14 +50,14 @@ class UsersController extends Controller
     public function edit($id)
     {
         $user = UsersModel::find($id);
-<<<<<<< HEAD
+
         return view('users.edit', ['data' => $user, 'activeMenu' => 'users']);
-=======
+
         $levelUsersOptions = UsersModel::getLevelUsersOptions();
         $statusOptions = UsersModel::getStatusOptions();
 
         return view('users.edit', ['data' => $user, 'levelUsersOptions' => $levelUsersOptions, 'statusOptions' => $statusOptions]);
->>>>>>> 29ce79cc221e42ba5bed6fb0e3633394ed573d85
+
     }
 
     public function edit_simpan($id, Request $request)

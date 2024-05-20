@@ -107,7 +107,7 @@
                     <!-- ambil data gambar balaikota saja dari story board  -->
                     <div class="slickwrap">
                         <div class="homeimg">
-                            <img src="{{ asset('adminlte/dist/img/kelurahanTlogomas.jpg') }}" alt="Kelurahan Tlogomas Logo"
+                            <img src="{{ asset('adminlte/dist/img/tuguMalang.jpg') }}" alt="Kelurahan Tlogomas Logo"
                             alt="bandung">
                           
                         </div>
@@ -115,7 +115,7 @@
                             <div class="wrapper">
                                 <div class="hometext__inner">
                                     <div class="hometitle">Sistem Manajemen Kegiatan PKK </div>
-                                    <div class="hometitle">RW 05 Tlogomas, Kecamatan Lowokwaru, Kota Malang.</div>
+                                    <div class="homesummary">RW 05 Tlogomas, Kecamatan Lowokwaru, Kota Malang.</div>
                                     
                                     <div class="homelink"><a
                                             >Selengkapnya</a>
