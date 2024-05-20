@@ -21,11 +21,11 @@ Route::get('/', function () {
 });
 //Manage User
 Route::get('/user/create', [UsersController::class, 'create'])->name('user.create');
-Route::get('/user/edit/{id}', [UsersController::class, 'edit'])->name('user.edit');
+Route::get('/user/edit/{id}', [UsersController::class, 'edit'])->name('users.edit');
 Route::get('/user', [UsersController::class, 'index'])->name('user.index');
 Route::post('/user', [UsersController::class, 'store']);
 Route::put('/user/{id}', [UsersController::class, 'edit_simpan'])->name('user.edit_simpan');
-Route::get('/user/delete/{id}', [UsersController::class, 'delete'])->name('user.delete');
+Route::get('/user/delete/{id}', [UsersController::class, 'delete'])->name('users.delete');
 
 //manage Konten
 Route::get('/konten', [KontenController::class, 'index'])->name('konten.index');

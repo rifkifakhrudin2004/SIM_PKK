@@ -18,24 +18,23 @@ class UsersController extends Controller
     {
         $levelUsersOptions = UsersModel::getLevelUsersOptions();
         $statusOptions = UsersModel::getStatusOptions();
+        $AdminOptions  = UsersModel::getAdminOptions();
 
-        return view('users.create', compact('levelUsersOptions', 'statusOptions'));
+        return view('users.create', compact('levelUsersOptions', 'statusOptions','AdminOptions'));
     }
 
     public function store(Request $request)
     {
         UsersModel::create([
             'username' => $request->username,
+            'nama' => $request->nama,
             'password' => Hash::make($request->password),
-            'level_users' => $request->level_users,
+            'level_id' => $request->level_id,
             'status' => $request->status,
-            'id_admin' => null,
-            'id_ketua_pkk' => null,
-            'id_bendahara' => null,
-            'id_anggota' => null,
+            'id_admin'=>$request->id_admin,
         ]);
 
-        return redirect('/users');
+        return redirect('/user');
     }
 
     public function edit($id)
@@ -51,8 +50,9 @@ class UsersController extends Controller
     {
         $user = UsersModel::find($id);
         $user->username = $request->username;
+        $user->nama = $request->nama;
         $user->password = Hash::make($request->password);
-        $user->level_users = $request->level_users;
+        $user->level_id = $request->level_id;
         $user->status = $request->status;
         $user->save();
 

@@ -69,7 +69,7 @@ class KontenDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('id_konten'),
+            Column::make('id_konten')->title('Konten ID'),
             Column::make('nama'),
             Column::make('tgl_konten'),
             Column::make('foto_konten'),
