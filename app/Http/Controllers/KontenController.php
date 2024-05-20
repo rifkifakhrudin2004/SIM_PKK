@@ -1,5 +1,4 @@
-<?php
-
+<?php  
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -12,7 +11,9 @@ class KontenController extends Controller
 {
     public function index(KontenDataTable $dataTable)
     {
-        return $dataTable->render('konten.index');
+        // Tambahkan variabel $activeMenu
+        $activeMenu = 'konten';
+        return $dataTable->render('konten.index', compact('activeMenu'));
     }
 
     public function create()

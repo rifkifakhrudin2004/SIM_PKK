@@ -1,5 +1,18 @@
 <!DOCTYPE html>
 <html lang="id">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .rw-text {
+            font-size: 1.5em; /* Ubah ukuran font sesuai kebutuhan */
+            font-weight: bold; /* Atur ketebalan font */
+        }
+    </style>
+</head>
+<body>
 
 <head>
     <meta charset="utf-8">
@@ -94,20 +107,18 @@
                     <!-- ambil data gambar balaikota saja dari story board  -->
                     <div class="slickwrap">
                         <div class="homeimg">
-                            <img class="d-only"
-                                src="https://img.bandung.go.id/images/slider/2022/02/14/header/166374430249-balai-kota-desktop.jpg"
-                                alt="bandung">
-                            <img class="m-only"
-                                src="https://img.bandung.go.id/images/slider/2022/02/14/thumb/166374430222-balai-kota-mobile.jpg"
-                                alt="bandung">
+                            <img src="{{ asset('adminlte/dist/img/kelurahanTlogomas.jpg') }}" alt="Kelurahan Tlogomas Logo"
+                            alt="bandung">
+                          
                         </div>
                         <div class="hometext">
                             <div class="wrapper">
                                 <div class="hometext__inner">
                                     <div class="hometitle">Sistem Manajemen Kegiatan PKK </div>
-                                    <div class="homesummary">RW 05 Tlogomas, Kecamatan Lowokwaru, Kota Malang.</div>
+                                    <div class="hometitle">RW 05 Tlogomas, Kecamatan Lowokwaru, Kota Malang.</div>
+                                    
                                     <div class="homelink"><a
-                                            href="https://www.bandung.go.id/features/detail/23/balai-kota">Selengkapnya</a>
+                                            >Selengkapnya</a>
                                     </div>
                                 </div>
                             </div>
