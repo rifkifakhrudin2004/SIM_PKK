@@ -1,4 +1,4 @@
-@extends('layouts1.template')
+@extends('layoutsWarga.template')
 
 @section('content')
     <div class="card">
@@ -7,7 +7,7 @@
                     <div class="card-tools"></div>
         </div>
         <div class="card-body">
-            Selamat datang semua, ini adalah halaman utama dari aplikasi ini.
+            Selamat datang semua, ini adalah halaman utama dari aplikasi ini agung.222200
         </div>
     </div>
 @endsection
