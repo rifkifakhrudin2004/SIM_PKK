@@ -20,65 +20,74 @@ class UsersController extends Controller
     }
     
     public function create()
-    {
+{
+    $activeMenu = 'users';
+    $levelUsersOptions = UsersModel::getLevelUsersOptions();
+    $statusOptions = UsersModel::getStatusOptions();
+    $AdminOptions  = UsersModel::getAdminOptions();
 
-        return view('users.create', ['activeMenu' => 'users']);
-
-        $levelUsersOptions = UsersModel::getLevelUsersOptions();
-        $statusOptions = UsersModel::getStatusOptions();
-        $AdminOptions  = UsersModel::getAdminOptions();
-
-<<<<<<< HEAD
-        return view('users.create', compact('levelUsersOptions', 'statusOptions'));
-
-=======
-
-        return view('users.create', compact('levelUsersOptions', 'statusOptions','AdminOptions'));
->>>>>>> a1d54262567a50ed09bca505961811d4d87681b1
-    }
-
-    public function store(Request $request)
-    {
-        UsersModel::create([
-            'username' => $request->username,
-            'nama' => $request->nama,
-            'password' => Hash::make($request->password),
-            'level_id' => $request->level_id,
-            'status' => $request->status,
-            'id_admin'=>$request->id_admin,
-        ]);
+    return view('users.create', compact('activeMenu', 'levelUsersOptions', 'statusOptions', 'AdminOptions'));
+}
 
 
-        return redirect('/user');
+public function store(Request $request)
+{
+    $request->validate([
+        'username' => 'required|string|max:255',
+        'nama' => 'required|string|max:255',
+        'password' => 'required|string|min:8',
+        'level_id' => 'required|integer',
+        'status' => 'required|string',
+        'id_admin' => 'required|integer',
+    ]);
 
-        return redirect()->route('users.index');  // Gunakan rute yang benar
+    UsersModel::create([
+        'username' => $request->username,
+        'nama' => $request->nama,
+        'password' => Hash::make($request->password),
+        'level_id' => $request->level_id,
+        'status' => $request->status,
+        'id_admin' => $request->id_admin,
+    ]);
 
-    }
+    return redirect()->route('users.index'); // Gunakan rute yang benar
+}
+
 
     public function edit($id)
     {
         $user = UsersModel::find($id);
-
-        return view('users.edit', ['data' => $user, 'activeMenu' => 'users']);
-
         $levelUsersOptions = UsersModel::getLevelUsersOptions();
         $statusOptions = UsersModel::getStatusOptions();
+        $AdminOptions = UsersModel::getAdminOptions();
 
-        return view('users.edit', ['data' => $user, 'levelUsersOptions' => $levelUsersOptions, 'statusOptions' => $statusOptions]);
-
+        return view('users.edit', compact('user', 'levelUsersOptions', 'statusOptions', 'AdminOptions', 'activeMenu'))
+            ->with('activeMenu', 'users');
     }
 
     public function edit_simpan($id, Request $request)
     {
+        $request->validate([
+            'username' => 'required|string|max:255',
+            'nama' => 'required|string|max:255',
+            'password' => 'nullable|string|min:8',
+            'level_id' => 'required|integer',
+            'status' => 'required|string',
+            'id_admin' => 'required|integer',
+        ]);
+
         $user = UsersModel::find($id);
         $user->username = $request->username;
         $user->nama = $request->nama;
-        $user->password = Hash::make($request->password);
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->password);
+        }
         $user->level_id = $request->level_id;
         $user->status = $request->status;
+        $user->id_admin = $request->id_admin;
         $user->save();
 
-        return redirect()->route('user.index');  // Gunakan rute yang benar
+        return redirect()->route('users.index'); // Gunakan rute yang benar
     }
 
     public function delete($id)
@@ -86,6 +95,6 @@ class UsersController extends Controller
         $user = UsersModel::find($id);
         $user->delete();
 
-        return redirect()->route('user.index');  // Gunakan rute yang benar
+        return redirect()->route('users.index'); // Gunakan rute yang benar
     }
 }
