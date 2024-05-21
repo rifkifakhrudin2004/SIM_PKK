@@ -12,9 +12,12 @@
                     <i class="fas fa-user fa-5x"></i>
                 </div>
             </div>
-            <div class="col-md-9">
-                <h4>NAMA : Agung Rizky</h4>
-                <p>ALAMAT : JL.Venus </p>
+            <div class="card-header">
+                Tampilan {{ (Auth::user()->level_id == 2) ? 'bendahara'}}
+            </div>
+            <div class="card-body">
+                <h1>Login Sebagai: {{ (Auth::user()->level_id == 2) ? 'bendahara' }}</h1>
+                <a href="{{ route('logout') }}">Logout</a>
             </div>
         </div>
     </div>

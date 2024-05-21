@@ -21,7 +21,7 @@
               </li> 
               <li class="nav-header">Data Pengguna</li> 
               <li class="nav-item"> 
-                <a href="{{ url('/users') }}" class="nav-link {{ ($activeMenu == 'user')? 
+                <a href="{{ url('/users') }}" class="nav-link {{ ($activeMenu == 'users')? 
         'active' : '' }} "> 
                   <i class="nav-icon fas fa-layer-group"></i> 
                   <p>Kelola Pengguna</p> 

@@ -21,22 +21,15 @@ class UsersController extends Controller
     
     public function create()
     {
-
         return view('users.create', ['activeMenu' => 'users']);
 
-        $levelUsersOptions = UsersModel::getLevelUsersOptions();
-        $statusOptions = UsersModel::getStatusOptions();
-        $AdminOptions  = UsersModel::getAdminOptions();
+        // $levelUsersOptions = UsersModel::getLevelUsersOptions();
+        // $statusOptions = UsersModel::getStatusOptions();
+        // $AdminOptions  = UsersModel::getAdminOptions();
 
-<<<<<<< HEAD
-        return view('users.create', compact('levelUsersOptions', 'statusOptions'));
 
-=======
-
-        return view('users.create', compact('levelUsersOptions', 'statusOptions','AdminOptions'));
->>>>>>> a1d54262567a50ed09bca505961811d4d87681b1
+    //     return view('users.create', compact('levelUsersOptions', 'statusOptions','AdminOptions'));
     }
-
     public function store(Request $request)
     {
         UsersModel::create([
@@ -47,12 +40,7 @@ class UsersController extends Controller
             'status' => $request->status,
             'id_admin'=>$request->id_admin,
         ]);
-
-
-        return redirect('/user');
-
-        return redirect()->route('users.index');  // Gunakan rute yang benar
-
+        return redirect()->route('users.index');  
     }
 
     public function edit($id)
@@ -61,10 +49,10 @@ class UsersController extends Controller
 
         return view('users.edit', ['data' => $user, 'activeMenu' => 'users']);
 
-        $levelUsersOptions = UsersModel::getLevelUsersOptions();
-        $statusOptions = UsersModel::getStatusOptions();
+        // $levelUsersOptions = UsersModel::getLevelUsersOptions();
+        // $statusOptions = UsersModel::getStatusOptions();
 
-        return view('users.edit', ['data' => $user, 'levelUsersOptions' => $levelUsersOptions, 'statusOptions' => $statusOptions]);
+        return view('users.edit');
 
     }
 
