@@ -20,13 +20,13 @@
                     <h1 style="font-size: 1.5rem; margin-left: 10px;">Login Sebagai:</h1>
                     <h2 style="font-size: 1.25rem; margin-left: 20px;">
                         @if(Auth::user()->level_id == 1)
-                            anggota
+                            Anggota: {{ Auth::user()->nama }}
                         @elseif(Auth::user()->level_id == 2)
-                            bendahara
+                            Bendahara: {{ Auth::user()->nama }}
                         @elseif(Auth::user()->level_id == 3)
-                            ketua
+                            Ketua: {{ Auth::user()->nama }}
                         @else
-                            anda tidak terdaftar
+                            Anda tidak terdaftar
                         @endif
                     </h2>
                     <a href="{{ route('logout') }}" class="btn btn-primary" style="margin-top: 20px;">Logout</a>

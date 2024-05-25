@@ -35,6 +35,7 @@ class UsersModel extends Authenticatable implements JWTSubject
         '1' => 'Anggota',
         '2' => 'Bendahara PKK',
         '3' => 'Ketua PKK',
+        '4' => 'Admin',
     ];
 
     // Mendefinisikan konstanta untuk status pengguna

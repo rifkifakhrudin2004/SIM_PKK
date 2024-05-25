@@ -28,6 +28,9 @@ class AuthController extends Controller
             else if ($user->level_id == '3') {
                 return redirect()->intended('ketua');
             }
+            else if ($user->level_id == '4') {
+                return redirect()->intended('admin');
+            }
         }
         return view('login');
     }
@@ -59,6 +62,9 @@ class AuthController extends Controller
             }
             else if ($user->level_id == '3') {
                 return redirect()->intended('ketua');
+            }
+            else if ($user->level_id == '4') {
+                return redirect()->intended('admin');
             }
             return redirect()->intended('/');
         } 
