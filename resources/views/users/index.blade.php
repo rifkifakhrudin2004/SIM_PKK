@@ -9,7 +9,7 @@
     <div class="card">
         <div class="card-header">
             Manage User
-            <a href="{{ route('users.create') }}" class="btn btn-primary float-right">+ Add User</a>
+            <a href="{{ route('users.create') }}" class="btn btn-primary float-right">Tambah User</a>
         </div>
         <div class="card-body">
             {!! $dataTable->table(['class' => 'table table-bordered table-striped']) !!}

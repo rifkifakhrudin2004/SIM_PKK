@@ -5,9 +5,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ config('app.name', 'PWL Laravel Starter Code') }}</title>
+    <style>
+        .sidebar-dark-primary {
+            background-color: rgba(0, 0, 0, 0.8) !important; 
+        }
+    </style>
+    
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Untuk mengirimkan token Laravel CSRF pada setiap request ajax -->
+    <link rel="stylesheet" href="{{ asset('path/to/custom.css') }}">
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -21,12 +28,16 @@
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('adminlte/dist/css/adminlte.min.css') }}">
+    <!-- FullCalendar CSS -->
+    <link href='https://fullcalendar.io/releases/core/4.4.0/main.min.css' rel='stylesheet' />
+    <link href='https://fullcalendar.io/releases/daygrid/4.4.0/main.min.css' rel='stylesheet' />
+    <link href='https://fullcalendar.io/releases/timegrid/4.4.0/main.min.css' rel='stylesheet' />
 
     @stack('css') <!-- Digunakan untuk memanggil custom css dari perintah push('css') pada masing-masing view -->
 </head>
 
-
 <body class="hold-transition sidebar-mini">
+
     <!-- Site wrapper -->
     <div class="wrapper">
 
@@ -38,7 +49,7 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="{{ url('/') }}" class="brand-link">
-                <img src="{{ asset('adminlte/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
+                <img src="{{ asset('adminlte/dist/img/logoSIMPKK.png') }}" alt="AdminLTE Logo"
                     class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">SIM PKK RW 5</span>
             </a>
@@ -58,6 +69,12 @@
             </section>
             <!-- /.content -->
         </div>
+
+        <!-- Include your JS here -->
+        <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
+        <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js'></script>
+        @stack('scripts')
+        
         <!-- /.content-wrapper -->
         @include('layoutsAnggota.footer')
     </div>

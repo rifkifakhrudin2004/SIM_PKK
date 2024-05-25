@@ -6,6 +6,7 @@ use App\Http\Controllers\KontenController;
 use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\KetuaPKKController;
 use App\Http\Controllers\BendaharaPKKController;
+use App\Http\Controllers\ArisanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,7 +54,9 @@ Route::prefix('bendaharaPKK')->group(function () {
 
     Route::get('/dashboard', [BendaharaPKKController::class, 'dashboard'])->name('bendaharaPKK.dashboard');
 });
-
+Route::prefix('bendaharaPKK')->group(function () {
+    Route::get('/arisan', [ArisanController::class, 'index'])->name('bendaharaPKK.arisan');
+});
 
 
 

@@ -381,6 +381,8 @@ Yuk, ikuti dan daftar Job Fair Disnaker dengan scan barcode pada slide ke-2. sia
                             </div>
                         </div>
 
+                        
+
                         <div class="bagidua__col" id="kolomsosial">
                             <div class="sosial">
                                 <div class="sosalisasi__header xsection__header">
@@ -1348,7 +1350,7 @@ Yuk, ikuti dan daftar Job Fair Disnaker dengan scan barcode pada slide ke-2. sia
     </div>
 
     <!-- ============================= back-to-top ============================= -->
-    <a id="back-to-top" href="#" class="back-to-top" role="button">
+    <a id="back-to-top" href="#" class="back-to-top" role ="button">
         <span class="fa fa-arrow-up" aria-hidden="true"></span>
     </a>
     <!-- ============================= end-back-to-top ============================= -->
