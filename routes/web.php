@@ -24,12 +24,16 @@ Route::get('/', function () {
 });
 
 // Manage User
-Route::get('/users/create', [UsersController::class, 'create'])->name('users.create');
-Route::get('/users/edit/{id}', [UsersController::class, 'edit'])->name('users.edit');
-Route::get('/users', [UsersController::class, 'index'])->name('users.index');
-Route::post('/users', [UsersController::class, 'store'])->name('users.store');
-Route::put('/users/{id}', [UsersController::class, 'update'])->name('users.update');
-Route::delete('/users/{id}', [UsersController::class, 'destroy'])->name('users.destroy');
+Route::prefix('users')->group(function () { // Grouped user routes
+    Route::get('/create', [UsersController::class, 'create'])->name('users.create');
+    Route::get('/edit/{id}', [UsersController::class, 'edit'])->name('users.edit');
+    Route::get('/', [UsersController::class, 'index'])->name('users.index');
+    Route::post('/', [UsersController::class, 'store'])->name('users.store');
+    Route::put('/{id}', [UsersController::class, 'update'])->name('users.update');
+    Route::delete('/{id}', [UsersController::class, 'destroy'])->name('users.destroy');
+    Route::put('/edit_simpan/{id}', [UsersController::class, 'edit_simpan'])->name('user.edit_simpan'); // Changed from /user/{id}
+    Route::get('/delete/{id}', [UsersController::class, 'delete'])->name('users.delete');
+});
 
 // Manage Login
 Route::get('login', [AuthController::class, 'index'])->name('login');
@@ -38,45 +42,50 @@ Route::post('proses_login', [AuthController::class, 'proses_login'])->name('pros
 Route::post('proses_register', [AuthController::class, 'proses_register'])->name('proses_register');
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::group(['middleware' => ['auth']], function () {
-    Route::group(['middleware' => ['cek_login:1']], function () {
-        Route::resource('anggota.dashboard', AnggotaController::class);
-    });
-    Route::group(['middleware' => ['cek_login:2']], function () {
-        Route::resource('bendahara', BendaharaPKKController::class);
-    });
-    Route::group(['middleware' => ['cek_login:3']], function () {
-        Route::resource('ketua', KetuaPKKController::class);
+Route::middleware('auth')->group(function () { // Grouped auth middleware
+    Route::middleware('cek_login:1')->group(function () { // Grouped cek_login:1 middleware
+        Route::get('anggota', [AnggotaController::class, 'dashboard']);
     });
 
-    // KetuaPKK
+    Route::middleware('cek_login:2')->group(function () { // Grouped cek_login:2 middleware
+        Route::get('bendahara', [BendaharaPKKController::class, 'dashboard']);
+    });
+
+    Route::middleware('cek_login:3')->group(function () { // Grouped cek_login:3 middleware
+        Route::get('ketuaPKK', [KetuaPKKController::class, 'dashboard']); 
+    });
+    Route::middleware('cek_login:4')->group(function () { // Grouped cek_login:4 middleware
+        Route::get('AdminPKK', [UsersController::class, 'dashboard']); 
+    });
+
+    // Nested groups for KetuaPKK
     Route::prefix('ketuaPKK')->group(function () {
         Route::get('/', function () {
-            return redirect()->route('ketuaPKK.dashboard');
+            return redirect()->route('ketua.dashboard'); // Corrected redirect route
         });
-        Route::get('/dashboard', [KetuaPKKController::class, 'dashboard'])->name('ketuaPKK.dashboard');
+        Route::get('/dashboard', [KetuaPKKController::class, 'dashboard'])->name('ketua.dashboard');
     });
 
-    // BendaharaPKK
+    // Nested groups for BendaharaPKK
     Route::prefix('bendaharaPKK')->group(function () {
         Route::get('/', function () {
-            return redirect()->route('bendaharaPKK.dashboard');
+            return redirect()->route('bendahara.dashboard'); // Corrected redirect route
         });
-        Route::get('/dashboard', [BendaharaPKKController::class, 'dashboard'])->name('bendaharaPKK.dashboard');
+        Route::get('/dashboard', [BendaharaPKKController::class, 'dashboard'])->name('bendahara.dashboard');
     });
 
-    // Anggota
+    // Nested groups for Anggota
     Route::prefix('anggota')->group(function () {
         Route::get('/', function () {
-            return redirect()->route('anggota.dashboard');
+            return redirect()->route('anggota.dashboard'); // Corrected redirect route
         });
         Route::get('/dashboard', [AnggotaController::class, 'dashboard'])->name('anggota.dashboard');
     });
 
-    // User
+    // User dashboard
     Route::prefix('user')->group(function () {
         Route::get('/', function () {
-            return redirect()->route('users.dashboard');
+            return redirect()->route('users.dashboard'); // Corrected redirect route
         });
         Route::get('/dashboard', [UsersController::class, 'dashboard'])->name('users.dashboard');
         // Manage Konten
@@ -84,10 +93,12 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     // Manage Konten
-    Route::get('/konten', [KontenController::class, 'index'])->name('konten.index');
-    Route::get('/konten/create', [KontenController::class, 'create'])->name('konten.create');
-    Route::post('/konten', [KontenController::class, 'store'])->name('konten.store');
-    Route::get('/konten/{id}/edit', [KontenController::class, 'edit'])->name('konten.edit');
-    Route::put('/konten/{id}', [KontenController::class, 'update'])->name('konten.update');
-    Route::delete('/konten/{id}', [KontenController::class, 'destroy'])->name('konten.destroy');
+    Route::prefix('konten')->group(function () {
+        Route::get('/', [KontenController::class, 'index'])->name('konten.index');
+        Route::get('/create', [KontenController::class, 'create'])->name('konten.create');
+        Route::post('/', [KontenController::class, 'store'])->name('konten.store');
+        Route::get('/{id}/edit', [KontenController::class, 'edit'])->name('konten.edit');
+        Route::put('/{id}', [KontenController::class, 'update'])->name('konten.update');
+        Route::delete('/{id}', [KontenController::class, 'destroy'])->name('konten.destroy');
+    });
 });

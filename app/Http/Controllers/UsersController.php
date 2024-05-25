@@ -1,4 +1,4 @@
-<?php  
+<?php
 namespace App\Http\Controllers;
 
 use App\DataTables\UsersDataTable;
@@ -21,25 +21,34 @@ class UsersController extends Controller
     
     public function create()
     {
-        return view('users.create', ['activeMenu' => 'users']);
+        $activeMenu = 'users';
+        $levelUsersOptions = UsersModel::getLevelUsersOptions();
+        $statusOptions = UsersModel::getStatusOptions();
+        $AdminOptions = UsersModel::getAdminOptions();
 
-        // $levelUsersOptions = UsersModel::getLevelUsersOptions();
-        // $statusOptions = UsersModel::getStatusOptions();
-        // $AdminOptions  = UsersModel::getAdminOptions();
-
-
-    //     return view('users.create', compact('levelUsersOptions', 'statusOptions','AdminOptions'));
+        return view('users.create', compact('activeMenu', 'levelUsersOptions', 'statusOptions', 'AdminOptions'));
     }
+
     public function store(Request $request)
     {
+        $request->validate([
+            'username' => 'required|string|max:255',
+            'nama' => 'required|string|max:255',
+            'password' => 'required|string|min:8',
+            'level_id' => 'required|integer',
+            'status' => 'required|string',
+            'id_admin' => 'required|integer',
+        ]);
+
         UsersModel::create([
             'username' => $request->username,
             'nama' => $request->nama,
             'password' => Hash::make($request->password),
             'level_id' => $request->level_id,
             'status' => $request->status,
-            'id_admin'=>$request->id_admin,
+            'id_admin' => $request->id_admin,
         ]);
+
         return redirect()->route('users.index');  
     }
 
@@ -47,26 +56,37 @@ class UsersController extends Controller
     {
         $user = UsersModel::find($id);
 
-        return view('users.edit', ['data' => $user, 'activeMenu' => 'users']);
+        $activeMenu = 'users';
+        $levelUsersOptions = UsersModel::getLevelUsersOptions();
+        $statusOptions = UsersModel::getStatusOptions();
+        $AdminOptions = UsersModel::getAdminOptions();
 
-        // $levelUsersOptions = UsersModel::getLevelUsersOptions();
-        // $statusOptions = UsersModel::getStatusOptions();
-
-        return view('users.edit');
-
+        return view('users.edit', compact('user', 'levelUsersOptions', 'statusOptions', 'AdminOptions', 'activeMenu'));
     }
 
     public function edit_simpan($id, Request $request)
     {
+        $request->validate([
+            'username' => 'required|string|max:255',
+            'nama' => 'required|string|max:255',
+            'password' => 'nullable|string|min:8',
+            'level_id' => 'required|integer',
+            'status' => 'required|string',
+            'id_admin' => 'required|integer',
+        ]);
+
         $user = UsersModel::find($id);
         $user->username = $request->username;
         $user->nama = $request->nama;
-        $user->password = Hash::make($request->password);
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->password);
+        }
         $user->level_id = $request->level_id;
         $user->status = $request->status;
+        $user->id_admin = $request->id_admin;
         $user->save();
 
-        return redirect()->route('user.index');  // Gunakan rute yang benar
+        return redirect()->route('users.index'); 
     }
 
     public function delete($id)
@@ -74,6 +94,6 @@ class UsersController extends Controller
         $user = UsersModel::find($id);
         $user->delete();
 
-        return redirect()->route('user.index');  // Gunakan rute yang benar
+        return redirect()->route('users.index'); 
     }
 }
