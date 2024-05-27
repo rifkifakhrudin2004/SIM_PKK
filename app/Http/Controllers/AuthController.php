@@ -26,10 +26,10 @@ class AuthController extends Controller
                 return redirect()->intended('bendahara');
             }
             else if ($user->level_id == '3') {
-                return redirect()->intended('ketua');
+                return redirect()->intended('ketuaPKK');
             }
             else if ($user->level_id == '4') {
-                return redirect()->intended('admin');
+                return redirect()->intended('adminPKK');
             }
         }
         return view('login');
@@ -61,10 +61,10 @@ class AuthController extends Controller
                 return redirect()->intended('bendahara');
             }
             else if ($user->level_id == '3') {
-                return redirect()->intended('ketua');
+                return redirect()->intended('ketuaPKK');
             }
             else if ($user->level_id == '4') {
-                return redirect()->intended('admin');
+                return redirect()->intended('adminPKK');
             }
             return redirect()->intended('/');
         } 

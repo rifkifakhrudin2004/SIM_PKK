@@ -13,8 +13,8 @@
                 </div>
             </div>
             <div class="col-md-9">
-                <h4>NAMA : Agung Rizky</h4>
-                <p>ALAMAT : JL.Venus </p>
+                <h4>NAMA : {{ Auth::user()->nama }}</h4>
+                <p>STATUS : {{ Auth::user()->status }} </p>
             </div>
         </div>
     </div>
@@ -27,7 +27,7 @@
 
     <style>
         .fc-prev-button, .fc-next-button, .fc-button-primary {
-            background-color: rebeccapurple !important; /* Warna aqua untuk tombol kiri, kanan, dan 'Lihat Kegiatan' */
+            background-color: rebeccapurple !important; /* Warna rebeccapurple untuk tombol */
             border-color: rebeccapurple !important;
         }
     </style>
@@ -66,4 +66,5 @@
             calendar.render();
         });
     </script>
+</div>
 @endsection
