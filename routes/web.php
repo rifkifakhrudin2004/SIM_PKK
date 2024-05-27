@@ -5,8 +5,11 @@ use App\Http\Controllers\KontenController;
 use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\KetuaPKKController;
 use App\Http\Controllers\BendaharaPKKController;
+
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ManagerController;
+use App\Http\Controllers\ArisanController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -46,9 +49,20 @@ Route::middleware('auth')->group(function () { // Grouped auth middleware
     Route::middleware('cek_login:1')->group(function () { // Grouped cek_login:1 middleware
         Route::get('anggota', [AnggotaController::class, 'dashboard']);
     });
-
+});
     Route::middleware('cek_login:2')->group(function () { // Grouped cek_login:2 middleware
         Route::get('bendahara', [BendaharaPKKController::class, 'dashboard']);
+
+    Route::get('/dashboard', [BendaharaPKKController::class, 'dashboard'])->name('bendaharaPKK.dashboard');
+});
+Route::prefix('bendaharaPKK')->group(function () {
+    Route::get('/arisan', [ArisanController::class, 'index'])->name('bendaharaPKK.arisan');
+});
+
+// anggota
+Route::prefix('anggota')->group(function () {
+    Route::get('/', function () {
+        return redirect()->route('anggota.dashboard');
     });
 
     Route::middleware('cek_login:3')->group(function () { // Grouped cek_login:3 middleware

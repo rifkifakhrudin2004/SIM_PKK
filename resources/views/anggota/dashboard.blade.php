@@ -3,7 +3,7 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">Dashboard Anggota</h3>
+        <h3 class="card-title">Anggota Dashboard</h3>
     </div>
     <div class="card-body">
         <div class="row align-items-center">
@@ -13,26 +13,57 @@
                 </div>
             </div>
             <div class="col-md-9">
-                <div class="card-header">
-                    Tampilan {{ (Auth::user()->level_id == 1) ? 'anggota' : '' }}
-                </div>
-                <div class="card-body">
-                    <h1 style="font-size: 1.5rem; margin-left: 10px;">Login Sebagai:</h1>
-                    <h2 style="font-size: 1.25rem; margin-left: 20px;">
-                        @if(Auth::user()->level_id == 1)
-                            Anggota: {{ Auth::user()->nama }}
-                        @elseif(Auth::user()->level_id == 2)
-                            Bendahara: {{ Auth::user()->nama }}
-                        @elseif(Auth::user()->level_id == 3)
-                            Ketua: {{ Auth::user()->nama }}
-                        @else
-                            Anda tidak terdaftar
-                        @endif
-                    </h2>
-                    <a href="{{ route('logout') }}" class="btn btn-primary" style="margin-top: 20px;">Logout</a>
-                </div>
+                <h4>NAMA : Agung Rizky</h4>
+                <p>ALAMAT : JL.Venus </p>
             </div>
         </div>
     </div>
-</div>
+
+    <!-- FullCalendar CSS -->
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css' rel='stylesheet' />
+    <!-- FullCalendar JS -->
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js'></script>
+    <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
+
+    <style>
+        .fc-prev-button, .fc-next-button, .fc-button-primary {
+            background-color: rebeccapurple !important; /* Warna aqua untuk tombol kiri, kanan, dan 'Lihat Kegiatan' */
+            border-color: rebeccapurple !important;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function() {
+            var calendarEl = document.getElementById('calendar');
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                headerToolbar: {
+                    left: 'prev,next', // Hanya menampilkan tombol prev dan next
+                    center: 'title',
+                    right: 'lihatKegiatan' // Menambahkan custom button 'lihatKegiatan'
+                },
+                customButtons: {
+                    lihatKegiatan: {
+                        text: 'Lihat Kegiatan',
+                        click: function() {
+                            // Redirect ke halaman jadwal
+                            window.location.href = '/jadwal';
+                        }
+                    }
+                },
+                events: [{
+                        title: 'Kegiatan PKK',
+                        start: '2024-05-01',
+                        backgroundColor: '#008000', // Warna latar belakang event
+                        textColor: '#FFFFFF', // Warna teks event
+                        borderColor: '#008000' // Warna border event
+                    },
+                    // Add more events here if needed
+                ]
+            });
+
+            calendar.render();
+        });
+    </script>
 @endsection
