@@ -7,6 +7,7 @@ use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\KetuaPKKController;
 use App\Http\Controllers\BendaharaPKKController;
 use App\Http\Controllers\ArisanController;
+use App\Http\Controllers\PembukuanArisanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +58,13 @@ Route::prefix('bendaharaPKK')->group(function () {
 Route::prefix('bendaharaPKK')->group(function () {
     Route::get('/arisan', [ArisanController::class, 'index'])->name('bendaharaPKK.arisan');
 });
+Route::group(['middleware' => ['auth', 'check.bendahara']], function () {
+    Route::get('/data-arisan', [ArisanController::class, 'dataArisan'])->name('arisan.data');
+    Route::get('/jadwal', [ArisanController::class, 'jadwal'])->name('arisan.jadwal');
+    Route::get('/pembukuan', [ArisanController::class, 'pembukuan'])->name('arisan.pembukuan');
+    Route::resource('/arisan', ArisanController::class)->except(['index', 'show']);
+});
+
 
 
 
@@ -69,6 +77,41 @@ Route::prefix('anggota')->group(function () {
 
     Route::get('/dashboard', [AnggotaController::class, 'dashboard'])->name('anggota.dashboard');
 });
+Route::prefix('anggota')->group(function () {
+    Route::get('/arisan', [ArisanController::class, 'index'])->name('anggota.arisan');
+});
+
+
+Route::get('/jadwal', [ArisanController::class, 'jadwal'])->name('arisan.jadwal');
+Route::get('/pembukuan', [ArisanController::class, 'pembukuan'])->name('arisan.pembukuan');
+
+// DATA ARISAN
+Route::prefix('arisan')->middleware('auth')->group(function() {
+    Route::get('/data-arisan', [ArisanController::class, 'dataArisan'])->name('arisan.data');
+    Route::get('/create', [ArisanController::class, 'create'])->name('arisan.create');
+    Route::post('/', [ArisanController::class, 'store'])->name('arisan.store');
+    Route::get('/{id}/edit', [ArisanController::class, 'edit'])->name('arisan.edit');
+    Route::put('/{id}', [ArisanController::class, 'update'])->name('arisan.update');
+    Route::delete('/{id}', [ArisanController::class, 'destroy'])->name('arisan.destroy');
+});
+
+
+// PEMBUKUAN ARISAN
+Route::prefix('pembukuan')->group(function() {
+    Route::get('arisan', [ArisanController::class, 'pembukuan'])->name('pembukuan.arisan');
+    Route::resource('arisan-detail', PembukuanArisanController::class, [
+        'names' => [
+            'index' => 'pembukuan_arisan.index',
+            'create' => 'pembukuan_arisan.create',
+            'store' => 'pembukuan_arisan.store',
+            'edit' => 'pembukuan_arisan.edit',
+            'update' => 'pembukuan_arisan.update',
+            'show' => 'pembukuan_arisan.show',
+            'destroy' => 'pembukuan_arisan.destroy'
+        ]
+    ]);
+});
+
 
 
 
