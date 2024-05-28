@@ -1,48 +1,20 @@
 @extends('layoutsAnggota.template')
 
 @section('content')
-    <div class="card">
-        <div class="card-header"> 
-            <h3 class="card-title">Anggota Dashboard</h3>
-        </div>
-        <div class="card-body">
-            <div class="row align-items-center">
-                <div class="col-md-2 text-center">
-                    <div class="icon-box">
-                        <i class="fas fa-user-circle fa-5x text-primary"></i> <!-- Mengubah icon login -->
-                    </div>
-                </div>
-                <div class="col-md-9">
-                    <h4 class="mb-0">NAMA : Agung Rizky</h4> <!-- Mengubah tata letak teks -->
-                    <p class="mb-0">ALAMAT : JL.Venus</p> <!-- Mengubah tata letak teks -->
-                </div>
-            </div>
-        </div>
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Anggota Dashboard</h3>
     </div>
-
-    <!-- Kalender dan Denah -->
-    <div class="row">
-        <div class="col-md-6">
-            <!-- Kalender -->
-            <div class="card">
-                <div class="card-header"> 
-                    <h3 class="card-title">Kalender</h3>
-                </div>
-                <div class="card-body">
-                    <div id='calendar'></div>
+    <div class="card-body">
+        <div class="row align-items-center">
+            <div class="col-md-3 text-center">
+                <div class="icon-box">
+                    <i class="fas fa-user fa-5x"></i>
                 </div>
             </div>
-        </div>
-        <div class="col-md-6">
-            <!-- Denah -->
-            <div class="card">
-                <div class="card-header"> 
-                    <h3 class="card-title">Denah Kelurahan Tlogomas</h3>
-                </div>
-                <div class="card-body">
-                    <!-- Gambar denah -->
-                    <img src="{{ asset('adminlte/dist/img/denahkeltlogomas.jpg') }}" alt="Denah Kelurahan Tlogomas" style="width: 100%">
-                </div>
+            <div class="col-md-9">
+                <h4>NAMA : {{ Auth::user()->nama }}</h4>
+                <p>STATUS : {{ Auth::user()->status }} </p>
             </div>
         </div>
     </div>
@@ -55,7 +27,7 @@
 
     <style>
         .fc-prev-button, .fc-next-button, .fc-button-primary {
-            background-color: rebeccapurple !important; /* Warna aqua untuk tombol kiri, kanan, dan 'Lihat Kegiatan' */
+            background-color: rebeccapurple !important; /* Warna rebeccapurple untuk tombol */
             border-color: rebeccapurple !important;
         }
     </style>
@@ -94,4 +66,5 @@
             calendar.render();
         });
     </script>
+</div>
 @endsection
