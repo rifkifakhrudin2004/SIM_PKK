@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="card">
-        <div class="card-header"> 
+        <div class="card-header">
             <h3 class="card-title">Anggota Dashboard</h3>
         </div>
         <div class="card-body">
@@ -25,7 +25,7 @@
         <div class="col-md-6">
             <!-- Kalender -->
             <div class="card">
-                <div class="card-header"> 
+                <div class="card-header">
                     <h3 class="card-title">Kalender</h3>
                 </div>
                 <div class="card-body">
@@ -36,12 +36,13 @@
         <div class="col-md-6">
             <!-- Denah -->
             <div class="card">
-                <div class="card-header"> 
+                <div class="card-header">
                     <h3 class="card-title">Denah Kelurahan Tlogomas</h3>
                 </div>
                 <div class="card-body">
                     <!-- Gambar denah -->
-                    <img src="{{ asset('adminlte/dist/img/denahkeltlogomas.jpg') }}" alt="Denah Kelurahan Tlogomas" style="width: 100%">
+                    <img src="{{ asset('adminlte/dist/img/denahkeltlogomas.jpg') }}" alt="Denah Kelurahan Tlogomas"
+                        style="width: 100%">
                 </div>
             </div>
         </div>
@@ -54,9 +55,12 @@
     <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
 
     <style>
-        .fc-prev-button, .fc-next-button, .fc-button-primary {
-            background-color: rebeccapurple !important; /* Warna aqua untuk tombol kiri, kanan, dan 'Lihat Kegiatan' */
-            border-color: rebeccapurple !important;
+        .fc-prev-button,
+        .fc-next-button,
+        .fc-button-primary {
+            background-color: rgb(0, 0, 0) !important;
+            /* Warna aqua untuk tombol kiri, kanan, dan 'Lihat Kegiatan' */
+            border-color: rgb(4, 0, 9) !important;
         }
     </style>
 
@@ -76,7 +80,7 @@
                         text: 'Lihat Kegiatan',
                         click: function() {
                             // Redirect ke halaman jadwal
-                            window.location.href = '/jadwal';
+                            window.location.href = '/anggota/jadwal';
                         }
                     }
                 },
