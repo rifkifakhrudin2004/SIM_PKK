@@ -17,6 +17,13 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+     public function isBendahara()
+     {
+         return $this->role === 'bendahara';
+         // Ubah 'role' dengan atribut yang menunjukkan peran pengguna sebagai bendahara
+     }
+     
     protected $fillable = [
         'name',
         'email',

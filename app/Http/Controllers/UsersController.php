@@ -1,4 +1,4 @@
-<?php  
+<?php
 namespace App\Http\Controllers;
 
 use App\DataTables\UsersDataTable;
@@ -20,49 +20,48 @@ class UsersController extends Controller
     }
     
     public function create()
-{
-    $activeMenu = 'users';
-    $levelUsersOptions = UsersModel::getLevelUsersOptions();
-    $statusOptions = UsersModel::getStatusOptions();
-    $AdminOptions  = UsersModel::getAdminOptions();
-
-    return view('users.create', compact('activeMenu', 'levelUsersOptions', 'statusOptions', 'AdminOptions'));
-}
-
-
-public function store(Request $request)
-{
-    $request->validate([
-        'username' => 'required|string|max:255',
-        'nama' => 'required|string|max:255',
-        'password' => 'required|string|min:8',
-        'level_id' => 'required|integer',
-        'status' => 'required|string',
-        'id_admin' => 'required|integer',
-    ]);
-
-    UsersModel::create([
-        'username' => $request->username,
-        'nama' => $request->nama,
-        'password' => Hash::make($request->password),
-        'level_id' => $request->level_id,
-        'status' => $request->status,
-        'id_admin' => $request->id_admin,
-    ]);
-
-    return redirect()->route('users.index'); // Gunakan rute yang benar
-}
-
-
-    public function edit($id)
     {
-        $user = UsersModel::find($id);
+        $activeMenu = 'users';
         $levelUsersOptions = UsersModel::getLevelUsersOptions();
         $statusOptions = UsersModel::getStatusOptions();
         $AdminOptions = UsersModel::getAdminOptions();
 
-        return view('users.edit', compact('user', 'levelUsersOptions', 'statusOptions', 'AdminOptions', 'activeMenu'))
-            ->with('activeMenu', 'users');
+        return view('users.create', compact('activeMenu', 'levelUsersOptions', 'statusOptions', 'AdminOptions'));
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'username' => 'required|string|max:255',
+            'nama' => 'required|string|max:255',
+            'password' => 'required|string|min:8',
+            'level_id' => 'required|integer',
+            'status' => 'required|string',
+            'id_admin' => 'required|integer',
+        ]);
+
+        UsersModel::create([
+            'username' => $request->username,
+            'nama' => $request->nama,
+            'password' => Hash::make($request->password),
+            'level_id' => $request->level_id,
+            'status' => $request->status,
+            'id_admin' => $request->id_admin,
+        ]);
+
+        return redirect()->route('users.index');  
+    }
+
+    public function edit($id)
+    {
+        $user = UsersModel::find($id);
+
+        $activeMenu = 'users';
+        $levelUsersOptions = UsersModel::getLevelUsersOptions();
+        $statusOptions = UsersModel::getStatusOptions();
+        $AdminOptions = UsersModel::getAdminOptions();
+
+        return view('users.edit', compact('user', 'levelUsersOptions', 'statusOptions', 'AdminOptions', 'activeMenu'));
     }
 
     public function edit_simpan($id, Request $request)
@@ -87,7 +86,7 @@ public function store(Request $request)
         $user->id_admin = $request->id_admin;
         $user->save();
 
-        return redirect()->route('users.index'); // Gunakan rute yang benar
+        return redirect()->route('users.index'); 
     }
 
     public function delete($id)
@@ -95,6 +94,6 @@ public function store(Request $request)
         $user = UsersModel::find($id);
         $user->delete();
 
-        return redirect()->route('users.index'); // Gunakan rute yang benar
+        return redirect()->route('users.index'); 
     }
 }
