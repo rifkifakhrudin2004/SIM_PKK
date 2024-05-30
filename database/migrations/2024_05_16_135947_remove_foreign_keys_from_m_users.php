@@ -1,7 +1,9 @@
 <?php
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class RemoveForeignKeysFromMUsers extends Migration
 {
@@ -12,19 +14,25 @@ class RemoveForeignKeysFromMUsers extends Migration
      */
     public function up()
     {
-        // Menghapus foreign key id_anggota di tabel m_users
         Schema::table('m_users', function (Blueprint $table) {
-            $table->dropForeign(['id_anggota']);
-        });
+            // Check if the foreign key exists before trying to drop it
+            $sm = Schema::getConnection()->getDoctrineSchemaManager();
+            $foreignKeys = $sm->listTableForeignKeys('m_users');
+            $foreignKeysArray = array_map(function ($key) {
+                return $key->getName();
+            }, $foreignKeys);
 
-        // Menghapus foreign key id_bendahara di tabel m_users
-        Schema::table('m_users', function (Blueprint $table) {
-            $table->dropForeign(['id_bendahara']);
-        });
+            if (in_array('m_users_id_anggota_foreign', $foreignKeysArray)) {
+                $table->dropForeign(['id_anggota']);
+            }
 
-        // Menghapus foreign key id_ketua_pkk di tabel m_users
-        Schema::table('m_users', function (Blueprint $table) {
-            $table->dropForeign(['id_ketua_pkk']);
+            if (in_array('m_users_id_bendahara_foreign', $foreignKeysArray)) {
+                $table->dropForeign(['id_bendahara']);
+            }
+
+            if (in_array('m_users_id_ketua_pkk_foreign', $foreignKeysArray)) {
+                $table->dropForeign(['id_ketua_pkk']);
+            }
         });
     }
 
@@ -35,18 +43,9 @@ class RemoveForeignKeysFromMUsers extends Migration
      */
     public function down()
     {
-        // Menambahkan kembali foreign key id_anggota di tabel m_users
         Schema::table('m_users', function (Blueprint $table) {
             $table->foreign('id_anggota')->references('id')->on('m_anggota');
-        });
-
-        // Menambahkan kembali foreign key id_bendahara di tabel m_users
-        Schema::table('m_users', function (Blueprint $table) {
             $table->foreign('id_bendahara')->references('id')->on('m_bendahara_pkk');
-        });
-
-        // Menambahkan kembali foreign key id_ketua_pkk di tabel m_users
-        Schema::table('m_users', function (Blueprint $table) {
             $table->foreign('id_ketua_pkk')->references('id')->on('m_ketua_pkk');
         });
     }
