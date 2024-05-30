@@ -7,14 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class AnggotaModel extends Model
 {
     protected $table = 'm_anggota'; // Nama tabel
+    protected $primaryKey = 'id_anggota'; // Primary key
 
     protected $fillable = [
-        'nama', 'alamat', 'nomor_telepon', 'email', 
+        'nama_anggota', 'alamat_anggota', 'notelp_anggota',
     ];
 
     // Relasi dengan arisan jika diperlukan
     public function arisans()
     {
-        return $this->hasMany(ArisanModel::class, 'id_anggota', 'id');
+        return $this->hasMany(ArisanModel::class, 'id_anggota', 'id_arisan');
     }
 }

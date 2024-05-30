@@ -68,12 +68,11 @@ Route::middleware('auth')->group(function () {
 Route::prefix('bendaharaPKK')->group(function () {
     Route::get('/arisan', [ArisanController::class, 'index'])->name('bendaharaPKK.arisan');
 });
-Route::group(['middleware' => ['auth', 'check.bendahara']], function () {
+
     Route::get('/data-arisan', [ArisanController::class, 'dataArisan'])->name('arisan.data');
     Route::get('/jadwal', [ArisanController::class, 'jadwal'])->name('arisan.jadwal');
     Route::get('/pembukuan', [ArisanController::class, 'pembukuan'])->name('arisan.pembukuan');
     Route::resource('/arisan', ArisanController::class)->except(['index', 'show']);
-});
 
 
 // anggota
@@ -81,7 +80,6 @@ Route::prefix('anggota')->group(function () {
     Route::get('/', function () {
         return redirect()->route('anggota.dashboard');
     });
-<<<<<<< HEAD
 
     Route::get('/dashboard', [AnggotaController::class, 'dashboard'])->name('anggota.dashboard');
 });
@@ -90,8 +88,6 @@ Route::prefix('anggota')->group(function () {
 });
 
 
-Route::get('/jadwal', [ArisanController::class, 'jadwal'])->name('arisan.jadwal');
-Route::get('/pembukuan', [ArisanController::class, 'pembukuan'])->name('arisan.pembukuan');
 
 // DATA ARISAN
 Route::prefix('arisan')->middleware('auth')->group(function() {
@@ -106,7 +102,7 @@ Route::prefix('arisan')->middleware('auth')->group(function() {
 
 // PEMBUKUAN ARISAN
 Route::prefix('pembukuan')->group(function() {
-    Route::get('arisan', [ArisanController::class, 'pembukuan'])->name('pembukuan.arisan');
+    Route::get('/pembukuan', [ArisanController::class, 'pembukuan'])->name('arisan.pembukuan');
     Route::resource('arisan-detail', PembukuanArisanController::class, [
         'names' => [
             'index' => 'pembukuan_arisan.index',
@@ -127,14 +123,13 @@ Route::prefix('pembukuan')->group(function() {
 Route::prefix('user')->group(function () {
     Route::get('/', function () {
         return redirect()->route('users.dashboard');
-=======
+    });
 // Nested groups for KetuaPKK
     Route::prefix('ketuaPKK')->group(function () {
         Route::get('/', function () {
             return redirect()->route('ketua.dashboard'); // Corrected redirect route
         });
         Route::get('/dashboard', [KetuaPKKController::class, 'dashboard'])->name('ketua.dashboard');
->>>>>>> 48c39dcd2bc6ee70ad429db583508fa18aa866d1
     });
 
 // Nested groups for BendaharaPKK

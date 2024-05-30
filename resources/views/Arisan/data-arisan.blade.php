@@ -26,8 +26,8 @@
                 <td>{{ $arisan->catatan_arisan }}</td>
                 <td>{{ $arisan->setoran_arisan }}</td>
                 <td>
-                    <a href="{{ route('arisan.edit', $arisan->id) }}" class="btn btn-warning">Edit</a>
-                    <form action="{{ route('arisan.destroy', $arisan->id) }}" method="POST" style="display:inline-block;">
+                    <a href="{{ route('arisan.edit', $arisan->id_arisan) }}" class="btn btn-warning">Edit</a>
+                    <form action="{{ route('arisan.destroy', $arisan->id_arisan) }}" method="POST" style="display:inline-block;">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">Delete</button>
