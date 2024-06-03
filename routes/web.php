@@ -7,9 +7,38 @@ use App\Http\Controllers\KetuaPKKController;
 use App\Http\Controllers\BendaharaPKKController;
 use App\Http\Controllers\ArisanController;
 use App\Http\Controllers\JadwalController;
+use App\Http\Controllers\PembukuanArisanController;
+use App\Http\Controllers\AuthController;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+// Manage Login
+Route::get('login', [AuthController::class, 'index'])->name('login');
+Route::get('register', [AuthController::class, 'register'])->name('register');
+Route::post('proses_login', [AuthController::class, 'proses_login'])->name('proses_login');
+Route::post('proses_register', [AuthController::class, 'proses_register'])->name('proses_register');
+Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+
+// Grouped routes with auth middleware
+Route::middleware('auth')->group(function () {
+    // Routes for Anggota (level_id: 1)
+    Route::middleware('cek_login:1')->group(function () {
+        Route::get('anggota', [AnggotaController::class, 'dashboard']);
+    });
+    // Routes for Bendahara (level_id: 2)
+    Route::middleware('cek_login:2')->group(function () {
+        Route::get('bendaharaPKK', [BendaharaPKKController::class, 'dashboard']);
+    });
+    // Routes for Ketua PKK (level_id: 3)
+    Route::middleware('cek_login:3')->group(function () {
+        Route::get('ketuaPKK', [KetuaPKKController::class, 'dashboard']);
+    });
+    // Routes for Admin PKK (level_id: 4)
+    Route::middleware('cek_login:4')->group(function () {
+        Route::get('AdminPKK', [UsersController::class, 'dashboard']);
+    });
 });
 
 // Manage User
@@ -37,14 +66,12 @@ Route::prefix('bendaharaPKK')->group(function () {
 
     Route::get('/dashboard', [BendaharaPKKController::class, 'dashboard'])->name('bendaharaPKK.dashboard');
     Route::get('/arisan', [ArisanController::class, 'index'])->name('bendaharaPKK.arisan');
-<<<<<<< HEAD
 });
 
     Route::get('/data-arisan', [ArisanController::class, 'dataArisan'])->name('arisan.data');
     Route::get('/jadwal', [ArisanController::class, 'jadwal'])->name('arisan.jadwal');
     Route::get('/pembukuan', [ArisanController::class, 'pembukuan'])->name('arisan.pembukuan');
     Route::resource('/arisan', ArisanController::class)->except(['index', 'show']);
-=======
 
     // Jadwal
     Route::get('/jadwal', [JadwalController::class, 'index'])->name('jadwals.index');
@@ -53,8 +80,7 @@ Route::prefix('bendaharaPKK')->group(function () {
     Route::get('/jadwal/{id}/edit', [JadwalController::class, 'edit'])->name('jadwals.edit');
     Route::put('/jadwal/{id}', [JadwalController::class, 'update'])->name('jadwals.update');
     Route::delete('/jadwal/{id}', [JadwalController::class, 'destroy'])->name('jadwals.destroy');
-});
->>>>>>> a2aaace6ea67efea5a603fbf7803fabda9daf8f0
+
 
 
 // Anggota
@@ -64,8 +90,6 @@ Route::prefix('anggota')->group(function () {
     });
 
     Route::get('/dashboard', [AnggotaController::class, 'dashboard'])->name('anggota.dashboard');
-
-<<<<<<< HEAD
 
 
 // DATA ARISAN
@@ -93,10 +117,9 @@ Route::prefix('pembukuan')->group(function() {
             'destroy' => 'pembukuan_arisan.destroy'
         ]
     ]);
-=======
+
     // Jadwal
     Route::get('/jadwal', [AnggotaController::class, 'jadwal'])->name('anggota.jadwal');
->>>>>>> a2aaace6ea67efea5a603fbf7803fabda9daf8f0
 });
 
 
@@ -105,7 +128,7 @@ Route::prefix('pembukuan')->group(function() {
 Route::prefix('user')->group(function () {
     Route::get('/', function () {
         return redirect()->route('users.dashboard');
-<<<<<<< HEAD
+
     });
 // Nested groups for KetuaPKK
     Route::prefix('ketuaPKK')->group(function () {
@@ -113,8 +136,7 @@ Route::prefix('user')->group(function () {
             return redirect()->route('ketua.dashboard'); // Corrected redirect route
         });
         Route::get('/dashboard', [KetuaPKKController::class, 'dashboard'])->name('ketua.dashboard');
-=======
->>>>>>> a2aaace6ea67efea5a603fbf7803fabda9daf8f0
+
     });
 
     Route::get('/dashboard', [UsersController::class, 'dashboard'])->name('users.dashboard');
@@ -124,7 +146,7 @@ Route::prefix('user')->group(function () {
 });
 
 // Manage Konten
-<<<<<<< HEAD
+
     Route::prefix('konten')->group(function () {
         Route::get('/', [KontenController::class, 'index'])->name('konten.index');
         Route::get('/create', [KontenController::class, 'create'])->name('konten.create');
@@ -134,12 +156,11 @@ Route::prefix('user')->group(function () {
         Route::delete('/{id}', [KontenController::class, 'destroy'])->name('konten.destroy');
     });
 });
-=======
+
+
 Route::get('/konten', [KontenController::class, 'index'])->name('konten.index');
 Route::get('/konten/create', [KontenController::class, 'create'])->name('konten.create');
 Route::post('/konten', [KontenController::class, 'store'])->name('konten.store');
 Route::get('/konten/{id}/edit', [KontenController::class, 'edit'])->name('konten.edit');
 Route::put('/konten/{id}', [KontenController::class, 'update'])->name('konten.update');
 Route::delete('/konten/{id}', [KontenController::class, 'destroy'])->name('konten.destroy');
-
->>>>>>> a2aaace6ea67efea5a603fbf7803fabda9daf8f0

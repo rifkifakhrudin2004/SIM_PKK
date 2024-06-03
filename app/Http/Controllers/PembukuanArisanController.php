@@ -48,7 +48,7 @@ class PembukuanArisanController extends Controller
     {
         $activeMenu = 'arisan';
         $pembukuan = PembukuanArisanModel::findOrFail($id);
-        return view('PembukuanArisan.edit', compact('pembukuan', 'activeMenu'));
+        return view('pembukuan_arisan.edit', compact('pembukuan', 'activeMenu'));
     }
 
     public function update(Request $request, $id)
