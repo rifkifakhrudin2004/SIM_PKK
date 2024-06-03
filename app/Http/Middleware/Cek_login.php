@@ -31,7 +31,6 @@ class Cek_login
         if ($user->level_id == $roles) { // Perbaiki penulisan level_id
             return $next($request);
         }
-
         // Jika tidak memiliki akses maka kembalikan ke halaman login
         return redirect('login')->with('error', 'Maaf, Anda tidak memiliki akses');
     }

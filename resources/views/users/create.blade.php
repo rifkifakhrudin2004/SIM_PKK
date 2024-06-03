@@ -56,7 +56,7 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label for="id_admin">Nama Admin</label>
                     <select class="form-control @error('id_admin') is-invalid @enderror" id="id_admin" name="id_admin">
                         @foreach($AdminOptions as $value => $label)
@@ -66,7 +66,7 @@
                     @error('id_admin')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror   
-                </div>
+                </div> --}}
             </div>
             <div class="card-footer">
                 <button type="submit" class="btn btn-primary">Submit</button>

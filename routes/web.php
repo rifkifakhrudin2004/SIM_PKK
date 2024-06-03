@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\KontenController;
 use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\KetuaPKKController;
@@ -8,6 +9,8 @@ use App\Http\Controllers\BendaharaPKKController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\ArisanController;
+use App\Http\Controllers\DataAnggotaController;
+
 
 
 /*
@@ -25,16 +28,37 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Manage Users
+// Route::prefix('users')->group(function () { // Grouped user routes
+//     Route::get('/create', [UsersController::class, 'create'])->name('users.create');
+//     Route::get('/edit/{id}', [UsersController::class, 'edit'])->name('users.edit');
+//     Route::get('/', [UsersController::class, 'index'])->name('users.index');
+//     Route::post('/', [UsersController::class, 'store'])->name('users.store');
+//     Route::put('/{id}', [UsersController::class, 'update'])->name('users.update');
+//     Route::delete('/{id}', [UsersController::class, 'destroy'])->name('users.destroy');
+//     Route::put('/edit_simpan/{id}', [UsersController::class, 'edit_simpan'])->name('user.edit_simpan'); // Changed from /user/{id}
+//     Route::get('/delete/{id}', [UsersController::class, 'delete'])->name('users.delete');
+// });
 // Manage User
-Route::prefix('users')->group(function () { // Grouped user routes
-    Route::get('/create', [UsersController::class, 'create'])->name('users.create');
-    Route::get('/edit/{id}', [UsersController::class, 'edit'])->name('users.edit');
-    Route::get('/', [UsersController::class, 'index'])->name('users.index');
-    Route::post('/', [UsersController::class, 'store'])->name('users.store');
-    Route::put('/{id}', [UsersController::class, 'update'])->name('users.update');
-    Route::delete('/{id}', [UsersController::class, 'destroy'])->name('users.destroy');
-    Route::put('/edit_simpan/{id}', [UsersController::class, 'edit_simpan'])->name('user.edit_simpan'); // Changed from /user/{id}
-    Route::get('/delete/{id}', [UsersController::class, 'delete'])->name('users.delete');
+Route::group(['prefix' => 'user'], function () {
+    Route::get('/', [UserController::class, 'index']); //menampilkan halaman awal user
+    Route::post('/list', [UserController::class, 'list']); //menampilkan data user dalam bentuk json untuk database
+    Route::get('create', [UserController::class, 'create']); //menampilkan halaman form tambah user
+    Route::post('/', [UserController::class, 'store']); //menyimpan data user baru
+    Route::get('/{id}', [UserController::class, 'show']); //menampilkan detail user
+    Route::get('/{id}/edit', [UserController::class, 'edit']); //menampilkan halaman form edit user
+    Route::put('/{id}', [UserController::class, 'update']); //menyimpan perubahan data user
+    Route::delete('/{id}', [UserController::class, 'destroy']); //menghapus data user
+});
+Route::group(['prefix' => 'dataAnggota'], function () {
+    Route::get('/', [DataAnggotaController::class, 'index']); //menampilkan halaman awal user
+    Route::post('/list', [DataAnggotaController::class, 'list']); //menampilkan data user dalam bentuk json untuk database
+    Route::get('create', [DataAnggotaController::class, 'create']); //menampilkan halaman form tambah user
+    Route::post('/', [DataAnggotaController::class, 'store']); //menyimpan data user baru
+    Route::get('/{id}', [DataAnggotaController::class, 'show']); //menampilkan detail user
+    Route::get('/{id}/edit', [DataAnggotaController::class, 'edit']); //menampilkan halaman form edit user
+    Route::put('/{id}', [DataAnggotaController::class, 'update']); //menyimpan perubahan data user
+    Route::delete('/{id}', [DataAnggotaController::class, 'destroy']); //menghapus data user
 });
 // Manage Login
 Route::get('login', [AuthController::class, 'index'])->name('login');

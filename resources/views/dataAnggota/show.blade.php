@@ -1,0 +1,46 @@
+@extends('layoutsUser.template')
+
+@section('content')
+<div class="card card-outline card-primary">
+    <div class="card-header">
+        <h3 class="card-title">{{ $page->title }}</h3>
+        <div class="card-tools"></div>
+    </div>
+    <div class="card-body">
+        @empty($anggota)
+        <div class="alert alert-danger alert-dismissible">
+            <h5><i class="icon fas fa-ban"></i> Kesalahan!</h5>
+            Data anggota yang Anda cari tidak ditemukan.
+        </div>
+        @else
+        <table class="table table-bordered table-striped table-hover table-sm">
+            <tr>
+                <th>ID</th>
+                <td>{{ $anggota->id_anggota }}</td>
+            </tr>
+            <tr>
+                <th>Nama</th>
+                <td>{{ $anggota->nama_anggota }}</td>
+            </tr>
+            <tr>
+                <th>Nomor Telepon</th>
+                <td>{{ $anggota->notelp_anggota }}</td>
+            </tr>
+            <tr>
+                <th>Alamat</th>
+                <td>{{ $anggota->alamat_anggota }}</td>
+            </tr>
+        </table>
+        @endempty
+        <a href="{{ url('dataAnggota') }}" class="btn btn-sm btn-default mt-2">Kembali</a>
+    </div>
+</div>
+@endsection
+
+@push('css')
+<!-- Additional CSS -->
+@endpush
+
+@push('js')
+<!-- Additional JS -->
+@endpush
