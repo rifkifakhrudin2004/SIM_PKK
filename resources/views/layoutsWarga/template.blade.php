@@ -117,9 +117,10 @@
                                     <div class="hometitle">Sistem Manajemen Kegiatan PKK </div>
                                     <div class="homesummary">RW 05 Tlogomas, Kecamatan Lowokwaru, Kota Malang.</div>
                                     
-                                    <div class="homelink"><a
+                                    {{-- <div class="homelink"><a
                                             >Selengkapnya</a>
-                                    </div>
+                                    </div> --}}
+                                    
                                 </div>
                             </div>
                         </div>
@@ -201,7 +202,7 @@ Yuk, ikuti dan daftar Job Fair Disnaker dengan scan barcode pada slide ke-2. sia
         <div class="floatmenu">
             <div class="floatmenu__wrap">
                 <ul>
-                    <li><a href="https://www.lapor.go.id/instansi/pemerintah-kota-bandung" target="_blank"><img
+                    {{-- <li><a href="https://www.lapor.go.id/instansi/pemerintah-kota-bandung" target="_blank"><img
                                 src="https://www.bandung.go.id/assets/img/floatmenu/lapor-float.png"
                                 alt="img"><span>LAPOR</span></a></li>
                     <li><a href="tel:112" rel="nofollow" target="_blank"><img
@@ -209,10 +210,13 @@ Yuk, ikuti dan daftar Job Fair Disnaker dengan scan barcode pada slide ke-2. sia
                                 alt="img"><span>112</span></a></li>
                     <li><a href="https://www.bandung.go.id/dashboard/detail/pelindung"><img
                                 src="https://www.bandung.go.id/assets/img/floatmenu/3.png"
-                                alt="img"><span>CCTV</span></a></li>
-                    <li><a href="https://wa.me/+628112591810?text=Bandung" target="_blank"><img
-                                src="https://www.bandung.go.id/assets/img/floatmenu/4.png"
-                                alt="img"><span>CHAT</span></a></li>
+                                alt="img"><span>CCTV</span></a></li> --}}
+                    <li>
+                        <a href="https://wa.me/+6282245676900?text=Hallo saya mengunjungi website anda!" target="_blank">
+                            <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="WhatsApp Logo">
+                            <span>CHAT</span>
+                          </a>
+                            </li>
                 </ul>
             </div>
         </div>
@@ -237,12 +241,13 @@ Yuk, ikuti dan daftar Job Fair Disnaker dengan scan barcode pada slide ke-2. sia
 
                                     <ul>
                                         <li class=" active"><span><a class="smuroll"
-                                                    href="https://www.bandung.go.id"><i class="fas fa-home"></i>
-                                                    Beranda </a></span></li>
+                                            {{-- href="https://www.bandung.go.id"><i class="fas fa-home"></i> --}}
+                                            href="http://localhost/SIM_PKK/public/">Beranda </a></span></li>
+                                                    
                                         <li class="has-dropdown"><span><a
                                                     href="https://www.bandung.go.id/about">Tentang</a></span></li>
 
-                                        <li class="has-dropdown"><span><a
+                                        {{-- <li class="has-dropdown"><span><a
                                                     href="https://www.bandung.go.id/features">Fitur</a> <i
                                                     class="idrop fas fa-caret-down"></i></span>
                                             <ul>
@@ -257,16 +262,16 @@ Yuk, ikuti dan daftar Job Fair Disnaker dengan scan barcode pada slide ke-2. sia
                                                 </li>
                                                 <li><a href="https://www.bandung.go.id/features/taman">Taman</a></li>
                                             </ul>
-                                        </li>
+                                        </li> --}}
 
 
-                                        <li><span><a href="https://www.bandung.go.id/citizen">Citizen</a></span></li>
+                                        {{-- <li><span><a href="https://www.bandung.go.id/citizen">Citizen</a></span></li>
 
-                                        <li><span><a href="https://www.bandung.go.id/news">Siaran Pers</a></span></li>
+                                        <li><span><a href="https://www.bandung.go.id/news">Siaran Pers</a></span></li> --}}
 
 
 
-                                        <li><a href="https://www.bandung.go.id/city-directory">Direktori Kota</a></li>
+                                        {{-- <li><a href="https://www.bandung.go.id/city-directory">Direktori Kota</a></li>
                                         <li class="has-dropdown"><span><a>JDIH</a><i
                                                     class="idrop fas fa-caret-down"></i></span>
                                             <ul>
@@ -279,7 +284,7 @@ Yuk, ikuti dan daftar Job Fair Disnaker dengan scan barcode pada slide ke-2. sia
                                         <!--  <li><a href="https://www.bandung.go.id/dashboard/detail/coronaupdate"><i class="fas fa-exclamation-circle"></i> Update on Coronavirus</a></li>
                   <li><a target="_blank" href="https://opendata.bandung.go.id/"><i class="fas fa-exclamation-circle"></i>Open Data</a></li> -->
                                         <li><a href="https://www.bandung.go.id/dashboard/detail/opendata"><i
-                                                    class="fas fa-exclamation-circle"></i> Open Data</a></li>
+                                                    class="fas fa-exclamation-circle"></i> Open Data</a></li> --}}
 
 
 
@@ -294,13 +299,14 @@ Yuk, ikuti dan daftar Job Fair Disnaker dengan scan barcode pada slide ke-2. sia
 
                     <div class="menu__right">
 
-
                         <div class="hujanbahasa">
-                            <div class="hujan">login </div>
-                        </div>
+                            <div class="hujan">
+                              <a href="http://localhost/SIM_PKK/public/login">Login</a>
+                            </div>
+                          </div>
+
                         <div class="search">
                             <div class="search__icon">
-                                <i class="scari-icon fas fa-search"></i>
                                 <i class="sclose-icon fas fa-times"></i>
                             </div>
 
@@ -308,14 +314,14 @@ Yuk, ikuti dan daftar Job Fair Disnaker dengan scan barcode pada slide ke-2. sia
 
                         </div>
                     </div>
-                    <form action="https://www.bandung.go.id/search" method='get'>
+                    {{-- <form action="https://www.bandung.go.id/search" method='get'>
                         <div class="search__form-outer">
                             <div class="search__form">
                                 <input type="text" name="key">
                                 <button type="submit"><i class="fas fa-search"></i></button>
                             </div>
-                        </div>
-                    </form>
+                        </div> --}}
+                    {{-- </form> --}}
                 </nav>
             </div>
         </header>
@@ -327,9 +333,12 @@ Yuk, ikuti dan daftar Job Fair Disnaker dengan scan barcode pada slide ke-2. sia
                         <div class="bagidua__col">
                             <div class="kalender" id="kalender">
                                 <div class="xsection__header">
-                                    <h2 class="xsection__title">Kalender Kegiatan</h2>
-                                    <a href="https://www.bandung.go.id/dashboard/detail/agenda-pimpinan"
-                                        class="kalender__agenda">Agenda Pimpinan</a>
+                                    <h2 class="xsection__title"> Kalender </h2>
+
+                                    {{--agenda belum dipastikan--}}
+                                    {{-- <a href="https://www.bandung.go.id/dashboard/detail/agenda-pimpinan"
+                                        class="kalender__agenda">Agenda Pimpinan</a> --}}
+
                                 </div>
                                 <div class="kalender__body">
 
@@ -1012,7 +1021,7 @@ Yuk, ikuti dan daftar Job Fair Disnaker dengan scan barcode pada slide ke-2. sia
 
         <!-- CITIZEN -->
 
-        <div class="wrapper">
+        {{-- <div class="wrapper">
             <div class="mainwrap">
                 <div class="sectionrow">
                     <div class="bagidua">
@@ -1037,9 +1046,9 @@ Yuk, ikuti dan daftar Job Fair Disnaker dengan scan barcode pada slide ke-2. sia
                                     <h2 class="xsection__title">Citizen</h2>
                                 </div>
                                 <div class="newsslider">
-                                    <section class="slick-news-slider">
+                                   <section class="slick-news-slider">
 
-                                        {{-- <a href="https://www.bandung.go.id/citizen/detail/86/kartini-kota-bandung-1714194819"
+                                       <a href="https://www.bandung.go.id/citizen/detail/86/kartini-kota-bandung-1714194819"
                                             class="newsslider__row">
                                             <div class="newsslider__img"> <img
                                                     src="https://bcj.bandung.go.id/storage/image-thumbnail/L8N3TDnJfww4YqRjZ3lea0pCLFhw87CWk5IoX7ED.jpg"
@@ -1047,9 +1056,9 @@ Yuk, ikuti dan daftar Job Fair Disnaker dengan scan barcode pada slide ke-2. sia
                                             <div class="newsslider__summary">
                                                 <p>Kartini kota Bandung</p>
                                             </div>
-                                        </a> --}}
+                                        </a> 
 
-                                        <a href="https://www.bandung.go.id/citizen/detail/84/mengenang-perjuangan-kartini-inspirasi-perempuan-indonesia-di-era-modern-1714113176"
+                                         <a href="https://www.bandung.go.id/citizen/detail/84/mengenang-perjuangan-kartini-inspirasi-perempuan-indonesia-di-era-modern-1714113176"
                                             class="newsslider__row">
                                             <div class="newsslider__img"> <img
                                                     src="https://bcj.bandung.go.id/storage/image-thumbnail/nXpguToHIRtbhs30jxpR8h7VDbXu1tKPU69SVNpw.jpg"
@@ -1058,9 +1067,9 @@ Yuk, ikuti dan daftar Job Fair Disnaker dengan scan barcode pada slide ke-2. sia
                                                 <p>Mengenang Perjuangan Kartini: Inspirasi Perempuan Indonesia di Era
                                                     Modern</p>
                                             </div>
-                                        </a>
+                                        </a> 
 
-                                        <a href="https://www.bandung.go.id/citizen/detail/83/bingung-cari-tempat-liburan-yang-aman-bagi-anak-yuk-kunjungi-taman-tongkeng-di-bandung-di-jamin-betah-seharian-1713968122"
+                                       <a href="https://www.bandung.go.id/citizen/detail/83/bingung-cari-tempat-liburan-yang-aman-bagi-anak-yuk-kunjungi-taman-tongkeng-di-bandung-di-jamin-betah-seharian-1713968122"
                                             class="newsslider__row">
                                             <div class="newsslider__img"> <img
                                                     src="https://bcj.bandung.go.id/storage/image-thumbnail/T3I9F5igDQAw7uBHatZElu0vwa3SLbFWN3XTFIVI.jpg"
@@ -1098,7 +1107,7 @@ Yuk, ikuti dan daftar Job Fair Disnaker dengan scan barcode pada slide ke-2. sia
 
                                     </section>
                                     <a href="https://www.bandung.go.id/citizen" class="linkmore"
-                                        tabindex="0"><span>Selengkapnya</span></a>
+                                        tabindex="0"><span>Selengkapnya</span></a> 
                                 </div>
                             </div>
                         </div>
@@ -1108,9 +1117,9 @@ Yuk, ikuti dan daftar Job Fair Disnaker dengan scan barcode pada slide ke-2. sia
                     </div>
                 </div> <!-- sectionrow -->
             </div><!-- mainwrap -->
-        </div><!-- wrapper -->
+        </div><!-- wrapper --> --}}
 
-        <div class="wrapper">
+        {{-- <div class="wrapper">
             <div class="mainwrap">
                 <div class="sectionrow">
                     <div class="bagidua">
@@ -1311,7 +1320,7 @@ Yuk, ikuti dan daftar Job Fair Disnaker dengan scan barcode pada slide ke-2. sia
                     </div><!-- sectionrow-->
                 </div><!-- mainwrap-->
             </div> <!-- wrapper -->
-        </div>
+        </div> --}}
 
 
         {{-- FOOTER --}}
@@ -1347,7 +1356,7 @@ Yuk, ikuti dan daftar Job Fair Disnaker dengan scan barcode pada slide ke-2. sia
       </div>
     </div>
   </footer> --}}
-    </div>
+    {{-- </div> --}}
 
     <!-- ============================= back-to-top ============================= -->
     <a id="back-to-top" href="#" class="back-to-top" role ="button">
