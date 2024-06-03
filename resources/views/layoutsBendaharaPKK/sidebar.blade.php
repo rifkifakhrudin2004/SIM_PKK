@@ -28,7 +28,8 @@
               <!-- Submenu for Arisan -->
               <ul class="nav nav-treeview">
                   <li class="nav-item">
-                      <a href="{{ url('/data-arisan') }}" class="nav-link">
+                    <a href="{{ url('/bendaharaPKK/data-arisan') }}" class="nav-link {{ ($activeMenu == 'arisans')? 
+                    'active' : '' }}">
                           <i class="far fa-circle nav-icon"></i>
                           <p>Data Arisan</p>
                       </a>
@@ -55,6 +56,12 @@
               </a> 
               <!-- Submenu for Simpan Pinjam -->
               <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="{{ url('/dataAnggota') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Data anggota</p>
+                    </a>
+                </li>
                   <li class="nav-item">
                       <a href="{{ url('/menabung') }}" class="nav-link">
                           <i class="far fa-circle nav-icon"></i>

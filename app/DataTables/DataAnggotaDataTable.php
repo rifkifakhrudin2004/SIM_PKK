@@ -2,18 +2,17 @@
 
 namespace App\DataTables;
 
-use App\Models\User;
-use App\Models\UsersModel;
+use App\Models\DataAnggotaModel;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
+use Yajra\DataTables\Services\DataTable;
 
-class UsersDataTable extends DataTable
+class DataAnggotaDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -21,24 +20,24 @@ class UsersDataTable extends DataTable
      * @param QueryBuilder $query Results from query() method.
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
-    {
+    {   
         return (new EloquentDataTable($query))
-            ->addColumn('action', function ($user) {
-                return '<a href="' . route('users.edit', ['id' => $user->id_users]) . '" class="btn btn-primary mr-2">
-                            <i class="fa fa-pencil-alt" style="color: white; font-size: 12px;"></i>
-                        </a>' .
-                        '<a href="' . route('users.delete', ['id' => $user->id_users]) . '" class="btn btn-danger" onclick="return confirm(\'Are you sure want to delete?\')">
-                            <i class="fa fa-trash" style="color: white; font-size: 12px;"></i>
-                        </a>';
-            })
-            ->rawColumns(['action'])
-            ->setRowId('id_users');
+        ->addColumn('action', function ($user) {
+            return '<a href="' . route('dataanggota.edit', ['id' => $user->id_anggota]) . '" class="btn btn-primary mr-2">
+                        <i class="fa fa-pencil-alt" style="color: white; font-size: 12px;"></i>
+                    </a>' .
+                    '<a href="' . route('/dataanggota/delete', ['id' => $user->id_anggota]) . '" class="btn btn-danger" onclick="return confirm(\'Are you sure want to delete?\')">
+                        <i class="fa fa-trash" style="color: white; font-size: 12px;"></i>
+                    </a>';
+        })
+        ->rawColumns(['action'])
+        ->setRowId('id_anggota');
     }
 
     /**
      * Get the query source of dataTable.
      */
-    public function query(UsersModel $model): QueryBuilder
+    public function query(DataAnggotaModel $model): QueryBuilder
     {
         return $model->newQuery();
     }
@@ -49,7 +48,7 @@ class UsersDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('users-table')
+                    ->setTableId('dataanggota-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     //->dom('Bfrtip')
@@ -71,11 +70,12 @@ class UsersDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('id_users')->title('User ID'),
-            Column::make('username'),
-            Column::make('nama'),
-            Column::make('level_id')->title('Level ID'),
-            Column::make('status'),
+            Column::make('id_anggota'),
+            Column::make('nama_anggota')->title('nama'),
+            Column::make('notelp_anggota'),
+            Column::make('alamat_anggota'),
+            Column::make('created_at'),
+            Column::make('updated_at'),
             Column::computed('action')
                   ->exportable(false)
                   ->printable(false)
@@ -89,6 +89,6 @@ class UsersDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Users_' . date('YmdHis');
+        return 'DataAnggota_' . date('YmdHis');
     }
 }

@@ -31,7 +31,7 @@ class PembukuanArisanController extends Controller
     {
         $activeMenu = 'arisan';
         $request->validate([
-            'id_arisan' => 'required|exists:arisan_models,id',
+            'id_arisan' => 'required|exists:m_arisan,id_arisan',
             'tanggal' => 'required|date',
             'pemasukan' => 'required|numeric',
             'pengeluaran' => 'required|numeric',
@@ -41,14 +41,14 @@ class PembukuanArisanController extends Controller
 
         PembukuanArisanModel::create($request->all());
 
-        return redirect()->route('PembukuanArisan.index')->with('success', 'Pembukuan Arisan created successfully.');
+        return redirect()->route('pembukuan_arisan.store')->with('success', 'Pembukuan Arisan created successfully.');
     }
 
     public function edit($id)
     {
         $activeMenu = 'arisan';
         $pembukuan = PembukuanArisanModel::findOrFail($id);
-        return view('PembukuanArisan.edit', compact('pembukuan', 'activeMenu'));
+        return view('pembukuan_arisan.edit', compact('pembukuan', 'activeMenu'));
     }
 
     public function update(Request $request, $id)

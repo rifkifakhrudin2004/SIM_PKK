@@ -1,0 +1,52 @@
+/* custom-login.css */
+body {
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.login-box {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-box .login-logo a {
+    font-size: 2rem;
+    color: #333;
+}
+
+.input-group .input-group-text {
+    background-color: #fff;
+    border-right: none;
+    border-radius: 0;
+}
+
+.input-group .form-control {
+    border-left: none;
+    border-radius: 0;
+}
+
+.btn-primary {
+    background: #6a11cb;
+    border: none;
+}
+
+.btn-primary:hover {
+    background: #2575fc;
+}
+
+.icheck-primary input:checked+label::before {
+    background-color: #6a11cb;
+    border-color: #6a11cb;
+}
+
+.icheck-primary input:focus+label::before {
+    box-shadow: 0 0 0 0.2rem rgba(106, 17, 203, 0.25);
+}
