@@ -13,8 +13,8 @@
                     </div>
                 </div>
                 <div class="col-md-9">
-                    <h4 class="mb-0">NAMA : Agung Rizky</h4> <!-- Mengubah tata letak teks -->
-                    <p class="mb-0">ALAMAT : JL.Venus</p> <!-- Mengubah tata letak teks -->
+                    <h4>NAMA : {{ Auth::user()->nama }}</h4>
+                    <p>STATUS : {{ Auth::user()->status }}</p> <!-- Mengubah tata letak teks -->
                 </div>
             </div>
         </div>

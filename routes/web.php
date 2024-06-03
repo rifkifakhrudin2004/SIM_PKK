@@ -141,7 +141,7 @@ Route::prefix('anggota')->group(function () {
     });
 
     Route::get('/dashboard', [AnggotaController::class, 'dashboard'])->name('anggota.dashboard');
-
+    Route::get('/jadwal', [AnggotaController::class, 'jadwal'])->name('anggota.jadwal');
 
 // DATA ARISAN
 Route::prefix('arisan')->middleware('auth')->group(function() {
