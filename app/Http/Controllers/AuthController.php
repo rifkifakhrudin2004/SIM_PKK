@@ -23,7 +23,7 @@ class AuthController extends Controller
             }
             // jika user nya memiliki level manager
             else if ($user->level_id == '2') {
-                return redirect()->intended('bendahara');
+                return redirect()->intended('bendaharaPKK');
             }
             else if ($user->level_id == '3') {
                 return redirect()->intended('ketuaPKK');
@@ -58,7 +58,7 @@ class AuthController extends Controller
             } 
             // tapi jika level user nya user biasa maka arahkan ke halaman user
             else if ($user->level_id == '2') {
-                return redirect()->intended('bendahara');
+                return redirect()->intended('bendaharaPKK');
             }
             else if ($user->level_id == '3') {
                 return redirect()->intended('ketuaPKK');

@@ -1,9 +1,9 @@
-@extends('layoutsAnggota.template')
+@extends('layoutsBendaharaPKK.template')
 
 @section('content')
 <div class="container">
     <h2>Data Arisan</h2>
-    <a href="{{ route('arisan.create') }}" class="btn btn-primary">Add New</a>
+    <a href="{{ route('arisan.create') }}" class="btn btn-primary">Tambah Baru</a>
     <table class="table table-striped mt-3">
         <thead>
             <tr>
@@ -13,7 +13,7 @@
                 <th>Tanggal</th>
                 <th>Catatan</th>
                 <th>Setoran</th>
-                <th>Actions</th>
+                <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
@@ -30,7 +30,7 @@
                     <form action="{{ route('arisan.destroy', $arisan->id) }}" method="POST" style="display:inline-block;">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="submit" class="btn btn-danger">Hapus</button>
                     </form>
                 </td>
             </tr>

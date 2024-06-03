@@ -28,7 +28,8 @@
               <!-- Submenu for Arisan -->
               <ul class="nav nav-treeview">
                   <li class="nav-item">
-                      <a href="{{ url('/data-arisan') }}" class="nav-link">
+                    <a href="{{ url('/bendaharaPKK/data-arisan') }}" class="nav-link {{ ($activeMenu == 'arisans')? 
+                    'active' : '' }}">
                           <i class="far fa-circle nav-icon"></i>
                           <p>Data Arisan</p>
                       </a>
