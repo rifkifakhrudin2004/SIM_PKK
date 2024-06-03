@@ -7,7 +7,7 @@ use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\KetuaPKKController;
 use App\Http\Controllers\BendaharaPKKController;
 use App\Http\Controllers\ArisanController;
-
+use App\Http\Controllers\UploadKetuaController;
 use App\Http\Controllers\DataAnggotaController;
 
 
@@ -206,7 +206,10 @@ Route::prefix('user')->group(function () {
         Route::put('/{id}', [KontenController::class, 'update'])->name('konten.update');
         Route::delete('/{id}', [KontenController::class, 'destroy'])->name('konten.destroy');
     });
-});
+
+    Route::get('/ketuaPKK/upload', [UploadKetuaController::class, 'index'])->name('ketuaPKK.index');
+    Route::post('/ketuaPKK/upload', [UploadKetuaController::class, 'upload'])->name('ketuaPKK.upload');
+    
 
 
 Route::get('/konten', [KontenController::class, 'index'])->name('konten.index');
@@ -215,3 +218,4 @@ Route::post('/konten', [KontenController::class, 'store'])->name('konten.store')
 Route::get('/konten/{id}/edit', [KontenController::class, 'edit'])->name('konten.edit');
 Route::put('/konten/{id}', [KontenController::class, 'update'])->name('konten.update');
 Route::delete('/konten/{id}', [KontenController::class, 'destroy'])->name('konten.destroy');
+});
