@@ -15,18 +15,15 @@ class UsersController extends Controller
 
     public function index(UsersDataTable $dataTable)
     {
-        $activeMenu = 'users';  
-        return $dataTable->render('users.index', compact('activeMenu'));
+        return $dataTable->render('users.index', ['activeMenu' => 'users']);
     }
     
     public function create()
     {
-        $activeMenu = 'users';
         $levelUsersOptions = UsersModel::getLevelUsersOptions();
         $statusOptions = UsersModel::getStatusOptions();
-        $AdminOptions = UsersModel::getAdminOptions();
 
-        return view('users.create', compact('activeMenu', 'levelUsersOptions', 'statusOptions', 'AdminOptions'));
+        return view('users.create', compact('levelUsersOptions', 'statusOptions'));
     }
 
     public function store(Request $request)
@@ -37,7 +34,6 @@ class UsersController extends Controller
             'password' => 'required|string|min:8',
             'level_id' => 'required|integer',
             'status' => 'required|string',
-            'id_admin' => 'required|integer',
         ]);
 
         UsersModel::create([
@@ -46,7 +42,6 @@ class UsersController extends Controller
             'password' => Hash::make($request->password),
             'level_id' => $request->level_id,
             'status' => $request->status,
-            'id_admin' => $request->id_admin,
         ]);
 
         return redirect()->route('users.index');  
@@ -55,13 +50,10 @@ class UsersController extends Controller
     public function edit($id)
     {
         $user = UsersModel::find($id);
-
-        $activeMenu = 'users';
         $levelUsersOptions = UsersModel::getLevelUsersOptions();
         $statusOptions = UsersModel::getStatusOptions();
-        $AdminOptions = UsersModel::getAdminOptions();
 
-        return view('users.edit', compact('user', 'levelUsersOptions', 'statusOptions', 'AdminOptions', 'activeMenu'));
+        return view('users.edit', compact('user', 'levelUsersOptions', 'statusOptions'));
     }
 
     public function edit_simpan($id, Request $request)
@@ -72,7 +64,6 @@ class UsersController extends Controller
             'password' => 'nullable|string|min:8',
             'level_id' => 'required|integer',
             'status' => 'required|string',
-            'id_admin' => 'required|integer',
         ]);
 
         $user = UsersModel::find($id);
@@ -83,7 +74,6 @@ class UsersController extends Controller
         }
         $user->level_id = $request->level_id;
         $user->status = $request->status;
-        $user->id_admin = $request->id_admin;
         $user->save();
 
         return redirect()->route('users.index'); 
