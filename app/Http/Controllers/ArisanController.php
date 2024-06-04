@@ -4,7 +4,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\DataTables\ArisanDataTable;
 use App\Models\ArisanModel;
 use App\Models\AnggotaModel;
 use App\Models\PembukuanArisanModel;
@@ -12,18 +11,19 @@ use App\Models\BendaharaModel;
 
 class ArisanController extends Controller
 {
-    public function index(ArisanDataTable $dataTable)
+    public function index()
     {
         $activeMenu = 'arisan';
-        return $dataTable->render('Arisan.index', compact('activeMenu'));
+        $arisans = ArisanModel::all();
+        return view('arisan.index', compact('arisans', 'activeMenu'));
     }
 
     public function create()
     {
-    $activeMenu = 'arisan';
-    $anggota = AnggotaModel::all();
-    $bendahara = BendaharaModel::all();
-    return view('arisan.create', compact('anggota', 'bendahara', 'activeMenu'));
+        $activeMenu = 'arisan';
+        $anggota = AnggotaModel::all();
+        $bendahara = BendaharaModel::all();
+        return view('arisan.create', compact('anggota', 'bendahara', 'activeMenu'));
     }
 
     public function store(Request $request)
@@ -36,15 +36,9 @@ class ArisanController extends Controller
             'setoran_arisan' => 'required|numeric',
         ]);
 
-        ArisanModel::create([
-            'id_anggota' => $request->id_anggota,
-            'id_bendahara' => $request->id_bendahara,
-            'tgl_arisan' => $request->tgl_arisan,
-            'catatan_arisan' => $request->catatan_arisan,
-            'setoran_arisan' => $request->setoran_arisan,
-        ]);
+        ArisanModel::create($request->all());
 
-        return redirect()->route('arisan.store')->with('success', 'Arisan created successfully.');
+        return redirect()->route('arisan.index')->with('success', 'Arisan berhasil ditambahkan.');
     }
 
     public function edit($id)
@@ -59,45 +53,30 @@ class ArisanController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'id_anggota' => 'required|exists:anggota,id',
-            'id_bendahara' => 'required|exists:anggota,id',
+            'id_anggota' => 'required|exists:m_anggota,id_anggota',
+            'id_bendahara' => 'required|exists:m_bendahara_pkk,id_bendahara',
             'tgl_arisan' => 'required|date',
             'catatan_arisan' => 'nullable|string|max:255',
             'setoran_arisan' => 'required|numeric',
         ]);
 
         $arisan = ArisanModel::findOrFail($id);
+        $arisan->update($request->all());
 
-        $arisan->update([
-            'id_anggota' => $request->id_anggota,
-            'id_bendahara' => $request->id_bendahara,
-            'tgl_arisan' => $request->tgl_arisan,
-            'catatan_arisan' => $request->catatan_arisan,
-            'setoran_arisan' => $request->setoran_arisan,
-        ]);
-
-        return redirect()->route('arisan.index')->with('success', 'Arisan updated successfully.');
+        return redirect()->route('arisan.index')->with('success', 'Arisan berhasil diperbarui.');
     }
 
     public function destroy($id)
     {
         $arisan = ArisanModel::findOrFail($id);
         $arisan->delete();
-        return redirect()->route('arisan.index')->with('success', 'Arisan deleted successfully.');
-    }
-
-    // New methods for the sidebar menu items
-    public function dataArisan()
-    {
-        $activeMenu = 'arisan';
-        $arisans = ArisanModel::all();
-        return view('Arisan.data-arisan', compact('arisans', 'activeMenu'));
+        return redirect()->route('arisan.index')->with('success', 'Arisan berhasil dihapus.');
     }
 
     public function pembukuan()
     {
-        $activeMenu = 'arisan';
+        $activeMenu = 'pembukuan';
         $pembukuans = PembukuanArisanModel::all();
-        return view('PembukuanArisan.pembukuan', compact('pembukuans', 'activeMenu'));
+        return view('arisan.pembukuan', compact('pembukuans', 'activeMenu'));
     }
 }

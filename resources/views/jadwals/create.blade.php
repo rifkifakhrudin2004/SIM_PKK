@@ -5,6 +5,7 @@
 @section('content_header_subtitle', 'Kegiatan Arisan')
 
 @section('content')
+<div class="card card-outline card-primary"></div>
     <div class="container">
         <div class="card">
             <div class="card-header">
