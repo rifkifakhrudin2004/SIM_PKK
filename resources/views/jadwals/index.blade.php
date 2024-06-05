@@ -5,6 +5,7 @@
 @section('content_header_subtitle', 'Kegiatan Arisan')
 
 @section('content')
+<div class="card card-outline card-primary"></div>
     <div class="container">
         <div class="card">
             <div class="card-header">
@@ -17,7 +18,7 @@
                         {{ session('success') }}
                     </div>
                 @endif
-                <table class="table table-bordered">
+                <table class="table table-bordered table-striped table-hover table-sm">
                     <thead>
                         <tr>
                             <th>Judul Kegiatan</th>

@@ -25,7 +25,7 @@ class ArisanModel extends Model
     }
     
 
-    public function pembukuans()
+    public function pembukuan()
     {
         return $this->hasMany(PembukuanArisanModel::class, 'id_arisan');
     }

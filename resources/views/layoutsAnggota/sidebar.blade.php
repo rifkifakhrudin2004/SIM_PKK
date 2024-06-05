@@ -21,11 +21,14 @@
             </li>
             <li class="nav-header">Data Pengguna</li>
             <li class="nav-item">
+<<<<<<< HEAD
                 <a href="{{ url('/dataAnggota') }}" class="nav-link {{ $activeMenu == 'user' ? 'active' : '' }}">
                     <i class="nav-icon far fa-user"></i>
                     <p>Input Data Diri <i class=""></i></p>
                 </a>
             <li class="nav-item">
+=======
+>>>>>>> 1a6cbbe2a16635455d6b0efad11987a1e3ad5ffd
                 <a href="{{ url('/p') }}" class="nav-link {{ $activeMenu == 'level' ? 'active' : '' }}">
                     <i class="nav-icon fas fa-layer-group"></i>
                     <p>Arisan <i class="fas fa-angle-left right"></i></p>
@@ -35,7 +38,7 @@
                 
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="{{ url('/data-arisan') }}" class="nav-link">
+                        <a href="{{ url('/anggota/data-arisan') }}" class="nav-link {{ ($activeMenu ?? '') == 'arisans' ? 'active' : '' }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Data Arisan</p>
                         </a>
@@ -47,7 +50,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('/pembukuan') }}" class="nav-link">
+                        <a href="{{ url('/anggota/pembukuan') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Pembukuan</p>
                         </a>
@@ -88,5 +91,10 @@
                 </a>
             </li>
         </ul>
+<<<<<<< HEAD
     </nav>
 </div>
+=======
+    </nav>
+</div>
+>>>>>>> 1a6cbbe2a16635455d6b0efad11987a1e3ad5ffd

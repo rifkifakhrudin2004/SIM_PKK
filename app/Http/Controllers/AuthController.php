@@ -94,6 +94,10 @@ class AuthController extends Controller
         $request['level_id'] = '2';
         $request['password'] = Hash::make($request->password);
 
+
+
+        // masukkan semua data pada request ke table user
+
         UserModel::create($request->all());
 
         return redirect()->route('login');
@@ -106,5 +110,5 @@ class AuthController extends Controller
         Auth::logout();
 
         return redirect('login');
-    }
+}
 }

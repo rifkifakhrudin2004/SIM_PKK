@@ -1,9 +1,15 @@
-@extends('layoutsAnggota.template')
+@extends('layoutsBendaharaPKK.template')
 
 @section('content')
+
+<div class="card card-outline card-primary"></div>
 <div class="container">
-    <h1>Edit Pembukuan Arisan</h1>
-    <form action="{{ route('pembukuan_arisan.update', $pembukuan->id) }}" method="POST">
+            <div class="card">
+                <div class="card-header">
+                    Edit Pembukuan Arisan
+                </div>
+                <div class="card-body">
+                    <form action="{{ route('pembukuan.update', $pembukuan->id_pembukuan) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="form-group">

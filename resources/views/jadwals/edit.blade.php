@@ -5,13 +5,14 @@
 @section('content_header_subtitle', 'Kegiatan Arisan')
 
 @section('content')
+<div class="card card-outline card-primary"></div>
     <div class="container">
         <div class="card">
             <div class="card-header">
                 Edit Jadwal Kegiatan Arisan
             </div>
             <div class="card-body">
-                <form action="{{ route('jadwals.update', $jadwal->id) }}" method="POST">
+                <form action="{{ route('jadwals.update', ['id' => $jadwal->id]) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="form-group">
