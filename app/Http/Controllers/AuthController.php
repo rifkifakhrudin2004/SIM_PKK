@@ -23,7 +23,7 @@ class AuthController extends Controller
             }
             // jika user nya memiliki level manager
             else if ($user->level_id == '2') {
-                return redirect()->intended('bendaharaPKK');
+                return redirect()->intended('bendahara');
             }
             else if ($user->level_id == '3') {
                 return redirect()->intended('ketuaPKK');
@@ -56,18 +56,9 @@ class AuthController extends Controller
             // Jika aktif, arahkan sesuai dengan levelnya
             if ($user->level_id == '1') {
                 return redirect()->intended('anggota');
-<<<<<<< HEAD
-            } 
-            // tapi jika level user nya user biasa maka arahkan ke halaman user
-            else if ($user->level_id == '2') {
-                return redirect()->intended('bendaharaPKK');
-            }
-            else if ($user->level_id == '3') {
-=======
             } elseif ($user->level_id == '2') {
                 return redirect()->intended('bendahara');
             } elseif ($user->level_id == '3') {
->>>>>>> 794cec81c367f95123d0d6f93ab225d6a52dc2a1
                 return redirect()->intended('ketuaPKK');
             } elseif ($user->level_id == '4') {
                 return redirect()->intended('adminPKK');
@@ -118,7 +109,7 @@ class AuthController extends Controller
         $request['password'] = Hash::make($request->password);
 
         // masukkan semua data pada request ke table user
-        UsersModel::create($request->all());
+        UserModel::create($request->all());
 
         // kalo berhasil arahkan ke halaman login
         return redirect()->route('login');
@@ -134,5 +125,5 @@ class AuthController extends Controller
         
         // kembali kan ke halaman login
         return redirect('login');
-    }
+}
 }
