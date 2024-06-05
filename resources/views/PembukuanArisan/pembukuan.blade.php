@@ -28,8 +28,8 @@
                 <td>{{ $pembukuan->saldo }}</td>
                 <td>{{ $pembukuan->keterangan }}</td>
                 <td>
-                    <a href="{{ route('pembukuan_arisan.edit', $pembukuan->id) }}" class="btn btn-primary">Edit</a>
-                    <form action="{{ route('pembukuan_arisan.destroy', $pembukuan->id) }}" method="POST" style="display:inline-block;">
+                    <a href="{{ route('pembukuan_arisan.edit', $pembukuan->id_arisan) }}" class="btn btn-primary">Edit</a>
+                    <form action="{{ route('pembukuan_arisan.destroy', $pembukuan->id_arisan) }}" method="POST" style="display:inline-block;">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>

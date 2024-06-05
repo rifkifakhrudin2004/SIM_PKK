@@ -14,7 +14,7 @@
   <nav class="mt-3"> 
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false"> 
           <li class="nav-item"> 
-              <a href="{{ url('/anggota/dashboard') }}" class="nav-link {{ ($activeMenu == 'dashboard')? 'active' : '' }}"> 
+              <a href="{{ url('/bendaharaPKK/dashboard') }}" class="nav-link {{ ($activeMenu == 'dashboard')? 'active' : '' }}"> 
                   <i class="nav-icon fas fa-tachometer-alt"></i> 
                   <p>Dashboard</p> 
               </a> 
@@ -28,17 +28,19 @@
               <!-- Submenu for Arisan -->
               <ul class="nav nav-treeview">
                   <li class="nav-item">
-                      <a href="{{ url('/data-arisan') }}" class="nav-link">
+                    <a href="{{ url('/bendaharaPKK/data-arisan') }}" class="nav-link {{ ($activeMenu == 'arisans')? 
+                    'active' : '' }}">
                           <i class="far fa-circle nav-icon"></i>
                           <p>Data Arisan</p>
                       </a>
                   </li>
                   <li class="nav-item">
-                      <a href="{{ url('/jadwal') }}" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Jadwal</p>
-                      </a>
-                  </li>
+                    <a href="{{ url('/bendaharaPKK/jadwal') }}" class="nav-link {{ ($activeMenu == 'jadwals')? 
+                    'active' : '' }}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Jadwal</p>
+                    </a>
+                </li>
                   <li class="nav-item">
                       <a href="{{ url('/pembukuan') }}" class="nav-link">
                           <i class="far fa-circle nav-icon"></i>
@@ -54,6 +56,12 @@
               </a> 
               <!-- Submenu for Simpan Pinjam -->
               <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="{{ url('/dataAnggota') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Data anggota</p>
+                    </a>
+                </li>
                   <li class="nav-item">
                       <a href="{{ url('/menabung') }}" class="nav-link">
                           <i class="far fa-circle nav-icon"></i>

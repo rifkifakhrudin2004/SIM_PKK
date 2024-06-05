@@ -27,7 +27,7 @@ class UsersModel extends Authenticatable implements JWTSubject
 
     // Mengatur kolom yang dapat diisi (mass assignable)
     protected $fillable = [
-        'username', 'nama', 'password', 'level_id', 'status', 'id_admin'
+        'username', 'nama', 'password', 'level_id', 'status', 
     ];
 
     // Mendefinisikan konstanta untuk level pengguna
@@ -62,10 +62,15 @@ class UsersModel extends Authenticatable implements JWTSubject
     }
 
     // Metode untuk mendapatkan opsi admin
-    public static function getAdminOptions()
-    {
-        return self::ADMIN;
-    }
+    // App\Models\UsersModel.php
+
+    // public static function getAdminOptions()
+    // {
+    // return \DB::table('m_admin')
+    //           ->pluck('nama_admin', 'id_admin')
+    //           ->toArray();
+    // }
+
 
     // Mendefinisikan hubungan dengan model User
     public function users(): HasMany
