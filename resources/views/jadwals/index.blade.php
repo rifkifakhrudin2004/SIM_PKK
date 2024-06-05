@@ -34,6 +34,7 @@
                                 <td>{{ $jadwal->start }}</td>
                                 <td>{{ $jadwal->end }}</td>
                                 <td>
+                                    <a href="{{ route('jadwals.show', $jadwal->id) }}" class="btn btn-info">Show</a>
                                     <a href="{{ route('jadwals.edit', $jadwal->id) }}" class="btn btn-warning">Edit</a>
                                     <form action="{{ route('jadwals.destroy', $jadwal->id) }}" method="POST" style="display:inline-block;">
                                         @csrf

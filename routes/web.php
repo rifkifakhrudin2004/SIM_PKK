@@ -145,6 +145,7 @@ Route::prefix('bendaharaPKK')->group(function () {
     Route::get('/jadwal', [JadwalController::class, 'index'])->name('jadwals.index');
     Route::get('/jadwal/create', [JadwalController::class, 'create'])->name('jadwals.create');
     Route::post('/jadwal', [JadwalController::class, 'store'])->name('jadwals.store');
+    Route::get('jadwal/{id}', [JadwalController::class, 'show'])->name('jadwals.show');
     Route::get('/jadwal/{id}/edit', [JadwalController::class, 'edit'])->name('jadwals.edit');
     Route::put('/jadwal/{id}', [JadwalController::class, 'update'])->name('jadwals.update');
     Route::delete('/jadwal/{id}', [JadwalController::class, 'destroy'])->name('jadwals.destroy');
@@ -153,7 +154,8 @@ Route::prefix('bendaharaPKK')->group(function () {
         Route::get('/data-arisan', [ArisanController::class, 'index'])->name('arisan.index');
         Route::get('/data-arisan/create', [ArisanController::class, 'create'])->name('arisan.create');
         Route::post('/data-arisan', [ArisanController::class, 'store'])->name('arisan.store');
-        Route::get('//data-arisan{id}/edit', [ArisanController::class, 'edit'])->name('arisan.edit');
+        Route::get('/data-arisan/{id}', [ArisanController::class, 'show'])->name('arisan.show');
+        Route::get('/data-arisan{id}/edit', [ArisanController::class, 'edit'])->name('arisan.edit');
         Route::put('/data-arisan/{id}', [ArisanController::class, 'update'])->name('arisan.update');
         Route::delete('/data-arisan/{id}', [ArisanController::class, 'destroy'])->name('arisan.destroy');
 
@@ -161,6 +163,7 @@ Route::prefix('bendaharaPKK')->group(function () {
     Route::get('/pembukuan', [PembukuanArisanController::class, 'index'])->name('pembukuan.index');
     Route::get('/pembukuan/create', [PembukuanArisanController::class, 'create'])->name('pembukuan.create');
     Route::post('/pembukuan', [PembukuanArisanController::class, 'store'])->name('pembukuan.store');
+    Route::get('pembukuan/{id}', [PembukuanArisanController::class, 'show'])->name('pembukuan.show');
     Route::get('/pembukuan/{id}/edit', [PembukuanArisanController::class, 'edit'])->name('pembukuan.edit');
     Route::put('/pembukuan/{id}', [PembukuanArisanController::class, 'update'])->name('pembukuan.update');
     Route::delete('/pembukuan/{id}', [PembukuanArisanController::class, 'destroy'])->name('pembukuan.destroy');

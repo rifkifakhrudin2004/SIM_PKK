@@ -8,6 +8,8 @@ use App\Models\ArisanModel;
 use App\Models\AnggotaModel;
 use App\Models\PembukuanArisanModel;
 use App\Models\BendaharaModel;
+use Illuminate\Support\Facades\Auth;
+
 
 class ArisanController extends Controller
 {
@@ -41,6 +43,13 @@ class ArisanController extends Controller
         return redirect()->route('arisan.index')->with('success', 'Arisan berhasil ditambahkan.');
     }
 
+    public function show($id)
+    {
+        $activeMenu = 'arisan';
+        $arisan = ArisanModel::findOrFail($id);
+        return view('arisan.show', compact('arisan', 'activeMenu'));
+    }
+
     public function edit($id)
     {
         $activeMenu = 'arisan';
@@ -71,12 +80,5 @@ class ArisanController extends Controller
         $arisan = ArisanModel::findOrFail($id);
         $arisan->delete();
         return redirect()->route('arisan.index')->with('success', 'Arisan berhasil dihapus.');
-    }
-
-    public function pembukuan()
-    {
-        $activeMenu = 'pembukuan';
-        $pembukuans = PembukuanArisanModel::all();
-        return view('arisan.pembukuan', compact('pembukuans', 'activeMenu'));
     }
 }

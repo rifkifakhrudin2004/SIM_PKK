@@ -37,6 +37,7 @@
                     <td>{{ $arisan->setoran_arisan }}</td>
                     <td>{{ $arisan->catatan_arisan }}</td>
                     <td>
+                        <a href="{{ route('arisan.show', $arisan->id_arisan) }}" class="btn btn-info">Show</a>
                         <a href="{{ route('arisan.edit', $arisan->id_arisan) }}" class="btn btn-warning">Edit</a>
                         <form action="{{ route('arisan.destroy', $arisan->id_arisan) }}" method="POST" style="display:inline-block;">
                             @csrf

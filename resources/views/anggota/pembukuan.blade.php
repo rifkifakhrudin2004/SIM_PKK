@@ -11,7 +11,6 @@
             <table class="table table-bordered table-striped table-hover table-sm">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>ID Arisan</th>
                 <th>Tanggal</th>
                 <th>Pemasukan</th>

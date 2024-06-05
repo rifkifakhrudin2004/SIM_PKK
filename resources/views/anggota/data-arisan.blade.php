@@ -11,7 +11,7 @@
             <table class="table table-bordered table-striped table-hover table-sm">
         <thead>
             <tr>
-                <th>ID</th>
+                <th>ID </th>
                 <th>Anggota</th>
                 <th>Bendahara</th>
                 <th>Tanggal</th>
