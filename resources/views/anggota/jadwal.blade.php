@@ -1,13 +1,14 @@
 @extends('layoutsAnggota.template')
 
 @section('content')
+<div class="card card-outline card-primary"></div>
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Jadwal Kegiatan</h3>
         </div>
 
         <div class="card-body">
-            <table class="table table-bordered">
+            <table class="table table-bordered table-striped table-hover table-sm">
                 <thead>
                     <tr>
                         <th>Judul Kegiatan</th>

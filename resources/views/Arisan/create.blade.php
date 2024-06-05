@@ -1,10 +1,15 @@
 @extends('layoutsBendaharaPKK.template')
 
-
 @section('content')
+
+<div class="card card-outline card-primary"></div>
 <div class="container">
-    <h2>Create Arisan</h2>
-    <form action="{{ route('arisan.store') }}" method="POST">
+            <div class="card">
+                <div class="card-header">
+                    Tambah Arisan
+                </div>
+                <div class="card-body">
+                    <form action="{{ route('arisan.store') }}" method="POST">
         @csrf
         <div class="form-group">
             <label for="id_anggota">Anggota</label>

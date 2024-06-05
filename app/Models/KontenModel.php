@@ -19,3 +19,4 @@ class KontenModel extends Model
     }
 
 }
+

@@ -28,8 +28,7 @@
               <!-- Submenu for Arisan -->
               <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="{{ url('/bendaharaPKK/data-arisan') }}" class="nav-link {{ ($activeMenu == 'arisans')? 
-                    'active' : '' }}">
+                    <a href="{{ url('/bendaharaPKK/data-arisan') }}" class="nav-link {{ ($activeMenu ?? '') == 'arisans' ? 'active' : '' }}">
                           <i class="far fa-circle nav-icon"></i>
                           <p>Data Arisan</p>
                       </a>
@@ -42,7 +41,7 @@
                     </a>
                 </li>
                   <li class="nav-item">
-                      <a href="{{ url('/pembukuan') }}" class="nav-link">
+                    <a href="{{ url('/bendaharaPKK/pembukuan') }}" class="nav-link {{ ($activeMenu ?? '') == 'pembukuan' ? 'active' : '' }}">
                           <i class="far fa-circle nav-icon"></i>
                           <p>Pembukuan</p>
                       </a>
