@@ -8,29 +8,24 @@ use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\KetuaPKKController;
 use App\Http\Controllers\BendaharaPKKController;
-
-
 use App\Http\Controllers\ArisanController;
 use App\Http\Controllers\UploadKetuaController;
 use App\Http\Controllers\DataAnggotaController;
-
-
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
-
 use App\Http\Controllers\PembukuanArisanController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ManagerController;
+
+//SPK
+use App\Http\Livewire\Alternatif\Index as AlternatifIndex;
+use App\Http\Livewire\Alternatif\Create as AlternatifCreate;
+use App\Http\Livewire\Alternatif\Edit as AlternatifEdit;
+use App\Http\Livewire\Kriteria\Index as KriteriaIndex;
+use App\Http\Livewire\Kriteria\Create as KriteriaCreate;
+use App\Http\Livewire\Kriteria\Edit as KriteriaEdit;
+use App\Http\Livewire\Penilaian\Index as PenilaianIndex;
+use App\Http\Livewire\Penilaian\Edit as PenilaianEdit;
+use App\Http\Livewire\Subkriteria\Create as SubkriteriaCreate;
+use App\Http\Livewire\Proses\Index as ProsesIndex;
+use App\Http\Livewire\Perhitungan\Index as PerhitunganIndex;
 
 
 /*
@@ -138,8 +133,8 @@ Route::prefix('bendaharaPKK')->group(function () {
         return redirect()->route('bendaharaPKK.dashboard'); // Corrected redirect route
     });
     Route::get('/dashboard', [BendaharaPKKController::class, 'dashboard'])->name('bendaharaPKK.dashboard');
-    
-
+    Route::get('/index', [BendaharaPKKController::class, 'indexBendahara']);
+    Route::put('/index/{id}', [BendaharaPKKController::class, 'updateVerifikasi']);
 
     // Jadwal routes
     Route::get('/jadwal', [JadwalController::class, 'index'])->name('jadwals.index');
@@ -196,12 +191,12 @@ Route::prefix('anggota')->group(function () {
 });
 
 // User dashboard
-Route::prefix('user')->group(function () {
-    Route::get('/', function () {
-        return redirect()->route('users.dashboard'); // Corrected redirect route
-    });
-    Route::get('/dashboard', [UsersController::class, 'dashboard'])->name('users.dashboard');
-});
+// Route::prefix('user')->group(function () {
+//     Route::get('/', function () {
+//         return redirect()->route('user.dashboard'); // Corrected redirect route
+//     });
+//     Route::get('/dashboard', [UserController::class, 'dashboard'])->name('user.dashboard');
+// });
 
 // Manage Konten
 
@@ -235,3 +230,27 @@ Route::post('/konten', [KontenController::class, 'store'])->name('konten.store')
 Route::get('/konten/{id}/edit', [KontenController::class, 'edit'])->name('konten.edit');
 Route::put('/konten/{id}', [KontenController::class, 'update'])->name('konten.update');
 Route::delete('/konten/{id}', [KontenController::class, 'destroy'])->name('konten.destroy');
+
+// SPK
+// Route::get('/alternatif', AlternatifIndex::class)->name('alternatif.index');
+// 	// route data alternatif 
+// 	Route::get('/alternatif/create', AlternatifCreate::class)->name('alternatif.create');
+// 	Route::get('/alternatif/{id}/edit', AlternatifEdit::class)->name('alternatif.edit');
+
+// 	// route data kriteria
+// 	Route::get('/kriteria', KriteriaIndex::class)->name('kriteria.index');
+// 	Route::get('/kriteria/create', KriteriaCreate::class)->name('kriteria.create');
+// 	Route::get('/kriteria/{id}/edit', KriteriaEdit::class)->name('kriteria.edit');
+
+// 	// route data sub kriteria
+// 	Route::get('/subkriteria/{kriteria}/create', SubkriteriaCreate::class)->name('subkriteria.create');
+
+// 	// route penilaian
+// 	Route::get('/penilaian', PenilaianIndex::class)->name('penilaian.index');
+// 	Route::get('/penilaian/{altId}/edit', PenilaianEdit::class)->name('penilaian.edit');
+	
+// 	Route::get('/ranking', ProsesIndex::class)->name('proses.index');
+// 	Route::get('/perhitungan', PerhitunganIndex::class)->name('perhitungan.index');
+
+
+

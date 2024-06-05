@@ -14,7 +14,11 @@
                 </div>
                 <div class="col-md-9">
                     <h4>NAMA : {{ Auth::user()->nama }}</h4>
+<<<<<<< HEAD
                     <p>STATUS : {{ Auth::user()->status }}</p>
+=======
+                    <p>STATUS : {{ Auth::user()->status }}</p> <!-- Mengubah tata letak teks -->
+>>>>>>> 5c50a77a368939c56a905b8adc7dd50367bf4c0a
                 </div>
             </div>
         </div>

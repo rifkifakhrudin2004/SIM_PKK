@@ -49,14 +49,14 @@
               </ul>
           </li> 
           <li class="nav-item"> 
-              <a href="{{ url('/p') }}" class="nav-link {{ ($activeMenu == 'user')? 'active' : '' }}"> 
+              <a href="{{ url('/') }}" class="nav-link {{ ($activeMenu == 'user')? 'active' : '' }}"> 
                   <i class="nav-icon far fa-user"></i> 
-                  <p>Simpan PInjam <i class="fas fa-angle-left right"></i></p> <!-- Icon kanan -->
+                  <p>Simpan Pinjam <i class="fas fa-angle-left right"></i></p> <!-- Icon kanan -->
               </a> 
               <!-- Submenu for Simpan Pinjam -->
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="{{ url('/dataAnggota') }}" class="nav-link">
+                    <a href="{{ url('/bendaharaPKK/index') }}" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Data anggota</p>
                     </a>
@@ -81,7 +81,47 @@
                   </li>
               </ul>
           </li> 
-         
+
+          
+            <li class="nav-item"> 
+                <a href="{{ url('/') }}" class="nav-link {{ ($activeMenu == 'user')? 'active' : '' }}"> 
+                    <i class="nav-icon far fa-user"></i> 
+                    <p>Laporan SPK<i class="fas fa-angle-left right"></i></p> <!-- Icon kanan -->
+                </a> 
+                {{-- menu alternatif index --}}
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ url('/kriteria') }}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Kriteria</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/alternatif') }}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Alternatif</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/penilaian') }}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Penilaian</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/perhitungan') }}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Perhitungan</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/ranking') }}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Ranking</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
           <li class="nav-item"> 
             <a href="{{ route('logout') }}" class="nav-link">
                 <i class="nav-icon fas fa-sign-out-alt"></i>
@@ -91,3 +131,4 @@
       </ul> 
   </nav> 
 </div>
+
