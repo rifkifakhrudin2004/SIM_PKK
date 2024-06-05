@@ -7,6 +7,7 @@ use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\KetuaPKKController;
 use App\Http\Controllers\BendaharaPKKController;
 use App\Http\Controllers\ArisanController;
+use App\Http\Controllers\ValidasiController;
 
 use App\Http\Controllers\DataAnggotaController;
 
@@ -30,19 +31,6 @@ use App\Http\Controllers\AuthController;
 Route::get('/', function () {
     return view('welcome');
 });
-
-
-// Manage Users
-// Route::prefix('users')->group(function () { // Grouped user routes
-//     Route::get('/create', [UsersController::class, 'create'])->name('users.create');
-//     Route::get('/edit/{id}', [UsersController::class, 'edit'])->name('users.edit');
-//     Route::get('/', [UsersController::class, 'index'])->name('users.index');
-//     Route::post('/', [UsersController::class, 'store'])->name('users.store');
-//     Route::put('/{id}', [UsersController::class, 'update'])->name('users.update');
-//     Route::delete('/{id}', [UsersController::class, 'destroy'])->name('users.destroy');
-//     Route::put('/edit_simpan/{id}', [UsersController::class, 'edit_simpan'])->name('user.edit_simpan'); // Changed from /user/{id}
-//     Route::get('/delete/{id}', [UsersController::class, 'delete'])->name('users.delete');
-// });
 // Manage User
 Route::group(['prefix' => 'user'], function () {
     Route::get('/', [UserController::class, 'index']); //menampilkan halaman awal user
@@ -64,7 +52,6 @@ Route::group(['prefix' => 'dataAnggota'], function () {
     Route::put('/{id}', [DataAnggotaController::class, 'update']); //menyimpan perubahan data user
     Route::delete('/{id}', [DataAnggotaController::class, 'destroy']); //menghapus data user
 });
-
 // Manage Login
 Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::get('register', [AuthController::class, 'register'])->name('register');
@@ -74,6 +61,7 @@ Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 // Grouped routes with auth middleware
 Route::middleware('auth')->group(function () {
+    Route::resource('dataAnggota', DataAnggotaController::class);
     // Routes for Anggota (level_id: 1)
     Route::middleware('cek_login:1')->group(function () {
         Route::get('anggota', [AnggotaController::class, 'dashboard']);
@@ -92,20 +80,11 @@ Route::middleware('auth')->group(function () {
     });
 });
 
-// Manage User
-Route::get('/users/create', [UsersController::class, 'create'])->name('users.create');
-Route::get('/users/edit/{id}', [UsersController::class, 'edit'])->name('users.edit');
-Route::get('/users', [UsersController::class, 'index'])->name('users.index');
-Route::post('/users', [UsersController::class, 'store'])->name('users.store');
-Route::put('/user/{id}', [UsersController::class, 'edit_simpan'])->name('user.edit_simpan');
-Route::get('/user/delete/{id}', [UsersController::class, 'delete'])->name('users.delete');
-
 // Ketua PKK
 Route::prefix('ketuaPKK')->group(function () {
     Route::get('/', function () {
         return redirect()->route('ketuaPKK.dashboard');
     });
-
     Route::get('/dashboard', [KetuaPKKController::class, 'dashboard'])->name('ketuaPKK.dashboard');
 });
 
@@ -116,6 +95,8 @@ Route::prefix('bendaharaPKK')->group(function () {
     });
 
     Route::get('/dashboard', [BendaharaPKKController::class, 'dashboard'])->name('bendaharaPKK.dashboard');
+    Route::get('/index', [BendaharaPKKController::class, 'indexBendahara']);
+    Route::put('/index/{id}', [BendaharaPKKController::class, 'updateVerifikasi']);
     Route::get('/arisan', [ArisanController::class, 'index'])->name('bendaharaPKK.arisan');
 });
 
@@ -189,11 +170,6 @@ Route::prefix('user')->group(function () {
         Route::get('/dashboard', [KetuaPKKController::class, 'dashboard'])->name('ketua.dashboard');
 
     });
-
-    Route::get('/dashboard', [UsersController::class, 'dashboard'])->name('users.dashboard');
-
-    // Manage Konten
-    Route::get('/konten', [KontenController::class, 'index'])->name('user.konten');
 });
 
 // Manage Konten

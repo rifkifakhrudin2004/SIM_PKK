@@ -21,11 +21,18 @@
             </li>
             <li class="nav-header">Data Pengguna</li>
             <li class="nav-item">
+                <a href="{{ url('/dataAnggota') }}" class="nav-link {{ $activeMenu == 'user' ? 'active' : '' }}">
+                    <i class="nav-icon far fa-user"></i>
+                    <p>Input Data Diri <i class=""></i></p>
+                </a>
+            <li class="nav-item">
                 <a href="{{ url('/p') }}" class="nav-link {{ $activeMenu == 'level' ? 'active' : '' }}">
                     <i class="nav-icon fas fa-layer-group"></i>
                     <p>Arisan <i class="fas fa-angle-left right"></i></p>
                 </a>
+                
                 <!-- Submenu for Arisan -->
+                
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
                         <a href="{{ url('/data-arisan') }}" class="nav-link">

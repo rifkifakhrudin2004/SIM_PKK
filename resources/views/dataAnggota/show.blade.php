@@ -1,4 +1,4 @@
-@extends('layoutsUser.template')
+@extends('layoutsAnggota.template')
 
 @section('content')
 <div class="card card-outline card-primary">
@@ -29,6 +29,18 @@
             <tr>
                 <th>Alamat</th>
                 <td>{{ $anggota->alamat_anggota }}</td>
+            </tr>
+            <tr>
+                <th>Jumlah Tanggungan</th>
+                <td>{{ $anggota->jumlah_tanggungan }}</td>
+            </tr>
+            <tr>
+                <th>Status Kesehatan</th>
+                <td>{{ $anggota->status_kesehatan }}</td>
+            </tr>
+            <tr>
+                <th>Verifikasi</th>
+                <td>{{ $anggota->verifikasi }}</td>
             </tr>
         </table>
         @endempty

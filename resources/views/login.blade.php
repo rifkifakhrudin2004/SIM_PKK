@@ -67,6 +67,21 @@
             @enderror
         </div>
 
+        {{-- Role selection field --}}
+        <div class="input-group mb-3">
+            <select name="role" class="form-control @error('role') is-invalid @enderror">
+                <option value="">Pilih Jenis Login</option>
+                <option value="1">Anggota</option>
+                <option value="2">Bendahara</option>
+                <option value="3">Ketua</option>
+            </select>
+            @error('role')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+        </div>
+
         {{-- Login field --}}
         <div class="row">
             <div class="col-7">
