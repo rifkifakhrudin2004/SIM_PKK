@@ -7,7 +7,7 @@
     <title>{{ config('app.name', 'PWL Laravel Starter Code') }}</title>
     <style>
         .sidebar-dark-primary {
-            background-color: rgba(0, 0, 0, 0.8) !important; 
+            background-color: rgb(18, 1, 110) !important; 
         }
     </style>
     

@@ -6,6 +6,8 @@ use App\Models\DataAnggotaModel;
 use App\Models\UserModel;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\Auth;
+
 
 class DataAnggotaController extends Controller
 {
@@ -17,19 +19,24 @@ class DataAnggotaController extends Controller
         ];
 
         $page = (object) [
-            'title' => 'Daftar Anggota yang Sudah di Validasi Bendahara'
+            'title' => 'Validasikan Data Diri Anda'
         ];
 
         $activeMenu = 'anggota';
 
-        $users = UserModel::where('level_id',1)->get();
+        $user = Auth::user();
 
-        return view('dataAnggota.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu, 'users' => $users]);
+        $anggota = DataAnggotaModel::where('nama_anggota', $user->nama)->get();
+
+        return view('dataAnggota.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu, 'anggota' => $anggota]);
     }
 
     public function list(Request $request)
     {
-        $anggota = DataAnggotaModel::select('id_anggota', 'nama_anggota', 'notelp_anggota', 'alamat_anggota');
+        $user = Auth::user();
+
+        $anggota = DataAnggotaModel::select('id_anggota', 'nama_anggota', 'notelp_anggota', 'alamat_anggota','jumlah_tanggungan','status_kesehatan','verifikasi')
+                                    ->where('nama_anggota',$user->nama);
 
         return DataTables::of($anggota)
             ->addIndexColumn()
@@ -66,25 +73,28 @@ class DataAnggotaController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $request->validate([
-            'nama_anggota' => 'required|string|unique:m_anggota,nama_anggota',
-            'notelp_anggota' => 'required|string',
-            'alamat_anggota' => 'nullable|string',
-        ]);
-        
+{
+    $request->validate([
+        'notelp_anggota' => 'required|string|min:12',
+        'alamat_anggota' => 'nullable|string',
+        'jumlah_tanggungan' => 'nullable|string',
+        'status_kesehatan' => 'nullable|string',
+    ]);
 
-        // Membuat data anggota baru
-        $anggota = new DataAnggotaModel([
-            'nama_anggota' => $request->nama_anggota,
-            'notelp_anggota' => $request->notelp_anggota,
-            'alamat_anggota' => $request->alamat_anggota,
-        ]);
+    // Membuat data anggota baru dengan nama pengguna yang sedang login
+    $anggota = new DataAnggotaModel([
+        'nama_anggota' => Auth::user()->nama, // Mengambil nama pengguna yang sedang login
+        'notelp_anggota' => $request->notelp_anggota,
+        'alamat_anggota' => $request->alamat_anggota,
+        'jumlah_tanggungan' => $request->jumlah_tanggungan,
+        'status_kesehatan' => $request->status_kesehatan,
+    ]);
 
-        $anggota->save();
+    $anggota->save();
 
-        return view('dataAnggota.index')->with('success', 'Anggota berhasil ditambahkan');
-    }
+    return redirect('/dataAnggota')->with('success', 'Anggota berhasil ditambahkan');
+}
+
 
     public function show($id)
     {
@@ -122,20 +132,23 @@ class DataAnggotaController extends Controller
     }
 
     public function update(Request $request, $id)
-{
-    $request->validate([
-        'notelp_anggota' => 'required|string|min:12',
-        'alamat_anggota' => 'required|string',
-    ]);
+    {
+        $request->validate([
+            'notelp_anggota' => 'required|string|min:12',
+            'alamat_anggota' => 'required|string',
+            'jumlah_tanggungan' => 'nullable|string',
+            'status_kesehatan' => 'nullable|string',
+        ]);
 
-    DataAnggotaModel::find($id)->update([
-        'notelp_anggota'    => $request->notelp_anggota,
-        'alamat_anggota'    => $request->alamat_anggota,
-    ]);
-    
-    return redirect('/dataAnggota')->with('success', 'Data anggota berhasil diubah');
-}
-
+        DataAnggotaModel::find($id)->update([
+            'notelp_anggota'    => $request->notelp_anggota,
+            'alamat_anggota'    => $request->alamat_anggota,
+            'jumlah_tanggungan' => $request->jumlah_tanggungan,
+            'status_kesehatan' => $request->status_kesehatan,
+        ]);
+        
+        return redirect('/dataAnggota')->with('success', 'Data anggota berhasil diubah');
+    }
 
     public function destroy($id)
     {

@@ -56,7 +56,7 @@
               <!-- Submenu for Simpan Pinjam -->
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="{{ url('/dataAnggota') }}" class="nav-link">
+                    <a href="{{ url('/bendaharaPKK/index') }}" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Data anggota</p>
                     </a>

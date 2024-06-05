@@ -74,6 +74,8 @@ class DataAnggotaDataTable extends DataTable
             Column::make('nama_anggota')->title('nama'),
             Column::make('notelp_anggota'),
             Column::make('alamat_anggota'),
+            Column::make('jumlah_tanggungan')->title('Jumlah Tanggungan'),
+            Column::make('status_kesehatan')->title('Status Kesehatan'),
             Column::make('created_at'),
             Column::make('updated_at'),
             Column::computed('action')

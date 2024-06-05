@@ -7,12 +7,16 @@ use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\KetuaPKKController;
 use App\Http\Controllers\BendaharaPKKController;
 <<<<<<< HEAD
+<<<<<<< HEAD
 use App\Http\Controllers\ArisanController;
 
 =======
 
 
+=======
+>>>>>>> aa37ff12b03d309f4833a327a4d5483187fcd6d2
 use App\Http\Controllers\ArisanController;
+use App\Http\Controllers\ValidasiController;
 use App\Http\Controllers\UploadKetuaController;
 >>>>>>> 1a6cbbe2a16635455d6b0efad11987a1e3ad5ffd
 use App\Http\Controllers\DataAnggotaController;
@@ -72,6 +76,8 @@ Route::get('/', function () {
 });
 
 
+
+
 // Manage User
 Route::prefix('users')->group(function () { // Grouped user routes
     Route::get('/create', [UsersController::class, 'create'])->name('users.create');
@@ -96,6 +102,7 @@ Route::prefix('users')->group(function () { // Grouped user routes
 //     Route::get('/delete/{id}', [UsersController::class, 'delete'])->name('users.delete');
 // });
 
+
 // Manage User
 Route::group(['prefix' => 'user'], function () {
     Route::get('/', [UserController::class, 'index']); //menampilkan halaman awal user
@@ -118,7 +125,6 @@ Route::group(['prefix' => 'dataAnggota'], function () {
     Route::delete('/{id}', [DataAnggotaController::class, 'destroy']); //menghapus data user
 });
 
-
 // Manage Login
 Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::get('register', [AuthController::class, 'register'])->name('register');
@@ -128,6 +134,7 @@ Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 // Grouped routes with auth middleware
 Route::middleware('auth')->group(function () {
+    Route::resource('dataAnggota', DataAnggotaController::class);
     // Routes for Anggota (level_id: 1)
     Route::middleware('cek_login:1')->group(function () {
         Route::get('anggota', [AnggotaController::class, 'dashboard']);
@@ -159,14 +166,26 @@ Route::get('/user/delete/{id}', [UsersController::class, 'delete'])->name('users
 =======
  
 
+
+// Ketua PKK
 // Nested groups for KetuaPKK
+<<<<<<< HEAD
 >>>>>>> 1a6cbbe2a16635455d6b0efad11987a1e3ad5ffd
+=======
+
+>>>>>>> aa37ff12b03d309f4833a327a4d5483187fcd6d2
 Route::prefix('ketuaPKK')->group(function () {
     Route::get('/', function () {
         return redirect()->route('ketuaPKK.dashboard');
     });
 
     Route::get('/dashboard', [KetuaPKKController::class, 'dashboard'])->name('ketuaPKK.dashboard');
+<<<<<<< HEAD
+=======
+
+    Route::get('/dashboard', [KetuaPKKController::class, 'dashboard'])->name('ketua.dashboard');
+
+>>>>>>> aa37ff12b03d309f4833a327a4d5483187fcd6d2
 });
 
 // Bendahara PKK
@@ -186,10 +205,19 @@ Route::prefix('bendaharaPKK')->group(function () {
     Route::resource('/arisan', ArisanController::class)->except(['index', 'show']);
 =======
     Route::get('/dashboard', [BendaharaPKKController::class, 'dashboard'])->name('bendaharaPKK.dashboard');
+<<<<<<< HEAD
     
 >>>>>>> 1a6cbbe2a16635455d6b0efad11987a1e3ad5ffd
 
     // Jadwal
+=======
+
+    Route::get('/index', [BendaharaPKKController::class, 'indexBendahara']);
+    Route::put('/index/{id}', [BendaharaPKKController::class, 'updateVerifikasi']);
+    Route::get('/arisan', [ArisanController::class, 'index'])->name('bendaharaPKK.arisan');
+});
+    // Jadwal routes
+>>>>>>> aa37ff12b03d309f4833a327a4d5483187fcd6d2
     Route::get('/jadwal', [JadwalController::class, 'index'])->name('jadwals.index');
     Route::get('/jadwal/create', [JadwalController::class, 'create'])->name('jadwals.create');
     Route::post('/jadwal', [JadwalController::class, 'store'])->name('jadwals.store');
@@ -210,6 +238,24 @@ Route::prefix('bendaharaPKK')->group(function () {
         Route::get('//data-arisan{id}/edit', [ArisanController::class, 'edit'])->name('arisan.edit');
         Route::put('/data-arisan/{id}', [ArisanController::class, 'update'])->name('arisan.update');
         Route::delete('/data-arisan/{id}', [ArisanController::class, 'destroy'])->name('arisan.destroy');
+// Anggota
+Route::prefix('anggota')->group(function () {
+    Route::get('/', function () {
+        
+        return redirect()->route('anggota.dashboard');
+    });
+
+    Route::get('/dashboard', [AnggotaController::class, 'dashboard'])->name('anggota.dashboard');
+    Route::get('/jadwal', [AnggotaController::class, 'jadwal'])->name('anggota.jadwal');
+
+// DATA ARISAN
+Route::prefix('arisan')->middleware('auth')->group(function() {
+    Route::get('/data-arisan', [ArisanController::class, 'dataArisan'])->name('arisan.data');
+    Route::get('/create', [ArisanController::class, 'create'])->name('arisan.create');
+    Route::post('/', [ArisanController::class, 'store'])->name('arisan.store');
+    Route::get('/{id}/edit', [ArisanController::class, 'edit'])->name('arisan.edit');
+    Route::put('/{id}', [ArisanController::class, 'update'])->name('arisan.update');
+    Route::delete('/{id}', [ArisanController::class, 'destroy'])->name('arisan.destroy');
 
     // Pembukuan Arisan
     Route::get('/pembukuan', [PembukuanArisanController::class, 'index'])->name('pembukuan.index');
@@ -218,6 +264,7 @@ Route::prefix('bendaharaPKK')->group(function () {
     Route::get('/pembukuan/{id}/edit', [PembukuanArisanController::class, 'edit'])->name('pembukuan.edit');
     Route::put('/pembukuan/{id}', [PembukuanArisanController::class, 'update'])->name('pembukuan.update');
     Route::delete('/pembukuan/{id}', [PembukuanArisanController::class, 'destroy'])->name('pembukuan.destroy');
+
 });
 
 
@@ -257,6 +304,10 @@ Route::prefix('user')->group(function () {
         return redirect()->route('users.dashboard');
 
     });
+<<<<<<< HEAD
+=======
+
+>>>>>>> aa37ff12b03d309f4833a327a4d5483187fcd6d2
 // Nested groups for KetuaPKK
     Route::prefix('ketuaPKK')->group(function () {
         Route::get('/', function () {
@@ -264,9 +315,12 @@ Route::prefix('user')->group(function () {
         });
         Route::get('/dashboard', [KetuaPKKController::class, 'dashboard'])->name('ketua.dashboard');
 
+<<<<<<< HEAD
 =======
         return redirect()->route('users.dashboard'); // Corrected redirect route
 >>>>>>> 1a6cbbe2a16635455d6b0efad11987a1e3ad5ffd
+=======
+>>>>>>> aa37ff12b03d309f4833a327a4d5483187fcd6d2
     });
 
     Route::get('/dashboard', [UsersController::class, 'dashboard'])->name('users.dashboard');
