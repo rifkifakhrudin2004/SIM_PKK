@@ -36,7 +36,7 @@
             </tr>
             <tr>
                 <th>Status Kesehatan</th>
-                <td>{{ $anggota->status_kesehatan }}</td>
+                <td>{{ $anggota->status_rumah }}</td>
             </tr>
             <tr>
                 <th>Verifikasi</th>

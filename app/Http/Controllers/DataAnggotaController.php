@@ -35,7 +35,7 @@ class DataAnggotaController extends Controller
     {
         $user = Auth::user();
 
-        $anggota = DataAnggotaModel::select('id_anggota', 'nama_anggota', 'notelp_anggota', 'alamat_anggota','jumlah_tanggungan','status_kesehatan','verifikasi')
+        $anggota = DataAnggotaModel::select('id_anggota', 'nama_anggota', 'notelp_anggota', 'alamat_anggota','jumlah_tanggungan','status_rumah','verifikasi')
                                     ->where('nama_anggota',$user->nama);
 
         return DataTables::of($anggota)
@@ -78,7 +78,7 @@ class DataAnggotaController extends Controller
         'notelp_anggota' => 'required|string|min:12',
         'alamat_anggota' => 'nullable|string',
         'jumlah_tanggungan' => 'nullable|string',
-        'status_kesehatan' => 'nullable|string',
+        'status_rumah' => 'nullable|string',
     ]);
 
     // Membuat data anggota baru dengan nama pengguna yang sedang login
@@ -87,14 +87,13 @@ class DataAnggotaController extends Controller
         'notelp_anggota' => $request->notelp_anggota,
         'alamat_anggota' => $request->alamat_anggota,
         'jumlah_tanggungan' => $request->jumlah_tanggungan,
-        'status_kesehatan' => $request->status_kesehatan,
+        'status_rumah' => $request->status_rumah,
     ]);
 
     $anggota->save();
 
     return redirect('/dataAnggota')->with('success', 'Anggota berhasil ditambahkan');
 }
-
 
     public function show($id)
     {
@@ -137,14 +136,14 @@ class DataAnggotaController extends Controller
             'notelp_anggota' => 'required|string|min:12',
             'alamat_anggota' => 'required|string',
             'jumlah_tanggungan' => 'nullable|string',
-            'status_kesehatan' => 'nullable|string',
+            'status_rumah' => 'nullable|string',
         ]);
 
         DataAnggotaModel::find($id)->update([
             'notelp_anggota'    => $request->notelp_anggota,
             'alamat_anggota'    => $request->alamat_anggota,
             'jumlah_tanggungan' => $request->jumlah_tanggungan,
-            'status_kesehatan' => $request->status_kesehatan,
+            'status_rumah' => $request->status_rumah,
         ]);
         
         return redirect('/dataAnggota')->with('success', 'Data anggota berhasil diubah');
@@ -153,6 +152,7 @@ class DataAnggotaController extends Controller
     public function destroy($id)
     {
         $check = DataAnggotaModel::find($id);
+        
         if (!$check) {
             return redirect('/dataAnggota')->with('error', 'Data anggota tidak ditemukan');
         }
