@@ -1,38 +1,50 @@
-<div class="mt-6 mx-6">
-	<x-jet-form-section submit="store">
-		<x-slot name="title">
-			Tambah Alternatif
-		</x-slot>
-		
-		<x-slot name="description">
-			Tambah data alternatif baru.
-		</x-slot>
-		
-		<x-slot name="form">
-			{{-- input kode --}}
-			<div class="col-span-6 sm:col-span-4">
-				<x-jet-label for="kode" value="Kode Alternatif" />
-				<x-jet-input id="kode" wire:model="kode" type="text" class="mt-1 block w-full" autofocus />
-				<x-jet-input-error for="kode" class="mt-2" />
+
+
+
+@extends('layoutsBendaharaPKK.template')
+
+@section('content')
+<div class="card card-outline card-primary">
+    <div class="card-header">
+        <h3 class="card-title">LP</h3>
+    </div>
+    <div class="mt-6 mx-6">
+		<div class="card card-primary">
+			<div class="card-header">
+				<h3 class="card-title">Tambah Alternatif</h3>
 			</div>
-			{{-- input nama alternatif --}}
-			<div class="col-span-6 sm:col-span-4">
-				<x-jet-label for="name" value="Nama Alternatif" />
-				<x-jet-input id="name" wire:model="nama" type="text" class="mt-1 block w-full" />
-				<x-jet-input-error for="name" class="mt-2" />
-			</div>
-			{{-- input lainnya dst --}}
-			
-		</x-slot>
-		
-		<x-slot name="actions">
-			<x-jet-action-message class="mr-3" on="saved">
-				Tersimpan.
-			</x-jet-action-message>
-			
-			<x-jet-button>
-				Simpan
-			</x-jet-button>
-		</x-slot>
-	</x-jet-form-section>
+			<form action="{{ route('alternatif.store') }}" method="POST">
+				@csrf
+				<div class="card-body">
+					<div class="form-group">
+						<label for="kode">Kode Alternatif</label>
+						<input type="text" class="form-control @error('kode') is-invalid @enderror" id="kode" name="kode" value="{{ old('kode') }}" autofocus>
+						@error('kode')
+							<span class="error invalid-feedback">{{ $message }}</span>
+						@enderror
+					</div>
+					<div class="form-group">
+						<label for="name">Nama Anggota</label>
+						<input type="text" class="form-control @error('nama') is-invalid @enderror" id="name" name="nama" value="{{ old('nama') }}">
+						@error('nama')
+							<span class="error invalid-feedback">{{ $message }}</span>
+						@enderror
+					</div>
+				</div>
+				<div class="card-footer">
+					<button type="submit" class="btn btn-primary">Simpan</button>
+					<span class="ml-3 text-success" id="success-message" style="display: none;">Tersimpan.</span>
+				</div>
+			</form>
+		</div>
+	</div>
+	
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+			@if(session('status') === 'saved')
+				document.getElementById('success-message').style.display = 'block';
+			@endif
+		});
+	</script>
 </div>
+@endsection

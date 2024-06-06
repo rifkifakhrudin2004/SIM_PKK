@@ -1,51 +1,54 @@
-<div class="mt-6 mx-6">
-	<x-jet-form-section submit="update">
-		<x-slot name="title">
-			Ubah Kriteria
-		</x-slot>
-		
-		<x-slot name="description">
-			Ubah data kriteria penilaian beserta bobotnya.
-		</x-slot>
-		
-		<x-slot name="form">
-			{{-- input kode --}}
-			<div class="col-span-6 sm:col-span-4">
-				<x-jet-label for="kode" value="Kode Kriteria" />
-				<x-jet-input id="kode" wire:model="kriteria.kode" type="text" class="mt-1 block w-full" autofocus />
-				<x-jet-input-error for="kode" class="mt-2" />
+
+
+@extends('layoutsBendaharaPKK.template')
+
+@section('content')
+<div class="card card-outline card-primary">
+    <div class="card-header">
+        <h3 class="card-title">LP</h3>
+    </div>
+    <div class="mt-6 mx-6">
+		<div class="card card-primary">
+			<div class="card-header">
+				<h3 class="card-title">Ubah Kriteria</h3>
 			</div>
-			{{-- input nama alternatif --}}
-			<div class="col-span-6 sm:col-span-4">
-				<x-jet-label for="name" value="Nama Kriteria" />
-				<x-jet-input id="name" wire:model="kriteria.name" type="text" class="mt-1 block w-full" />
-				<x-jet-input-error for="name" class="mt-2" />
-			</div>
-			{{-- input lainnya dst --}}
-			{{-- <div class="col-span-6 sm:col-span-4">
-				<x-jet-label for="bobot" value="Bobot Kriteria" />
-				<x-jet-input id="bobot" wire:model="kriteria.bobot" type="number" step="any" class="mt-1 block w-full" />
-				<x-jet-input-error for="bobot" class="mt-2" />
-			</div> --}}
-			<div class="col-span-6 sm:col-span-4">
-				<x-jet-label for="type" value="Jenis Kriteria" />
-				<x-select id="type" wire:model="kriteria.type" type="text" class="mt-1 block w-full">
-					<option value="1">Benefit</option>
-					<option value="0">Cost</option>
-				</x-select>
-				<x-jet-input-error for="type" class="mt-2" />
-			</div>
-			
-		</x-slot>
-		
-		<x-slot name="actions">
-			<x-jet-action-message class="mr-3" on="saved">
-				Tersimpan.
-			</x-jet-action-message>
-			
-			<x-jet-button>
-				Simpan
-			</x-jet-button>
-		</x-slot>
-	</x-jet-form-section>
+			<form action="{{ route('kriteria.update', $kriteria->id) }}" method="POST">
+				@csrf
+				@method('PUT')
+				<div class="card-body">
+					<div class="form-group">
+						<label for="kode">Kode Kriteria</label>
+						<input type="text" class="form-control @error('kriteria.kode') is-invalid @enderror" id="kode" name="kode" value="{{ old('kode', $kriteria->kode) }}" autofocus>
+						@error('kriteria.kode')
+							<span class="error invalid-feedback">{{ $message }}</span>
+						@enderror
+					</div>
+					<div class="form-group">
+						<label for="name">Nama Kriteria</label>
+						<input type="text" class="form-control @error('kriteria.name') is-invalid @enderror" id="name" name="name" value="{{ old('name', $kriteria->name) }}">
+						@error('kriteria.name')
+							<span class="error invalid-feedback">{{ $message }}</span>
+						@enderror
+					</div>
+					<div class="form-group">
+						<label for="type">Jenis Kriteria</label>
+						<select class="form-control @error('kriteria.type') is-invalid @enderror" id="type" name="type">
+							<option value="1" {{ old('type', $kriteria->type) == 1 ? 'selected' : '' }}>Benefit</option>
+							<option value="0" {{ old('type', $kriteria->type) == 0 ? 'selected' : '' }}>Cost</option>
+						</select>
+						@error('kriteria.type')
+							<span class="error invalid-feedback">{{ $message }}</span>
+						@enderror
+					</div>
+				</div>
+				<div class="card-footer">
+					<button type="submit" class="btn btn-primary">Simpan</button>
+					@if (session('status') === 'saved')
+						<span class="ml-3 text-success">Tersimpan.</span>
+					@endif
+				</div>
+			</form>
+		</div>
+	</div>
 </div>
+@endsection

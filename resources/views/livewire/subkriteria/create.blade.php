@@ -1,94 +1,111 @@
-<div>
-	<div class="mt-6 mx-6">
-		<x-jet-form-section submit="store">
-			<x-slot name="title">
-				{{ $kriteria->name }}
-			</x-slot>
-			
-			<x-slot name="description">
-				Tambah data sub kriteria  {{ $kriteria->name }}.
-			</x-slot>
-			
-			<x-slot name="form">
-				{{-- input nama sub kriteria --}}
-				<div class="col-span-6 sm:col-span-4">
-					<x-jet-label for="name" value="Nama Sub Kriteria" />
-					<x-jet-input id="name" wire:model="name" type="text" class="mt-1 block w-full" autofocus />
-					<x-jet-input-error for="name" class="mt-2" />
-				</div>
-				{{-- input nilai bobot --}}
-				<div class="col-span-6 sm:col-span-4">
-					<x-jet-label for="bobot" value="Nilai Bobot" />
-					<x-jet-input id="bobot" wire:model="bobot" type="text" class="mt-1 block w-full" autofocus />
-					<x-jet-input-error for="bobot" class="mt-2" />
-				</div>
-				
-			</x-slot>
-			
-			<x-slot name="actions">
-				<x-jet-action-message class="mr-3" on="saved">
-					Tersimpan.
-				</x-jet-action-message>
-				
-				<x-jet-button>
-					Simpan
-				</x-jet-button>
-			</x-slot>
-		</x-jet-form-section>
-	</div>
-	
-	<div class="mt-6 mx-6">
-		<x-jet-form-section submit="">
-			<x-slot name="title">
-				Data Sub Kriteria
-			</x-slot>
-			
-			<x-slot name="description">
-				List data sub kriteria beserta bobot.
-			</x-slot>
-			
-			<x-slot name="form">
-				@if (!$kriteria->subkriteria->count())
-				<div class="col-span-6 sm:col-span-4">
-					Belum ada data sub kriteria.
-				</div>
-				@else
-				<div class="col-span-6">
-					<table class="min-w-full leading-normal">
-						<thead>
-							<tr>
-								<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-900 text-white text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
-									{{ $kriteria->name }}
-								</th>
-								<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-900 text-white text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
-									Bobot
-								</th>
-								<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-900 text-white text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
-									Aksi
-								</th>
-							</tr>
-						</thead>
-						<tbody>
-							@foreach ($kriteria->subkriteria as $sub)
-							<tr>
-								<td class="px-5 py-5 border-b border-gray-200 bg-white text-center text-sm">
-									{{ $sub->name }}
-								</td>
-								<td class="px-5 py-5 border-b border-gray-200 bg-white text-center text-sm">
-									{{ $sub->bobot }}
-								</td>
-								<td class="px-5 py-5 border-b border-gray-200 bg-white text-center text-sm">
-									<div class="flex justify-center">
-										<x-jet-button class="button" wire:click.prevent="delete({{ $sub->id }})">Hapus</x-jet-button>
-									</div>
-								</td>
-							</tr>
-							@endforeach
-						</tbody>
-					</table>
-				</div>
-				@endif			
-			</x-slot>
-		</x-jet-form-section>
-	</div>
+@extends('layoutsBendaharaPKK.template')
+
+@section('content')
+<div class="card card-outline card-primary">
+    <div class="card-header">
+        <h3 class="card-title">SPK/Kriteria/SubKriteria</h3>
+    </div>
+    <div>
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @if(session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
+
+        <script>
+            // Function to remove notification after a few seconds
+            setTimeout(function(){
+                document.querySelectorAll('.alert').forEach(function(alert) {
+                    alert.remove();
+                });
+            }, 2500); // Adjust the time (in milliseconds) as needed
+        </script>
+
+        <div class="mt-6 mx-6">
+            <form action="{{ route('subkriteria.store') }}" method="POST">
+                @csrf
+                <input type="hidden" name="kriteria_id" value="{{ $kriteria->id }}">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Tambahkan SubKriteria untuk Kriteria {{ $kriteria->name }}</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="name">Nama SubKriteria:</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                            @error('name') <span class="error">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="bobot">Bobot SubKriteria:</label>
+                            <input type="number" class="form-control" id="bobot" name="bobot" required>
+                            @error('bobot') <span class="error">{{ $message }}</span> @enderror
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="mt-6 mx-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Data Sub Kriteria</h3>
+                </div>
+                <div class="card-body">
+                    @if (!$kriteria->subkriteria->count())
+                        Belum ada data sub kriteria.
+                    @else
+                        <table class="table table-bordered">
+                            <thead class="custom-thead">
+                                <tr>
+                                    <th>Nama Subkriteria</th>
+                                    <th>Bobot</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($kriteria->subkriteria as $sub)
+                                    <tr>
+                                        <td>{{ $sub->name }}</td>
+                                        <td>{{ $sub->bobot }}</td>
+                                        <td>
+                                            <a href="{{ route('subkriteria.edit', $sub->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                            <form action="{{ route('subkriteria.delete', $sub->id) }}" method="POST" style="display:inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+@endsection
+
+<style>
+    .custom-thead {
+        background-color: #010050; /* Ubah kode warna sesuai kebutuhan */
+        color: white;
+        border-radius: 10px; /* Sesuaikan angka radius dengan keinginan Anda */
+        overflow: hidden; /* Ubah warna teks jika diperlukan */
+    }
+    .table {
+        border-radius: 10px; /* Sesuaikan angka radius dengan keinginan Anda */
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+</style>

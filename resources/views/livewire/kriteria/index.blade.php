@@ -1,78 +1,76 @@
-<div>
-	
-	{{-- tabel data kriteria --}}
-	<div class="container mx-auto px-4 sm:px-8">
-		<div class="py-8">
-			<div class="flex items-center justify-between">
-				<h2 class="text-2xl font-semibold leading-tight">Data Kriteria</h2>
-				<x-button-link href="{{ route('kriteria.create') }}">Tambah Kriteria</x-button-link>
-			</div>
-			<div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-				<div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
-					<table class="min-w-full leading-normal">
-						<thead>
+
+
+@extends('layoutsBendaharaPKK.template')
+
+@section('content')
+<div class="card card-outline card-primary">
+    <div class="card-header">
+        <h3 class="card-title">SPK/Kriteria</h3>
+    </div>
+    <div class="mt-6 mx-6">
+		{{-- tabel data kriteria --}}
+		<div class="container mx-auto px-4 sm:px-8">
+			<div class="py-8">
+				<div class="d-flex justify-content-between align-items-center mb-4">
+					<h2 class="h2 font-weight-semibold">Data Kriteria</h2>
+					<a href="{{ route('kriteria.create') }}" class="btn btn-primary">Tambah Kriteria</a>
+				</div>
+				@if(session('success'))
+					<div class="alert alert-success">
+						{{ session('success') }}
+					</div>
+				@endif
+
+				@if(session('error'))
+					<div class="alert alert-danger">
+						{{ session('error') }}
+					</div>
+				@endif
+            <script>
+                // Function to remove notification after a few seconds
+                setTimeout(function(){
+                    document.querySelectorAll('.alert').forEach(function(alert) {
+                        alert.remove();
+                    });
+                }, 2500); // Adjust the time (in milliseconds) as needed
+            </script>
+				<div class="table-responsive">
+					<table class="table table-striped table-bordered">
+						<thead class="custom-thead">
 							<tr>
-								<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-900 text-white text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-									No
-								</th>
-								<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-900 text-white text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
-									Kode Kriteria
-								</th>
-								<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-900 text-white text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
-									Nama Kriteria
-								</th>
-								{{-- <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-900 text-white text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
-									Bobot Kriteria
-								</th> --}}
-								<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-900 text-white text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
-									Jenis Kriteria
-								</th>
-								<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-900 text-white text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
-									Sub Kriteria
-								</th>
-								<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-900 text-white text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
-									Aksi
-								</th>
+								<th class="text-center">No</th>
+								<th class="text-center">Kode Kriteria</th>
+								<th class="text-center">Nama Kriteria</th>
+								<th class="text-center">Jenis Kriteria</th>
+								<th class="text-center">Sub Kriteria</th>
+								<th class="text-center">Aksi</th>
 							</tr>
 						</thead>
 						<tbody>
 							@forelse ($kriterias as $index => $krit)
-									
-							<tr>
-								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-									{{ $index + 1 }}
-								</td>
-								<td class="px-5 py-5 border-b border-gray-200 bg-white text-center text-sm">
-									{{ $krit->kode }}
-								</td>
-								<td class="px-5 py-5 border-b border-gray-200 bg-white text-center text-sm">
-									{{ $krit->name }}
-								</td>
-								{{-- <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-									{{ $krit->bobot }}
-								</td> --}}
-								<td class="px-5 py-5 border-b border-gray-200 bg-white text-center text-sm">
-									{{ $krit->type ? 'Benefit' : 'Cost' }}
-								</td>
-								<td class="px-5 py-5 border-b border-gray-200 bg-white text-center text-sm">
-									<x-button-link href="{{ route('subkriteria.create', $krit->id) }}">Tambah</x-button-link>
-								</td>
-								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
-									<div class="flex items-center justify-center gap-4">
-										<a href="{{ route('kriteria.edit', $krit->id) }}" class="uppercase font-medium text-left text-xs text-gray-700">Ubah</a>
-										<x-jet-button wire:click="delete({{ $krit->id }})">Hapus</x-jet-button>
-									</div>
-								</td>
-							</tr>
-
+								<tr>
+									<td class="text-center">{{ $index + 1 }}</td>
+									<td class="text-center">{{ $krit->kode }}</td>
+									<td class="text-center">{{ $krit->name }}</td>
+									<td class="text-center">{{ $krit->type ? 'Benefit' : 'Cost' }}</td>
+									<td class="text-center">
+										<a href="{{ route('subkriteria.create', $krit->id) }}" class="btn btn-sm btn-secondary">Tambah</a>
+									</td>
+									<td class="text-center">
+										<div class="d-flex justify-content-center align-items-center gap-2">
+											<a href="{{ route('kriteria.edit', $krit->id) }}" class="btn btn-sm btn-warning">Ubah</a>
+											<form action="{{ route('kriteria.destroy', $krit->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus kriteria ini?');">
+												@csrf
+												@method('DELETE')
+												<button type="submit" class="btn btn-sm btn-danger">Hapus</button>
+											</form>
+										</div>
+									</td>
+								</tr>
 							@empty
-
-							<tr>
-								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm" colspan="7">
-									Data kriteria masih kosong.
-								</td>
-							</tr>
-
+								<tr>
+									<td class="text-center" colspan="6">Data kriteria masih kosong.</td>
+								</tr>
 							@endforelse
 						</tbody>
 					</table>
@@ -81,3 +79,18 @@
 		</div>
 	</div>
 </div>
+@endsection
+
+<style>
+    .custom-thead {
+        background-color: #010050; /* Ubah kode warna sesuai kebutuhan */
+        color: white;
+		border-radius: 10px; /* Sesuaikan angka radius dengan keinginan Anda */
+    	overflow: hidden; /* Ubah warna teks jika diperlukan */
+    }
+	.table {
+    border-radius: 10px; /* Sesuaikan angka radius dengan keinginan Anda */
+    overflow: hidden;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	}
+</style>
