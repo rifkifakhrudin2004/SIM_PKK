@@ -1,4 +1,4 @@
-@extends('layoutsAnggota.template')
+@extends('layoutsBendaharaPKK.template')
 
 @section('content')
 <div class="card card-outline card-primary">

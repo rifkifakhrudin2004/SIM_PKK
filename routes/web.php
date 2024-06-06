@@ -13,6 +13,12 @@ use App\Http\Controllers\UploadKetuaController;
 use App\Http\Controllers\DataAnggotaController;
 use App\Http\Controllers\PembukuanArisanController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\SetoranController;
+use App\Http\Controllers\StatusController;
+use App\Http\Controllers\KocokController;
+use App\Http\Controllers\HistoryController;
+
+
 
 //SPK
 use App\Http\Livewire\Alternatif\Index as AlternatifIndex;
@@ -162,6 +168,17 @@ Route::prefix('bendaharaPKK')->group(function () {
     Route::get('/pembukuan/{id}/edit', [PembukuanArisanController::class, 'edit'])->name('pembukuan.edit');
     Route::put('/pembukuan/{id}', [PembukuanArisanController::class, 'update'])->name('pembukuan.update');
     Route::delete('/pembukuan/{id}', [PembukuanArisanController::class, 'destroy'])->name('pembukuan.destroy');
+
+    Route::patch('arisan/{id}/update-status', [ArisanController::class, 'updateStatus'])->name('arisan.updateStatus');
+
+    // history
+    Route::resource('history', HistoryController::class);
+
+    // kocok
+    Route::get('/kocok', [KocokController::class, 'kocok'])->name('kocok');
+    Route::get('/hasil', [KocokController::class, 'hasil'])->name('hasil');
+    Route::get('/clear', [KocokController::class, 'delete'])->name('delete');
+    Route::get('/random-picker', [KocokController::class, 'randomPicker'])->name('random-picker');
 });
 
 
@@ -184,6 +201,9 @@ Route::prefix('anggota')->group(function () {
 
     // data arisan
     Route::get('/data-arisan', [AnggotaController::class, 'dataArisan'])->name('anggota.data-arisan');
+
+    // history
+    Route::get('history', [HistoryController::class, 'history'])->name('history');
 
     // pembukuan
     Route::get('/pembukuan', [AnggotaController::class, 'pembukuan'])->name('anggota.pembukuan');
@@ -251,6 +271,3 @@ Route::delete('/konten/{id}', [KontenController::class, 'destroy'])->name('konte
 	
 // 	Route::get('/ranking', ProsesIndex::class)->name('proses.index');
 // 	Route::get('/perhitungan', PerhitunganIndex::class)->name('perhitungan.index');
-
-
-

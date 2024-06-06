@@ -13,10 +13,24 @@ use Illuminate\Support\Facades\Auth;
 
 class ArisanController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $activeMenu = 'arisan';
-        $arisans = ArisanModel::all();
+        $year = $request->input('year');
+        $month = $request->input('month');
+
+        $query = ArisanModel::query();
+
+        if ($year) {
+            $query->whereYear('tgl_arisan', $year);
+        }
+
+        if ($month) {
+            $query->whereMonth('tgl_arisan', $month);
+        }
+
+        $arisans = $query->get();
+
         return view('arisan.index', compact('arisans', 'activeMenu'));
     }
 
@@ -81,4 +95,14 @@ class ArisanController extends Controller
         $arisan->delete();
         return redirect()->route('arisan.index')->with('success', 'Arisan berhasil dihapus.');
     }
+
+    public function updateStatus(Request $request, $id)
+{
+    $arisan = ArisanModel::find($id);
+    $arisan->status = $request->input('status');
+    $arisan->save();
+
+    return redirect()->route('arisan.index')->with('success', 'Status updated successfully.');
+}
+
 }

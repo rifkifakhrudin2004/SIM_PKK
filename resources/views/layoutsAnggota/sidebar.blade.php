@@ -50,6 +50,12 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a href="{{ url('/anggota/history') }}" class="nav-link {{ ($activeMenu ?? '') == 'jadwal' ? 'active' : '' }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>History Arisan</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="{{ url('/anggota/pembukuan') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Pembukuan</p>

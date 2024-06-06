@@ -40,6 +40,18 @@
                         <p>Jadwal</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ url('/bendaharaPKK/kocok') }}" class="nav-link {{ ($activeMenu ?? '') == 'arisans' ? 'active' : '' }}">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Kocok</p>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ url('/bendaharaPKK/history') }}" class="nav-link {{ ($activeMenu ?? '') == 'arisans' ? 'active' : '' }}">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>History Arisan</p>
+                      </a>
+                  </li>
                   <li class="nav-item">
                     <a href="{{ url('/bendaharaPKK/pembukuan') }}" class="nav-link {{ ($activeMenu ?? '') == 'pembukuan' ? 'active' : '' }}">
                           <i class="far fa-circle nav-icon"></i>
