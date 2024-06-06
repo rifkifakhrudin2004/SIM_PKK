@@ -21,14 +21,14 @@
             </li>
             <li class="nav-header">Data Pengguna</li>
             <li class="nav-item">
-<<<<<<< HEAD
+
                 <a href="{{ url('/dataAnggota') }}" class="nav-link {{ $activeMenu == 'user' ? 'active' : '' }}">
                     <i class="nav-icon far fa-user"></i>
                     <p>Input Data Diri <i class=""></i></p>
                 </a>
             <li class="nav-item">
-=======
->>>>>>> 1a6cbbe2a16635455d6b0efad11987a1e3ad5ffd
+
+
                 <a href="{{ url('/p') }}" class="nav-link {{ $activeMenu == 'level' ? 'active' : '' }}">
                     <i class="nav-icon fas fa-layer-group"></i>
                     <p>Arisan <i class="fas fa-angle-left right"></i></p>
@@ -47,6 +47,12 @@
                         <a href="{{ url('/anggota/jadwal') }}" class="nav-link {{ ($activeMenu ?? '') == 'jadwal' ? 'active' : '' }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Jadwal</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/anggota/history') }}" class="nav-link {{ ($activeMenu ?? '') == 'jadwal' ? 'active' : '' }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>History Arisan</p>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -91,10 +97,8 @@
                 </a>
             </li>
         </ul>
-<<<<<<< HEAD
-    </nav>
+
+ </nav>
 </div>
-=======
-    </nav>
-</div>
->>>>>>> 1a6cbbe2a16635455d6b0efad11987a1e3ad5ffd
+
+

@@ -12,7 +12,7 @@ class ArisanModel extends Model
     protected $table = 'm_arisan';
     protected $primaryKey = 'id_arisan';
 
-    protected $fillable = ['id_anggota', 'id_bendahara', 'tgl_arisan', 'catatan_arisan', 'setoran_arisan'];
+    protected $fillable = ['id_anggota', 'id_bendahara', 'tgl_arisan', 'catatan_arisan', 'setoran_arisan', 'status'];
 
     public function anggota()
     {

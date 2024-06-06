@@ -37,6 +37,7 @@
                     <td>{{ $pembukuan->saldo }}</td>
                     <td>{{ $pembukuan->keterangan }}</td>
                     <td>
+                        <a href="{{ route('pembukuan.show', $pembukuan->id_pembukuan) }}" class="btn btn-info">Show</a>
                         <a href="{{ route('pembukuan.edit', $pembukuan->id_pembukuan) }}" class="btn btn-warning">Edit</a>
                         <form action="{{ route('pembukuan.destroy', $pembukuan->id_pembukuan) }}" method="POST" style="display:inline-block;">
                             @csrf
