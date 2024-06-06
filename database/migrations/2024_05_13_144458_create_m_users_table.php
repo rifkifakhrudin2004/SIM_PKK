@@ -21,6 +21,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_ketua_pkk');
             $table->unsignedBigInteger('id_bendahara');
             $table->unsignedBigInteger('id_anggota');
+            $table->unsignedBigInteger('level_id');
 
             $table->foreign('id_admin')->references('id_admin')->on('m_admin');
             $table->foreign('id_anggota')->references('id_anggota')->on('m_anggota');

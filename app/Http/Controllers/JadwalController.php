@@ -33,6 +33,13 @@ class JadwalController extends Controller
         return redirect()->route('jadwals.index')->with('success', 'Jadwal kegiatan berhasil ditambahkan.');
     }
 
+    public function show($id)
+    {
+        $activeMenu = 'jadwal';
+        $jadwal = Jadwal::findOrFail($id);
+        return view('jadwals.show', compact('jadwal', 'activeMenu'));
+    }
+
     public function edit($id)
     {
         $activeMenu = 'jadwal';

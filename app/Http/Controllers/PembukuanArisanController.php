@@ -20,9 +20,8 @@ class PembukuanArisanController extends Controller
         return view('PembukuanArisan.create', compact('activeMenu'));
     }
 
-    // Controller
-public function store(Request $request)
-{
+    public function store(Request $request)
+    {
     $request->validate([
         'id_arisan' => 'required|exists:m_arisan,id_arisan',
         'tanggal' => 'required|date',
@@ -38,7 +37,14 @@ public function store(Request $request)
     } catch (\Exception $e) {
         return redirect()->back()->withInput()->withErrors(['error' => 'Gagal menambahkan Pembukuan Arisan.']);
     }
-}
+    }
+
+    public function show($id)
+    {
+        $activeMenu = 'pembukuan';
+        $pembukuan = PembukuanArisanModel::findOrFail($id);
+        return view('PembukuanArisan.show', compact('pembukuan', 'activeMenu'));
+    }
 
 
     public function edit($id)

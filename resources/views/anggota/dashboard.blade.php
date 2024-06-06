@@ -14,7 +14,7 @@
                 </div>
                 <div class="col-md-9">
                     <h4>NAMA : {{ Auth::user()->nama }}</h4>
-                    <p>STATUS : {{ Auth::user()->status }}</p> <!-- Mengubah tata letak teks -->
+                    <p>STATUS : {{ Auth::user()->status }}</p>
                 </div>
             </div>
         </div>
