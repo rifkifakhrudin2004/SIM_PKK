@@ -3,7 +3,7 @@
 @section('content')
 <div class="card card-outline card-primary">
     <div class="card-header">
-        <h3 class="card-title">LP</h3>
+        <h3 class="card-title">SPK/Penilaian/Edit</h3>
     </div>
     <div class="card-body">
         <form action="{{ route('penilaian.update', $alternatif->id) }}" method="POST">
@@ -11,10 +11,10 @@
             @method('PUT')
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">{{ $alternatif->kode }}</h3>
+                    <p class="card-title-cust">Kode : {{ $alternatif->kode }}</p>
                 </div>
                 <div class="card-body">
-                    <p>{{ $alternatif->name }}</p>
+                    <p class="p-cust">Nama Anggota : {{ $alternatif->name }}</p>
                     @foreach ($kriterias as $krit)
                         <div class="form-group">
                             <label for="{{ $krit->kode }}">{{ $krit->kode }} - {{ $krit->name }}</label>
@@ -41,3 +41,22 @@
     </div>
 </div>
 @endsection
+
+<style>
+    .p-cust {
+        display: inline-block; /* Membuat elemen p menyesuaikan ukuran dengan teks di dalamnya */
+        border-radius: 5px; /* Memperbulat sudut border */
+        padding: 10px; /* Memberi jarak antara teks dan border */
+        font-weight: bold; /* Memperkuat teks */
+        background-color: rgb(0, 122, 96); 
+        color: white;/* Mengisi border dengan warna abu-abu muda */
+    }
+    .card-title-cust {
+        display: inline-block; /* Membuat elemen p menyesuaikan ukuran dengan teks di dalamnya */
+        border-radius: 5px; /* Memperbulat sudut border */
+        padding: 10px; /* Memberi jarak antara teks dan border */
+        font-weight: bold; /* Memperkuat teks */
+        background-color: rgb(0, 95, 75); 
+        color: white;/* Mengisi border dengan warna abu-abu muda */
+    }
+</style>

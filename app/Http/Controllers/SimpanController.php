@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\SimpanModel;
 use App\Models\DataAnggotaModel;
 use App\Models\BendaharaModel;
+use App\Models\Alternatif;
 use Illuminate\Support\Facades\Auth;
 
 class SimpanController extends Controller
@@ -48,7 +49,7 @@ class SimpanController extends Controller
             'title' => 'Tambah Simpanan'
         ];
 
-        $anggota = DataAnggotaModel::all(); // Fetch all anggota
+        $anggota = Alternatif::all(); // Fetch all anggota
         $bendahara = BendaharaModel::all(); // Fetch all bendahara
         $activeMenu = 'simpanan';
 
@@ -81,7 +82,7 @@ public function store(Request $request)
         // Jika parameter auto_fill terdapat dalam URL, isian anggota dan bendahara akan diisi berdasarkan data terakhir
         if ($request->query('auto_fill')) {
             // Ambil data anggota dan bendahara terakhir
-            $anggotaTerakhir = DataAnggotaModel::latest()->first();
+            $anggotaTerakhir = Alternatif::latest()->first();
             $bendaharaTerakhir = BendaharaModel::latest()->first();
 
             // Validasi jika anggota terakhir dan bendahara terakhir ditemukan
@@ -146,7 +147,7 @@ public function store(Request $request)
             'title' => 'Edit Simpanan'
         ];
 
-        $anggota = DataAnggotaModel::all(); // Fetch all anggota
+        $anggota = Alternatif::all(); // Fetch all anggota
         $bendahara = BendaharaModel::all(); // Fetch all bendahara
         $activeMenu = 'simpanan';
 

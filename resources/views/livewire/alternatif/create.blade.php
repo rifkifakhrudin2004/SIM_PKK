@@ -6,7 +6,7 @@
 @section('content')
 <div class="card card-outline card-primary">
     <div class="card-header">
-        <h3 class="card-title">LP</h3>
+        <h3 class="card-title">SPK/Alternatif/Create</h3>
     </div>
     <div class="mt-6 mx-6">
 		<div class="card card-primary">

@@ -66,17 +66,17 @@
                         <table class="table table-bordered">
                             <thead class="custom-thead">
                                 <tr>
-                                    <th>Nama Subkriteria</th>
-                                    <th>Bobot</th>
-                                    <th>Aksi</th>
+                                    <th class="text-center">Nama Subkriteria</th>
+                                    <th class="text-center">Bobot</th>
+                                    <th class="text-center">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($kriteria->subkriteria as $sub)
                                     <tr>
-                                        <td>{{ $sub->name }}</td>
-                                        <td>{{ $sub->bobot }}</td>
-                                        <td>
+                                        <td class="text-center">{{ $sub->name }}</td>
+                                        <td class="text-center">{{ $sub->bobot }}</td>
+                                        <td class="text-center">
                                             <a href="{{ route('subkriteria.edit', $sub->id) }}" class="btn btn-warning btn-sm">Edit</a>
                                             <form action="{{ route('subkriteria.delete', $sub->id) }}" method="POST" style="display:inline;">
                                                 @csrf

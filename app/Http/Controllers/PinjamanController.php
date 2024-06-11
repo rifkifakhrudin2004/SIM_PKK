@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StorePinjamanRequest;
 use App\Models\PinjamanModel;
 use App\Models\DataAnggotaModel;
 use App\Models\BendaharaModel;
+use App\Models\Alternatif;
 use Illuminate\Support\Facades\Auth;
 
 class PinjamanController extends Controller
@@ -24,9 +26,10 @@ class PinjamanController extends Controller
 
         $activeMenu = 'verifikasi_pengajuan';
 
-        $pinjaman = PinjamanModel::all();
+        // Mengambil semua pinjaman dengan anggota dan subkriterias
+        $pinjaman = PinjamanModel::with(['anggota2.subKriterias', 'bendahara2'])->get();
 
-        return view('pinjaman.indexAnggota',compact('breadcrumb', 'page', 'activeMenu', 'pinjaman'));
+        return view('pinjaman.indexAnggota', compact('breadcrumb', 'page', 'activeMenu', 'pinjaman'));
     }
 
     public function updateVerifikasi(Request $request, $id)
@@ -43,6 +46,7 @@ class PinjamanController extends Controller
 
         return redirect('/anggota/index')->with('success', 'Status verifikasi berhasil diperbarui');
     }
+
     public function index()
     {
         $breadcrumb = (object) [
@@ -72,59 +76,29 @@ class PinjamanController extends Controller
     public function create()
     {
         $breadcrumb = (object) [
-            'title' => 'Tambah Pinjaman',
-            'list' => ['Home', 'Pinjaman', 'Tambah']
+            'title' => 'Ajukan Pinjaman',
+            'list' => ['Home', 'Pinjaman', 'Ajukan']
         ];
 
         $page = (object) [
-            'title' => 'Tambah Pinjaman'
+            'title' => 'Ajukan Pinjaman'
         ];
 
-        $anggota = DataAnggotaModel::all(); // Fetch all anggota
-        $bendahara = BendaharaModel::all(); // Fetch all bendahara
-        
         $activeMenu = 'pinjaman';
 
-        return view('pinjaman.create', [
-            'breadcrumb' => $breadcrumb,
-            'page' => $page,
-            'anggota' => $anggota,
-            'bendahara' => $bendahara,
-            'activeMenu' => $activeMenu
-        ]);
+        $anggota = Alternatif::all();
+        $bendahara = BendaharaModel::all();
+
+        return view('pinjaman.create', compact('breadcrumb', 'page', 'activeMenu', 'anggota', 'bendahara'));
     }
 
     // Store a newly created resource in storage.
-    public function store(Request $request)
+    public function store(StorePinjamanRequest $request)
     {
-        $request->validate([
-            'id_anggota' => 'required|exists:m_anggota,id_anggota',
-            'id_bendahara' => 'required|exists:m_bendahara_pkk,id_bendahara',
-            'tgl_pengajuan' => 'required|date',
-            'jumlah_pinjaman' => 'required|numeric|min:0',
-            'status_pinjaman' => 'required|string|max:255',
-            'status_kesehatan' => 'required|string|max:255',
-            'cicilan' => 'required|string|max:255',
-            'lama' => 'required|numeric|min:0',
-            'bunga' => 'required|numeric|min:0',
-            // 'status_persetujuan' => 'required|string|max:50',
-        ]);
+        $data = $request->validated();
+        PinjamanModel::create($data);
 
-        $pinjaman = new PinjamanModel([
-            'id_anggota' => $request->id_anggota,
-            'id_bendahara' => $request->id_bendahara,
-            'tgl_pengajuan' => $request->tgl_pengajuan,
-            'jumlah_pinjaman' => $request->jumlah_pinjaman,
-            'status_pinjaman' => $request->status_pinjaman,
-            'status_kesehatan' => $request->status_kesehatan,
-            'cicilan' => $request->cicilan,
-            'lama' => $request->lama,
-            'bunga' => $request->bunga,
-            // 'status_persetujuan' => 'pending',
-        ]);
-        $pinjaman->save();
-
-        return redirect('/pinjaman')->with('success', 'Pinjaman berhasil ditambahkan');
+        return redirect()->route('pinjaman.index')->with('success', 'Pengajuan pinjaman berhasil disimpan.');
     }
 
     // Display the specified resource.
@@ -165,7 +139,7 @@ public function edit($id)
         'title' => 'Edit Pinjaman'
     ];
 
-    $anggota = DataAnggotaModel::all(); // Fetch all anggota
+    $anggota = Alternatif::all(); // Fetch all anggota
     $bendahara = BendaharaModel::all(); // Fetch all bendahara
     $activeMenu = 'pinjaman';
 

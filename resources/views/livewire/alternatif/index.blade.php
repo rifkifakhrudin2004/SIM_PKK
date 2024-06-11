@@ -3,7 +3,7 @@
 @section('content')
 <div class="card card-outline card-primary">
     <div class="card-header">
-        <h3 class="card-title">LP</h3>
+        <h3 class="card-title">SPK/Alternatif</h3>
     </div>
     <div class="container mx-auto px-4 sm:px-8">
         <div class="py-8">

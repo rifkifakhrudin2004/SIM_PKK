@@ -1,9 +1,12 @@
 @extends('layoutsBendaharaPKK.template')
 
 @section('content')
-<div class="card card-primary">
+<div class="card card-outline card-primary">
     <div class="card-header">
-        <h3 class="card-title">Data Penilaian</h3>
+        <h3 class="card-title">SPK/Penilaian</h3>
+    </div>
+    <div class="card-header">
+        <h2 class="h2 font-weight-semibold">Data Penilaian</h2>
     </div>
     <div class="card-body">
         <div class="table-responsive">
