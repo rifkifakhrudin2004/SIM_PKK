@@ -5,7 +5,23 @@
 
 
 <div class="sidebar"> 
+
     <!-- SidebarSearch Form -->  
+
+
+    <!-- SidebarSearch Form --> 
+    <div class="form-inline mt-3"> 
+        <div class="input-group" data-widget="sidebar-search"> 
+            <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">       
+            <div class="input-group-append"> 
+                <button class="btn btn-sidebar"> 
+                    <i class="fas fa-search fa-fw"></i> 
+                </button> 
+            </div> 
+        </div> 
+    </div> 
+
+
     <!-- Sidebar Menu --> 
     <nav class="mt-3"> 
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false"> 
@@ -19,9 +35,26 @@
                 </a> 
 
             </li> 
+
             <li class="nav-header">Data Pengguna</li> 
             <li class="nav-item"> 
                 <a href="{{ url('/p') }}" class="nav-link {{ ($activeMenu == 'level')? 'active' : '' }} "> 
+
+            <li class="nav-item"> 
+                <a href="{{ url('/dataBendahara') }}" class="nav-link {{ ($activeMenu == 'konten') ? 'active' : '' }}"> 
+                  <i class="nav-icon far fa-user"></i> 
+                  <p>Input Data Diri</p> 
+                </a> 
+              </li> 
+            <li class="nav-item"> 
+                <a href="{{ url('/bendaharaPKK/index2') }}" class="nav-link {{ ($activeMenu == 'konten') ? 'active' : '' }}"> 
+                  <i class="nav-icon far fa-user"></i> 
+                  <p>Data Anggota</p> 
+                </a> 
+              </li> 
+            <li class="nav-item"> 
+                <a href="{{ url('/BendaharaPKK') }}" class="nav-link {{ ($activeMenu == 'level')? 'active' : '' }} "> 
+
                     <i class="nav-icon fas fa-layer-group"></i> 
                     <p>Arisan <i class="fas fa-angle-left right"></i></p> <!-- Icon kanan -->
                 </a> 
@@ -49,13 +82,27 @@
                         </a>
                     </li>
                     <li class="nav-item">
+
                       <a href="{{ url('/bendaharaPKK/history') }}" class="nav-link {{ ($activeMenu ?? '') == 'arisans' ? 'active' : '' }}">
+
+                        <a href="{{ url('/bendaharaPKK/kocok') }}" class="nav-link {{ ($activeMenu ?? '') == 'arisans' ? 'active' : '' }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Kocok</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/bendaharaPKK/history') }}" class="nav-link {{ ($activeMenu ?? '') == 'arisans' ? 'active' : '' }}">
+
                             <i class="far fa-circle nav-icon"></i>
                             <p>History Arisan</p>
                         </a>
                     </li>
                     <li class="nav-item">
+
                       <a href="{{ url('/bendaharaPKK/pembukuan') }}" class="nav-link {{ ($activeMenu ?? '') == 'pembukuan' ? 'active' : '' }}">
+
+                        <a href="{{ url('/bendaharaPKK/pembukuan') }}" class="nav-link {{ ($activeMenu ?? '') == 'pembukuan' ? 'active' : '' }}">
+
                             <i class="far fa-circle nav-icon"></i>
                             <p>Pembukuan</p>
                         </a>
@@ -78,22 +125,23 @@
                     <li class="nav-item">
                         <a href="{{ url('/simpanan') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Simpanan</p>
+                            <p>Tabungan Anggota</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('/anggota/index') }}" class="nav-link">
+                        <a href="{{ url('/bendaharaPKK/index') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Acc pinjaman</p>
+                            <p>Acc Peminjaman</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('/pembukuan-pinjam') }}" class="nav-link">
+                        <a href="{{ url('/angsuran') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Pembukuan</p>
+                            <p>Data Angsuran</p>
                         </a>
                     </li>
                 </ul>
+
             </li>  
   
             
@@ -141,10 +189,13 @@
                   <i class="nav-icon fas fa-sign-out-alt"></i>
                   <p>Logout</p>
 
-                </a> 
             </li> 
-        </ul> 
+
     </nav> 
+
   </div>
 
   
+
+</div>
+

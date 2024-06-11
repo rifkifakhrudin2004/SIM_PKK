@@ -63,9 +63,7 @@ class SimpanController extends Controller
     }
 
     // Store a newly created resource in storage.
-    // Store a newly created resource in storage.
-// Store a newly created resource in storage.
-public function store(Request $request)
+    public function store(Request $request)
 {
     $request->validate([
         'id_anggota' => 'required|exists:m_anggota,id_anggota',
@@ -106,7 +104,6 @@ public function store(Request $request)
 
     return redirect('/simpanan')->with('success', 'Simpanan berhasil ditambahkan');
 }
-
 
 
     // Display the specified resource.
@@ -165,7 +162,7 @@ public function store(Request $request)
     public function update(Request $request, $id)
     {
         $request->validate([
-            'id_anggota' => 'required|exists:data_anggota,id_anggota',
+            'id_anggota' => 'required|exists:m_anggota,id_anggota',
             'tgl_simpan' => 'required|date',
             'jumlah_simpan' => 'required|numeric|min:0',
         ]);

@@ -15,7 +15,7 @@ class AuthController extends Controller
 
         if ($user) {
             if ($user->level_id == '1') {
-                return redirect()->intended('anggota');
+                return redirect()->intended('anggotaPKK');
             } elseif ($user->level_id == '2') {
                 return redirect()->intended('bendahara');
             } elseif ($user->level_id == '3') {
@@ -48,7 +48,7 @@ class AuthController extends Controller
             if ($user->status === 'aktif' && $user->level_id == $request->role) {
                 // Arahkan sesuai dengan levelnya
                 if ($user->level_id == '1') {
-                    return redirect()->intended('anggota');
+                    return redirect()->intended('anggotaPKK');
                 } elseif ($user->level_id == '2') {
                     return redirect()->intended('bendahara');
                 } elseif ($user->level_id == '3') {

@@ -9,7 +9,8 @@
         <div class="row align-items-center">
             <div class="col-md-3 text-center">
                 <div class="icon-box">
-                    <i class="fas fa-user fa-5x"></i>
+                    <img src="{{ asset('adminlte/dist/img/avatar5.png') }}" alt="User Avatar"
+                    class="img-fluid rounded-circle" style="max-width: 100px;">
                 </div>
             </div>
             <div class="col-md-9">
@@ -19,4 +20,12 @@
         </div>
     </div>
 </div>
+
+
+
+{{-- CHART --}}
+
+</section>
+
 @endsection
+

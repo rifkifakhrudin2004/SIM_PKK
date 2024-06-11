@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Jadwal;
 use App\Models\ArisanModel;
 use App\Models\PembukuanArisanModel;
@@ -17,6 +18,12 @@ class AnggotaController extends Controller
         $activeMenu = 'jadwal';
         $jadwals = Jadwal::all();
         return view('anggota.jadwal', compact('jadwals', 'activeMenu'));
+    }
+    public function showDashboard()
+    {
+        $activeMenu = 'dashboard';
+        $jadwals = Jadwal::all(); // Fetch all events from the Jadwal model
+        return view('anggota.dashboard', compact('jadwals', 'activeMenu'));
     }
     public function dataArisan()
     {

@@ -46,7 +46,7 @@ class BendaharaPKKController extends Controller
             $anggota->save();
         }
 
-        return redirect('/bendaharaPKK/index')->with('success', 'Status verifikasi berhasil diperbarui');
+        return redirect('/bendaharaPKK/index2')->with('success', 'Status verifikasi berhasil diperbarui');
     }
 
     // CRUD for BendaharaModel
