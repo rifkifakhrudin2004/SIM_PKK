@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PinjamanController;
+use App\Http\Controllers\SimpanController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\UserController;
@@ -13,6 +15,12 @@ use App\Http\Controllers\UploadKetuaController;
 use App\Http\Controllers\DataAnggotaController;
 use App\Http\Controllers\PembukuanArisanController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\SetoranController;
+use App\Http\Controllers\StatusController;
+use App\Http\Controllers\KocokController;
+use App\Http\Controllers\HistoryController;
+
+
 
 //SPK
 use App\Http\Livewire\Alternatif\Index as AlternatifIndex;
@@ -68,6 +76,7 @@ Route::get('/', function () {
 //     Route::get('/delete/{id}', [UsersController::class, 'delete'])->name('users.delete');
 // });
 
+
 // Manage User
 Route::group(['prefix' => 'user'], function () {
     Route::get('/', [UserController::class, 'index']); //menampilkan halaman awal user
@@ -89,8 +98,36 @@ Route::group(['prefix' => 'dataAnggota'], function () {
     Route::put('/{id}', [DataAnggotaController::class, 'update']); //menyimpan perubahan data user
     Route::delete('/{id}', [DataAnggotaController::class, 'destroy']); //menghapus data user
 });
-
-
+Route::group(['prefix' => 'dataBendahara'], function () {
+    Route::get('/', [BendaharaPKKController::class, 'index']); 
+    Route::post('/list', [BendaharaPKKController::class, 'list']); 
+    Route::get('create', [BendaharaPKKController::class, 'create']); 
+    Route::post('/', [BendaharaPKKController::class, 'store']); 
+    Route::get('/{id}', [BendaharaPKKController::class, 'show']); 
+    Route::get('/{id}/edit', [BendaharaPKKController::class, 'edit']); 
+    Route::put('/{id}', [BendaharaPKKController::class, 'update']); 
+    Route::delete('/{id}', [BendaharaPKKController::class, 'destroy']); 
+});
+Route::group(['prefix' => 'simpanan'], function () {
+    Route::get('/', [SimpanController::class, 'index']); 
+    Route::post('/list', [SimpanController::class, 'list']); 
+    Route::get('create', [SimpanController::class, 'create']); 
+    Route::post('/', [SimpanController::class, 'store']); 
+    Route::get('/{id}', [SimpanController::class, 'show']); 
+    Route::get('/{id}/edit', [SimpanController::class, 'edit']); 
+    Route::put('/{id}', [SimpanController::class, 'update']); 
+    Route::delete('/{id}', [SimpanController::class, 'destroy']); 
+});
+Route::group(['prefix' => 'pinjaman'], function () {
+    Route::get('/', [PinjamanController::class, 'index']); 
+    Route::post('/list', [PinjamanController::class, 'list']); 
+    Route::get('create', [PinjamanController::class, 'create']); 
+    Route::post('/', [PinjamanController::class, 'store']); 
+    Route::get('/{id}', [PinjamanController::class, 'show']); 
+    Route::get('/{id}/edit', [PinjamanController::class, 'edit']); 
+    Route::put('/{id}', [PinjamanController::class, 'update']); 
+    Route::delete('/{id}', [PinjamanController::class, 'destroy']); 
+});
 // Manage Login
 Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::get('register', [AuthController::class, 'register'])->name('register');
@@ -134,7 +171,7 @@ Route::prefix('bendaharaPKK')->group(function () {
     });
     Route::get('/dashboard', [BendaharaPKKController::class, 'dashboard'])->name('bendaharaPKK.dashboard');
     Route::get('/index', [BendaharaPKKController::class, 'indexBendahara']);
-    Route::put('/index/{id}', [BendaharaPKKController::class, 'updateVerifikasi']);
+    Route::patch('/index/{id}', [BendaharaPKKController::class, 'updateVerifikasi']);
 
     // Jadwal routes
     Route::get('/jadwal', [JadwalController::class, 'index'])->name('jadwals.index');
@@ -162,6 +199,17 @@ Route::prefix('bendaharaPKK')->group(function () {
     Route::get('/pembukuan/{id}/edit', [PembukuanArisanController::class, 'edit'])->name('pembukuan.edit');
     Route::put('/pembukuan/{id}', [PembukuanArisanController::class, 'update'])->name('pembukuan.update');
     Route::delete('/pembukuan/{id}', [PembukuanArisanController::class, 'destroy'])->name('pembukuan.destroy');
+
+    Route::patch('arisan/{id}/update-status', [ArisanController::class, 'updateStatus'])->name('arisan.updateStatus');
+
+    // history
+    Route::resource('history', HistoryController::class);
+
+    // kocok
+    Route::get('/kocok', [KocokController::class, 'kocok'])->name('kocok');
+    Route::get('/hasil', [KocokController::class, 'hasil'])->name('hasil');
+    Route::get('/clear', [KocokController::class, 'delete'])->name('delete');
+    Route::get('/random-picker', [KocokController::class, 'randomPicker'])->name('random-picker');
 });
 
 
@@ -177,6 +225,8 @@ Route::prefix('anggota')->group(function () {
     Route::get('/', function () {
         return redirect()->route('anggota.dashboard'); // Corrected redirect route
     });
+    Route::get('/index', [PinjamanController::class, 'indexAnggota']);
+    Route::patch('/index/{id}', [PinjamanController::class, 'updateVerifikasi']);
     Route::get('/dashboard', [AnggotaController::class, 'dashboard'])->name('anggota.dashboard');
 
     // Jadwal
@@ -184,6 +234,9 @@ Route::prefix('anggota')->group(function () {
 
     // data arisan
     Route::get('/data-arisan', [AnggotaController::class, 'dataArisan'])->name('anggota.data-arisan');
+
+    // history
+    Route::get('history', [HistoryController::class, 'history'])->name('history');
 
     // pembukuan
     Route::get('/pembukuan', [AnggotaController::class, 'pembukuan'])->name('anggota.pembukuan');
@@ -234,7 +287,7 @@ Route::get('/konten/{id}/edit', [KontenController::class, 'edit'])->name('konten
 Route::put('/konten/{id}', [KontenController::class, 'update'])->name('konten.update');
 Route::delete('/konten/{id}', [KontenController::class, 'destroy'])->name('konten.destroy');
 
-// SPK
+//SPK
 // Route::get('/alternatif', AlternatifIndex::class)->name('alternatif.index');
 // 	// route data alternatif 
 // 	Route::get('/alternatif/create', AlternatifCreate::class)->name('alternatif.create');

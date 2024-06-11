@@ -11,5 +11,5 @@ class DataAnggotaModel extends Model
 
     protected $table ='m_anggota';
     protected $primaryKey ='id_anggota';
-    protected $fillable =['nama_anggota','notelp_anggota','alamat_anggota','jumlah_tanggungan','status_kesehatan','verifikasi'];
+    protected $fillable =['nama_anggota','notelp_anggota','alamat_anggota','jumlah_tanggungan','status_rumah','verifikasi'];
 }

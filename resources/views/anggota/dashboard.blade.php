@@ -13,9 +13,15 @@
                             class="img-fluid rounded-circle" style="max-width: 100px;">
                     </div>
                 </div>
+
                 <div class="col-md-10">
                     <h4>NAMA: {{ Auth::user()->nama }}</h4>
                     <p>STATUS: {{ Auth::user()->status }}</p>
+
+                <div class="col-md-9">
+                    <h4>NAMA : {{ Auth::user()->nama }}</h4>
+                    <p>STATUS : {{ Auth::user()->status }}</p>
+
                 </div>
             </div>
         </div>

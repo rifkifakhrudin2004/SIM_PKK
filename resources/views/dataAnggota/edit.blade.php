@@ -60,15 +60,15 @@
                 <div class="form-group row">
                     <label class="col-2 col-form-label">Status Kesehatan</label>
                     <div class="col-10">
-                        <select class="form-control" id="status_kesehatan" name="status_kesehatan" required>
+                        <select class="form-control" id="status_rumah" name="status_rumah" required>
                             <option value="">- Pilih Status Kesehatan -</option>
-                            <option value="Sangat sehat, tidak ada biaya kesehatan" {{ old('status_kesehatan', $anggota->status_kesehatan) == 'Sangat sehat, tidak ada biaya kesehatan' ? 'selected' : '' }}>Sangat sehat, tidak ada biaya kesehatan</option>
-                            <option value="Sehat, biaya kesehatan sangat rendah" {{ old('status_kesehatan', $anggota->status_kesehatan) == 'Sehat, biaya kesehatan sangat rendah' ? 'selected' : '' }}>Sehat, biaya kesehatan sangat rendah</option>
-                            <option value="Sering berobat dengan biaya sedang" {{ old('status_kesehatan', $anggota->status_kesehatan) == 'Sering berobat dengan biaya sedang' ? 'selected' : '' }}>Sering berobat dengan biaya sedang</option>
-                            <option value="Sering berobat dengan biaya tinggi" {{ old('status_kesehatan', $anggota->status_kesehatan) == 'Sering berobat dengan biaya tinggi' ? 'selected' : '' }}>Sering berobat dengan biaya tinggi</option>
-                            <option value="Sakit parah atau kronis, biaya kesehatan sangat tinggi" {{ old('status_kesehatan', $anggota->status_kesehatan) == 'Sakit parah atau kronis, biaya kesehatan sangat tinggi' ? 'selected' : '' }}>Sakit parah atau kronis, biaya kesehatan sangat tinggi</option>
+                            <option value="Sangat sehat, tidak ada biaya kesehatan" {{ old('status_rumah', $anggota->status_rumah) == 'Sangat sehat, tidak ada biaya kesehatan' ? 'selected' : '' }}>Sangat sehat, tidak ada biaya kesehatan</option>
+                            <option value="Sehat, biaya kesehatan sangat rendah" {{ old('status_rumah', $anggota->status_rumah) == 'Sehat, biaya kesehatan sangat rendah' ? 'selected' : '' }}>Sehat, biaya kesehatan sangat rendah</option>
+                            <option value="Sering berobat dengan biaya sedang" {{ old('status_rumah', $anggota->status_rumah) == 'Sering berobat dengan biaya sedang' ? 'selected' : '' }}>Sering berobat dengan biaya sedang</option>
+                            <option value="Sering berobat dengan biaya tinggi" {{ old('status_rumah', $anggota->status_rumah) == 'Sering berobat dengan biaya tinggi' ? 'selected' : '' }}>Sering berobat dengan biaya tinggi</option>
+                            <option value="Sakit parah atau kronis, biaya kesehatan sangat tinggi" {{ old('status_rumah', $anggota->status_rumah) == 'Sakit parah atau kronis, biaya kesehatan sangat tinggi' ? 'selected' : '' }}>Sakit parah atau kronis, biaya kesehatan sangat tinggi</option>
                         </select>
-                        @error('status_kesehatan')
+                        @error('status_rumah')
                             <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
