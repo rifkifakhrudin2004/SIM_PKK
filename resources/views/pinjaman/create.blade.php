@@ -6,22 +6,30 @@
         <h3 class="card-title">{{ $page->title }}</h3>
     </div>
     <div class="card-body">
+        @if(session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
         <form method="POST" action="{{ url('pinjaman') }}" class="form-horizontal">
             @csrf
             <div class="form-group row">
                 <label class="col-2 control-label col-form-label">Nama Anggota</label>
                 <div class="col-10">
-                    <select class="form-control" id="id_anggota" name="id_anggota">
+                    <select class="form-control" id="id_anggota" name="id_anggota" disabled>
                         <option value="">- Pilih Nama Anggota -</option>
                         @foreach($anggota as $item)
-                            <option value="{{ $item->id_anggota }}">{{ $item->nama_anggota }}</option>
+                            <option value="{{ $item->id_anggota }}" {{ $item->id_anggota == $id_anggota ? 'selected' : '' }}>
+                                {{ $item->nama_anggota }}
+                            </option>
                         @endforeach
                     </select>
+                    <input type="hidden" name="id_anggota" value="{{ $id_anggota }}">
                     @error('id_anggota')
                         <small class="form-text text-danger">{{ $message }}</small>
                     @enderror
                 </div>
-            </div>
+            </div>            
             <div class="form-group row">
                 <label class="col-2 control-label col-form-label">Nama Bendahara</label>
                 <div class="col-10">
@@ -103,7 +111,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-2 control-label col-form-label">Lama</label>
+                <label class="col-2 control-label col-form-label">Lama (bulan)</label>
                 <div class="col-10">
                     <input type="number" class="form-control" id="lama" name="lama" value="{{ old('lama') }}">
                     @error('lama')
@@ -112,7 +120,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-2 control-label col-form-label">Bunga</label>
+                <label class="col-2 control-label col-form-label">Bunga(%)</label>
                 <div class="col-10">
                     <input type="number" class="form-control" id="bunga" name="bunga" value="10" readonly>
                     @error('bunga')

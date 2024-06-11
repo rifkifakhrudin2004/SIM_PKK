@@ -18,9 +18,7 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        {{-- <th>ID Simpanan</th> --}}
                         <th>Nama Anggota</th>
-                        {{-- <th>Nama Bendahara</th> --}}
                         <th>Tanggal Simpan</th>
                         <th>Jumlah Simpanan</th>
                         <th>Aksi</th>
@@ -29,14 +27,12 @@
                 <tbody>
                     @foreach($simpanan as $data)
                         <tr>
-                            {{-- <td>{{ $data->id_simpan }}</td> --}}
                             <td>{{ $data->anggota->nama_anggota }}</td>
-                            {{-- <td>{{ $data->bendahara->nama_bendahara_pkk }}</td> --}}
                             <td>{{ $data->tgl_simpan }}</td>
                             <td>{{ $data->jumlah_simpan }}</td>
                             <td>
                                 <a href="{{ url('/simpanan/' . $data->id_simpan) }}" class="btn btn-info btn-sm">Detail</a>
-                                {{-- <a href="{{ url('/simpanan/create?auto_fill=true') }}" class="btn btn-warning btn-sm">Tambah</a> --}}
+                                <a href="{{ url('/simpanan/' . $data->id_simpan . '/edit') }}" class="btn btn-warning btn-sm">Edit</a>
                                 <form class="d-inline-block" method="POST" action="{{ url('/simpanan/' . $data->id_simpan) }}">
                                     @csrf
                                     @method('DELETE')

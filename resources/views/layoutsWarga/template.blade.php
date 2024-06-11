@@ -212,7 +212,7 @@ Yuk, ikuti dan daftar Job Fair Disnaker dengan scan barcode pada slide ke-2. sia
                                 src="https://www.bandung.go.id/assets/img/floatmenu/3.png"
                                 alt="img"><span>CCTV</span></a></li> --}}
                     <li>
-                        <a href="https://wa.me/+6282245676900?text=Hallo saya mengunjungi website anda!" target="_blank">
+                        <a href="https://wa.me/+6281331614147?text=Hallo ini Nomor Prob!" target="_blank">
                             <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="WhatsApp Logo">
                             <span>CHAT</span>
                           </a>

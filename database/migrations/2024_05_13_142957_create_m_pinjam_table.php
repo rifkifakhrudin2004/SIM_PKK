@@ -21,8 +21,8 @@ return new class extends Migration
             $table->enum('status_persetujuan', ['belum', 'selesai']);
             $table->timestamps();
 
-            $table->foreign('id_anggota')->references('id_anggota')->on('m_anggota');
-            $table->foreign('id_bendahara')->references('id_bendahara')->on('m_bendahara_pkk');
+            $table->foreign('id_anggota')->references('id_anggota')->on('m_anggota')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('id_bendahara')->references('id_bendahara')->on('m_bendahara_pkk')->onDelete('cascade')->onUpdate('cascade');;
         });
     }
 
