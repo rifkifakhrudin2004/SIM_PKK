@@ -1,8 +1,13 @@
 <?php
 
+
 use App\Http\Controllers\AlternatifIndexController;
 use App\Http\Controllers\AlternatitCreateController;
 use App\Http\Controllers\AlternatitEditController;
+
+use App\Http\Controllers\PinjamanController;
+use App\Http\Controllers\SimpanController;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\UserController;
@@ -55,6 +60,7 @@ Route::get('/', function () {
 
 
 
+
 // Manage Users
 // Route::prefix('users')->group(function () { // Grouped user routes
 //     Route::get('/create', [UsersController::class, 'create'])->name('users.create');
@@ -66,6 +72,7 @@ Route::get('/', function () {
 //     Route::put('/edit_simpan/{id}', [UsersController::class, 'edit_simpan'])->name('user.edit_simpan'); // Changed from /user/{id}
 //     Route::get('/delete/{id}', [UsersController::class, 'delete'])->name('users.delete');
 // });
+
 
 // Manage User
 Route::group(['prefix' => 'user'], function () {
@@ -88,8 +95,36 @@ Route::group(['prefix' => 'dataAnggota'], function () {
     Route::put('/{id}', [DataAnggotaController::class, 'update']); //menyimpan perubahan data user
     Route::delete('/{id}', [DataAnggotaController::class, 'destroy']); //menghapus data user
 });
-
-
+Route::group(['prefix' => 'dataBendahara'], function () {
+    Route::get('/', [BendaharaPKKController::class, 'index']); 
+    Route::post('/list', [BendaharaPKKController::class, 'list']); 
+    Route::get('create', [BendaharaPKKController::class, 'create']); 
+    Route::post('/', [BendaharaPKKController::class, 'store']); 
+    Route::get('/{id}', [BendaharaPKKController::class, 'show']); 
+    Route::get('/{id}/edit', [BendaharaPKKController::class, 'edit']); 
+    Route::put('/{id}', [BendaharaPKKController::class, 'update']); 
+    Route::delete('/{id}', [BendaharaPKKController::class, 'destroy']); 
+});
+Route::group(['prefix' => 'simpanan'], function () {
+    Route::get('/', [SimpanController::class, 'index']); 
+    Route::post('/list', [SimpanController::class, 'list']); 
+    Route::get('create', [SimpanController::class, 'create']); 
+    Route::post('/', [SimpanController::class, 'store']); 
+    Route::get('/{id}', [SimpanController::class, 'show']); 
+    Route::get('/{id}/edit', [SimpanController::class, 'edit']); 
+    Route::put('/{id}', [SimpanController::class, 'update']); 
+    Route::delete('/{id}', [SimpanController::class, 'destroy']); 
+});
+Route::group(['prefix' => 'pinjaman'], function () {
+    Route::get('/', [PinjamanController::class, 'index']); 
+    Route::post('/list', [PinjamanController::class, 'list']); 
+    Route::get('create', [PinjamanController::class, 'create']); 
+    Route::post('/', [PinjamanController::class, 'store']); 
+    Route::get('/{id}', [PinjamanController::class, 'show']); 
+    Route::get('/{id}/edit', [PinjamanController::class, 'edit']); 
+    Route::put('/{id}', [PinjamanController::class, 'update']); 
+    Route::delete('/{id}', [PinjamanController::class, 'destroy']); 
+});
 // Manage Login
 Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::get('register', [AuthController::class, 'register'])->name('register');
@@ -133,7 +168,7 @@ Route::prefix('bendaharaPKK')->group(function () {
     });
     Route::get('/dashboard', [BendaharaPKKController::class, 'dashboard'])->name('bendaharaPKK.dashboard');
     Route::get('/index', [BendaharaPKKController::class, 'indexBendahara']);
-    Route::put('/index/{id}', [BendaharaPKKController::class, 'updateVerifikasi']);
+    Route::patch('/index/{id}', [BendaharaPKKController::class, 'updateVerifikasi']);
 
     // Jadwal routes
     Route::get('/jadwal', [JadwalController::class, 'index'])->name('jadwals.index');
@@ -176,6 +211,8 @@ Route::prefix('anggota')->group(function () {
     Route::get('/', function () {
         return redirect()->route('anggota.dashboard'); // Corrected redirect route
     });
+    Route::get('/index', [PinjamanController::class, 'indexAnggota']);
+    Route::patch('/index/{id}', [PinjamanController::class, 'updateVerifikasi']);
     Route::get('/dashboard', [AnggotaController::class, 'dashboard'])->name('anggota.dashboard');
 
     // Jadwal
@@ -190,12 +227,12 @@ Route::prefix('anggota')->group(function () {
 });
 
 // User dashboard
-Route::prefix('user')->group(function () {
-    Route::get('/', function () {
-        return redirect()->route('users.dashboard'); // Corrected redirect route
-    });
-    Route::get('/dashboard', [UserController::class, 'dashboard'])->name('users.dashboard');
-});
+// Route::prefix('user')->group(function () {
+//     Route::get('/', function () {
+//         return redirect()->route('users.dashboard'); // Corrected redirect route
+//     });
+//     Route::get('/dashboard', [UserController::class, 'dashboard'])->name('users.dashboard');
+// });
 
 // Manage Konten
 
@@ -230,6 +267,7 @@ Route::get('/konten/{id}/edit', [KontenController::class, 'edit'])->name('konten
 Route::put('/konten/{id}', [KontenController::class, 'update'])->name('konten.update');
 Route::delete('/konten/{id}', [KontenController::class, 'destroy'])->name('konten.destroy');
 
+
 // SPK
 Route::get('/alternatif', [AlternatifIndexController::class,'render'])->name('alternatif.index');
 	// route data alternatif 
@@ -238,6 +276,12 @@ Route::get('/alternatif', [AlternatifIndexController::class,'render'])->name('al
 	Route::get('/alternatif/{id}/edit', [AlternatitEditController::class,'mount'])->name('alternatif.edit');
     Route::put('/alternatif/{id}', [AlternatitEditController::class, 'update'])->name('alternatif.update');
     Route::delete('/alternatif/{id}', [AlternatifIndexController::class, 'delete'])->name('alternatif.destroy');
+//SPK
+// Route::get('/alternatif', AlternatifIndex::class)->name('alternatif.index');
+// 	// route data alternatif 
+// 	Route::get('/alternatif/create', AlternatifCreate::class)->name('alternatif.create');
+// 	Route::get('/alternatif/{id}/edit', AlternatifEdit::class)->name('alternatif.edit');
+
 
 	// route data kriteria
 	Route::get('/kriteria', [KriteriaIndexController::class,'render'])->name('kriteria.index');

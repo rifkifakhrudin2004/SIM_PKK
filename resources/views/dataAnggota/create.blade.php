@@ -29,7 +29,7 @@
                 <div class="col-10">
                     <input type="text" class="form-control" id="alamat_anggota" name="alamat_anggota" value="{{ old('alamat_anggota') }}">
                     @error('alamat_anggota')
-                        <small class="form-text text-danger">{{ $message }}</small> 
+                        <small class="form-text text-danger">{{ $message }}</small>
                     @enderror
                 </div>
             </div>
@@ -50,17 +50,17 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-2 control-label col-form-label">Status Kesehatan</label>
+                <label class="col-2 control-label col-form-label">Status Tempat Tinggal</label>
                 <div class="col-10">
-                    <select class="form-control" id="status_kesehatan" name="status_kesehatan">
-                        <option value="">- Pilih Status Kesehatan -</option>
-                        <option value="Sangat sehat, tidak ada biaya kesehatan.">Sangat sehat, tidak ada biaya kesehatan.</option>
-                        <option value="Sehat, biaya kesehatan sangat rendah.">Sehat, biaya kesehatan sangat rendah.</option>
-                        <option value="Sering berobat dengan biaya sedang">Sering berobat dengan biaya sedang.</option>
-                        <option value="Sering berobat dengan biaya tinggi">Sering berobat dengan biaya tinggi.</option>
-                        <option value="Sakit parah atau kronis, biaya kesehatan sangat tinggi">Sakit parah atau kronis, biaya kesehatan sangat tinggi.</option>
+                    <select class="form-control" id="status_rumah" name="status_rumah">
+                        <option value="">- Pilih Status Tempat Tinggal -</option>
+                        <option value="Memiliki rumah sendiri tanpa cicilan.">Memiliki rumah sendiri tanpa cicilan.</option>
+                        <option value="Memiliki rumah sendiri dengan cicilan kecil.">Memiliki rumah sendiri dengan cicilan kecil.</option>
+                        <option value="Menyewa rumah dengan biaya sewa yang terjangkau.">Menyewa rumah dengan biaya sewa yang terjangkau.</option>
+                        <option value="Menyewa rumah dengan biaya sewa yang tinggi.">Menyewa rumah dengan biaya sewa yang tinggi.</option>
+                        <option value="Menyewa rumah dengan biaya sewa yang sangat tinggi atau tinggal dengan kondisi tempat tinggal yang tidak stabil.">Menyewa rumah dengan biaya sewa yang sangat tinggi atau tinggal dengan kondisi tempat tinggal yang tidak stabil.</option>
                     </select>
-                    @error('status_kesehatan')
+                    @error('status_rumah')
                         <small class="form-text text-danger">{{ $message }}</small>
                     @enderror
                 </div>

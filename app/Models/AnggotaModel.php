@@ -9,6 +9,7 @@ class AnggotaModel extends Model
     protected $table = 'm_anggota'; // Nama tabel
     protected $primaryKey = 'id_anggota'; // Primary key
 
+
     protected $fillable = [
         'nama_anggota', 'alamat_anggota', 'notelp_anggota',
     ];

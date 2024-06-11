@@ -4,45 +4,46 @@
 <div class="card card-outline card-primary">
     <div class="card-header">
         <h3 class="card-title">{{ $page->title }}</h3>
+        <div class="card-tools">
+            <a href="{{ url('/dataBendahara/create') }}" class="btn btn-primary btn-sm">Tambah</a>
+        </div>
     </div>
     <div class="card-body">
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Nama</th>
-                    <th>Nomor Telepon</th>
-                    <th>Alamat</th>
-                    <th>Jumlah Tanggungan</th>
-                    <th>Status Kesehatan</th>
-                    <th>Verifikasi</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($anggota as $data)
+        @if($bendaharas->isEmpty())
+            <div class="alert alert-danger alert-dismissible">
+                <h5><i class="icon fas fa-ban"></i> Kesalahan!</h5>
+                Data bendahara PKK belum diinputkan.
+            </div>
+        @else
+            <table class="table table-bordered">
+                <thead>
                     <tr>
-                        <td>{{ $data->nama_anggota }}</td>
-                        <td>{{ $data->notelp_anggota }}</td>
-                        <td>{{ $data->alamat_anggota }}</td>
-                        <td>{{ $data->jumlah_tanggungan }}</td>
-                        <td>{{ $data->status_kesehatan }}</td>
-                        <td>{{ ucfirst($data->verifikasi) }}</td> <!-- Tampilkan status verifikasi -->
-                        <td>
-                            @if($data->verifikasi == 'pending')
-                                <form method="POST" action="{{ url('/bendaharaPKK/index/' . $data->id_anggota) }}">
-                                    @csrf
-                                    @method('PUT')
-                                    <button type="submit" name="verifikasi" value="diterima" class="btn btn-success btn-sm">Diterima</button>
-                                    <button type="submit" name="verifikasi" value="ditolak" class="btn btn-danger btn-sm">Ditolak</button>
-                                </form>
-                            @else
-                                <button class="btn btn-secondary btn-sm" disabled>{{ ucfirst($data->verifikasi) }}</button>
-                            @endif
-                        </td>
+                        <th>Nama</th>
+                        <th>Alamat</th>
+                        <th>Nomor Telepon</th>
+                        <th>Aksi</th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach($bendaharas as $bendahara)
+                        <tr>
+                            <td>{{ $bendahara->nama_bendahara_pkk }}</td>
+                            <td>{{ $bendahara->alamat_bendahara_pkk }}</td>
+                            <td>{{ $bendahara->notelp_bendahara_pkk }}</td>
+                            <td>
+                                <a href="{{ url('/dataBendahara/' . $bendahara->id_bendahara) }}" class="btn btn-info btn-sm">Detail</a>
+                                <a href="{{ url('/dataBendahara/' . $bendahara->id_bendahara . '/edit') }}" class="btn btn-warning btn-sm">Edit</a>
+                                <form class="d-inline-block" method="POST" action="{{ url('/dataBendahara/' . $bendahara->id_bendahara) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin menghapus data ini?');">Hapus</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        @endif
     </div>
 </div>
 @endsection

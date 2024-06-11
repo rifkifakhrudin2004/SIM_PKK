@@ -1,3 +1,4 @@
+
 @php
     $activeMenu = ''; // Define $activeMenu variable with a default value
 @endphp
@@ -8,11 +9,15 @@
     <!-- Sidebar Menu --> 
     <nav class="mt-3"> 
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false"> 
+
+<div class="sidebar"> 
+
             <li class="nav-item"> 
                 <a href="{{ url('/bendaharaPKK/dashboard') }}" class="nav-link {{ ($activeMenu == 'dashboard')? 'active' : '' }}"> 
                     <i class="nav-icon fas fa-tachometer-alt"></i> 
                     <p>Dashboard</p> 
                 </a> 
+
             </li> 
             <li class="nav-header">Data Pengguna</li> 
             <li class="nav-item"> 
@@ -21,6 +26,8 @@
                     <p>Arisan <i class="fas fa-angle-left right"></i></p> <!-- Icon kanan -->
                 </a> 
                 <!-- Submenu for Arisan -->
+              
+
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
                       <a href="{{ url('/bendaharaPKK/data-arisan') }}" class="nav-link {{ ($activeMenu ?? '') == 'arisans' ? 'active' : '' }}">
@@ -35,6 +42,18 @@
                           <p>Jadwal</p>
                       </a>
                   </li>
+                  <li class="nav-item">
+                      <a href="{{ url('/bendaharaPKK/kocok') }}" class="nav-link {{ ($activeMenu ?? '') == 'arisans' ? 'active' : '' }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Kocok</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="{{ url('/bendaharaPKK/history') }}" class="nav-link {{ ($activeMenu ?? '') == 'arisans' ? 'active' : '' }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>History Arisan</p>
+                        </a>
+                    </li>
                     <li class="nav-item">
                       <a href="{{ url('/bendaharaPKK/pembukuan') }}" class="nav-link {{ ($activeMenu ?? '') == 'pembukuan' ? 'active' : '' }}">
                             <i class="far fa-circle nav-icon"></i>
@@ -50,22 +69,22 @@
                 </a> 
                 <!-- Submenu for Simpan Pinjam -->
                 <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                      <a href="{{ url('/bendaharaPKK/index') }}" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Data anggota</p>
-                      </a>
-                  </li>
-                    <li class="nav-item">
-                        <a href="{{ url('/menabung') }}" class="nav-link">
+                    {{-- <li class="nav-item">
+                        <a href="{{ url('/bendaharaPKK/index') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Menabung</p>
+                            <p>Data anggota</p>
+                        </a>
+                    </li> --}}
+                    <li class="nav-item">
+                        <a href="{{ url('/simpanan') }}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Simpanan</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('/meminjam') }}" class="nav-link">
+                        <a href="{{ url('/anggota/index') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Meminjam</p>
+                            <p>Acc pinjaman</p>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -75,7 +94,7 @@
                         </a>
                     </li>
                 </ul>
-            </li> 
+            </li>  
   
             
               <li class="nav-item"> 
@@ -121,6 +140,7 @@
               <a href="{{ route('logout') }}" class="nav-link">
                   <i class="nav-icon fas fa-sign-out-alt"></i>
                   <p>Logout</p>
+
                 </a> 
             </li> 
         </ul> 

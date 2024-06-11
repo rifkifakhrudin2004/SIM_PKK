@@ -22,7 +22,7 @@
                         <th>Nomor Telepon</th>
                         <th>Alamat</th>
                         <th>Jumlah Tanggungan</th>
-                        <th>Status Kesehatan</th>
+                        <th>Status Rumah</th>
                         <th>Verifikasi</th>
                         <th>Aksi</th>
                     </tr>
@@ -34,11 +34,11 @@
                             <td>{{ $data->notelp_anggota }}</td>
                             <td>{{ $data->alamat_anggota }}</td>
                             <td>{{ $data->jumlah_tanggungan }}</td>
-                            <td>{{ $data->status_kesehatan }}</td>
+                            <td>{{ $data->status_rumah }}</td>
                             <td>{{ $data->verifikasi }}</td>
                             <td>
                                 <a href="{{ url('/dataAnggota/' . $data->id_anggota) }}" class="btn btn-info btn-sm">Detail</a>
-                                <a href="{{ url('/dataAnggota/' . $data->id_anggota . '/edit') }}" class="btn btn-warning btn-sm">Edit</a>
+                                {{-- <a href="{{ url('/dataAnggota/' . $data->id_anggota . '/edit') }}" class="btn btn-warning btn-sm">Edit</a> --}}
                                 <form class="d-inline-block" method="POST" action="{{ url('/dataAnggota/'.$data->id_anggota) }}">
                                     @csrf
                                     @method('DELETE')
