@@ -13,4 +13,10 @@ class WelcomeController extends Controller
 
         return view('welcome', compact('upload'));
     }
+    public function profil()
+    {
+
+        return view('layoutsWarga.profil');
+    }
+    
 }
