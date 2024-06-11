@@ -1,4 +1,5 @@
 <div class="sidebar"> 
+
     <!-- SidebarSearch Form --> 
     <div class="form-inline mt-3"> 
         <div class="input-group" data-widget="sidebar-search"> 
@@ -10,6 +11,7 @@
             </div> 
         </div> 
     </div> 
+
     <!-- Sidebar Menu --> 
     <nav class="mt-3"> 
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false"> 
@@ -103,6 +105,7 @@
                     </li>
                 </ul>
             </li> 
+
             <li class="nav-item"> 
                 <a href="{{ url('/') }}" class="nav-link {{ ($activeMenu == 'user')? 'active' : '' }}"> 
                     <i class="nav-icon far fa-user"></i> 

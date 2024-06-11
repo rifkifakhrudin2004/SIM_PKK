@@ -15,10 +15,29 @@ use App\Http\Controllers\UploadKetuaController;
 use App\Http\Controllers\DataAnggotaController;
 use App\Http\Controllers\PembukuanArisanController;
 use App\Http\Controllers\AuthController;
+
+use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\AboutController;
+//SPK
+use App\Http\Livewire\Alternatif\Index as AlternatifIndex;
+use App\Http\Livewire\Alternatif\Create as AlternatifCreate;
+use App\Http\Livewire\Alternatif\Edit as AlternatifEdit;
+use App\Http\Livewire\Kriteria\Index as KriteriaIndex;
+use App\Http\Livewire\Kriteria\Create as KriteriaCreate;
+use App\Http\Livewire\Kriteria\Edit as KriteriaEdit;
+use App\Http\Livewire\Penilaian\Index as PenilaianIndex;
+use App\Http\Livewire\Penilaian\Edit as PenilaianEdit;
+use App\Http\Livewire\Subkriteria\Create as SubkriteriaCreate;
+use App\Http\Livewire\Proses\Index as ProsesIndex;
+use App\Http\Livewire\Perhitungan\Index as PerhitunganIndex;
+
+
 use App\Http\Controllers\SetoranController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\KocokController;
 use App\Http\Controllers\HistoryController;
+
+
 /*
 |------------------------------------------------------------------ --------
 | Web Routes
@@ -29,6 +48,15 @@ use App\Http\Controllers\HistoryController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', [WelcomeController::class, 'index']);
+
+Route::get('/about', [AboutController::class, 'index'])->name('about.index');
+Route::delete('/image/destroy', [UploadKetuaController::class, 'destroy'])->name('image.destroy');
 
 Route::get('/', function () {
     return view('welcome');
@@ -323,6 +351,8 @@ Route::prefix('anggota')->group(function () {
 
 });
 
+
+
 // User dashboard
 // Route::prefix('user')->group(function () {
 //     Route::get('/', function () {
@@ -340,6 +370,7 @@ Route::prefix('anggota')->group(function () {
 //     // pembukuan
 //     Route::get('/pembukuan', [AnggotaController::class, 'pembukuan'])->name('anggota.pembukuan');
 // });
+
 // Manage Konten
 Route::prefix('konten')->group(function () {
     Route::get('/', [KontenController::class, 'index'])->name('konten.index');
@@ -349,7 +380,6 @@ Route::prefix('konten')->group(function () {
     Route::put('/{id}', [KontenController::class, 'update'])->name('konten.update');
     Route::delete('/{id}', [KontenController::class, 'destroy'])->name('konten.destroy');
 });
-
 
     Route::prefix('konten')->group(function () {
         Route::get('/', [KontenController::class, 'index'])->name('konten.index');
@@ -362,7 +392,38 @@ Route::prefix('konten')->group(function () {
 
     Route::get('/ketuaPKK/upload', [UploadKetuaController::class, 'index'])->name('ketuaPKK.index');
     Route::post('/ketuaPKK/upload', [UploadKetuaController::class, 'upload'])->name('ketuaPKK.upload');
+
+    Route::get('/konten', [KontenController::class, 'index'])->name('konten.index');
+    Route::get('/konten/create', [KontenController::class, 'create'])->name('konten.create');
+    Route::post('/konten', [KontenController::class, 'store'])->name('konten.store');
+    Route::get('/konten/{id}/edit', [KontenController::class, 'edit'])->name('konten.edit');
+    Route::put('/konten/{id}', [KontenController::class, 'update'])->name('konten.update');
+    Route::delete('/konten/{id}', [KontenController::class, 'destroy'])->name('konten.destroy');
+
     
+// SPK
+// Route::get('/alternatif', AlternatifIndex::class)->name('alternatif.index');
+// 	// route data alternatif 
+// 	Route::get('/alternatif/create', AlternatifCreate::class)->name('alternatif.create');
+// 	Route::get('/alternatif/{id}/edit', AlternatifEdit::class)->name('alternatif.edit');
+
+// 	// route data kriteria
+// 	Route::get('/kriteria', KriteriaIndex::class)->name('kriteria.index');
+// 	Route::get('/kriteria/create', KriteriaCreate::class)->name('kriteria.create');
+// 	Route::get('/kriteria/{id}/edit', KriteriaEdit::class)->name('kriteria.edit');
+
+// 	// route data sub kriteria
+// 	Route::get('/subkriteria/{kriteria}/create', SubkriteriaCreate::class)->name('subkriteria.create');
+
+// 	// route penilaian
+// 	Route::get('/penilaian', PenilaianIndex::class)->name('penilaian.index');
+// 	Route::get('/penilaian/{altId}/edit', PenilaianEdit::class)->name('penilaian.edit');
+	
+// 	Route::get('/ranking', ProsesIndex::class)->name('proses.index');
+// 	Route::get('/perhitungan', PerhitunganIndex::class)->name('perhitungan.index');
+
+
+
     Route::get('/konten', [KontenController::class, 'index'])->name('konten.index');
     Route::get('/konten/create', [KontenController::class, 'create'])->name('konten.create');
     Route::post('/konten', [KontenController::class, 'store'])->name('konten.store');
