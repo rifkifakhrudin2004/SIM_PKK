@@ -33,6 +33,33 @@ use App\Http\Controllers\HistoryController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+// Manage User
+// Route::prefix('users')->group(function () { // Grouped user routes
+//     Route::get('/create', [UsersController::class, 'create'])->name('users.create');
+//     Route::get('/edit/{id}', [UsersController::class, 'edit'])->name('users.edit');
+//     Route::get('/', [UsersController::class, 'index'])->name('users.index');
+//     Route::post('/', [UsersController::class, 'store'])->name('users.store');
+//     Route::put('/{id}', [UsersController::class, 'update'])->name('users.update');
+//     Route::delete('/{id}', [UsersController::class, 'destroy'])->name('users.destroy');
+//     Route::put('/edit_simpan/{id}', [UsersController::class, 'edit_simpan'])->name('user.edit_simpan'); // Changed from /user/{id}
+//     Route::get('/delete/{id}', [UsersController::class, 'delete'])->name('users.delete');
+// });
+
+// Manage Users
+// Route::prefix('users')->group(function () { // Grouped user routes
+//     Route::get('/create', [UsersController::class, 'create'])->name('users.create');
+//     Route::get('/edit/{id}', [UsersController::class, 'edit'])->name('users.edit');
+//     Route::get('/', [UsersController::class, 'index'])->name('users.index');
+//     Route::post('/', [UsersController::class, 'store'])->name('users.store');
+//     Route::put('/{id}', [UsersController::class, 'update'])->name('users.update');
+//     Route::delete('/{id}', [UsersController::class, 'destroy'])->name('users.destroy');
+//     Route::put('/edit_simpan/{id}', [UsersController::class, 'edit_simpan'])->name('user.edit_simpan'); // Changed from /user/{id}
+//     Route::get('/delete/{id}', [UsersController::class, 'delete'])->name('users.delete');
+// });
+
+
 // Manage User
 Route::group(['prefix' => 'user'], function () {
     Route::get('/', [UserController::class, 'index']); //menampilkan halaman awal user
@@ -293,7 +320,35 @@ Route::prefix('ketuaPKK')->group(function () {
 
 
 // Nested groups for Anggota
+
 // Route::prefix('anggota')->group(function () {
+Route::prefix('anggota')->group(function () {
+    Route::get('/', function () {
+        return redirect()->route('anggota.dashboard'); // Corrected redirect route
+    });
+    Route::get('/index', [PinjamanController::class, 'indexAnggota']);
+    Route::patch('/index/{id}', [PinjamanController::class, 'updateVerifikasi']);
+    Route::get('/dashboard', [AnggotaController::class, 'dashboard'])->name('anggota.dashboard');
+
+    // Jadwal
+    Route::get('/jadwal', [AnggotaController::class, 'jadwal'])->name('anggota.jadwal');
+
+    // data arisan
+    Route::get('/data-arisan', [AnggotaController::class, 'dataArisan'])->name('anggota.data-arisan');
+
+    // history
+    Route::get('history', [HistoryController::class, 'history'])->name('history');
+
+    // pembukuan
+    Route::get('/pembukuan', [AnggotaController::class, 'pembukuan'])->name('anggota.pembukuan');
+
+    Route::get('/dashboard', [AnggotaController::class, 'showDashboard'])->name('dashboard');
+
+
+});
+
+// User dashboard
+// Route::prefix('user')->group(function () {
 //     Route::get('/', function () {
 //         return redirect()->route('anggota.dashboard'); // Corrected redirect route
 //     });
