@@ -268,6 +268,32 @@
                 </div>
             </div>
 
+        </div>
+    </div>
+    <div class="bdgcontent">
+        <div class="floatmenu">
+            <div class="floatmenu__wrap">
+                <ul>
+                    {{-- <li><a href="https://www.lapor.go.id/instansi/pemerintah-kota-bandung" target="_blank"><img
+                                src="https://www.bandung.go.id/assets/img/floatmenu/lapor-float.png"
+                                alt="img"><span>LAPOR</span></a></li>
+                    <li><a href="tel:112" rel="nofollow" target="_blank"><img
+                                src="https://www.bandung.go.id/assets/img/floatmenu/2.png"
+                                alt="img"><span>112</span></a></li>
+                    <li><a href="https://www.bandung.go.id/dashboard/detail/pelindung"><img
+                                src="https://www.bandung.go.id/assets/img/floatmenu/3.png"
+                                alt="img"><span>CCTV</span></a></li> --}}
+                    <li>
+                        <a href="https://wa.me/+6281331614147?text=Hallo ini Nomor Prob!" target="_blank">
+                            <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="WhatsApp Logo">
+                            <span>CHAT</span>
+                          </a>
+                            </li>
+                </ul>
+            </div>
+        </div>
+
+
             <div class="sticky-trigger"></div>
             <div class="mainmenu-spacer"></div>
             <header class="mainmenu">

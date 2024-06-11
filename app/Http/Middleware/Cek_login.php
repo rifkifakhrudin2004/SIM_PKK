@@ -17,7 +17,7 @@ class Cek_login
      * @param  string  $roles // Ubah tipe parameter $roles menjadi string
      * @return \Illuminate\Http\Response // Mengubah tipe kembalian menjadi Illuminate\Http\Response
      */
-    public function handle(Request $request, Closure $next, $roles) : Response
+    public function handle(Request $request, Closure $next, $roles)
     {
         // Cek sudah login atau belum, jika belum kembali ke halaman login
         if (!Auth::check()) { // Tambahkan tanda seru (!) sebelum Auth::check()

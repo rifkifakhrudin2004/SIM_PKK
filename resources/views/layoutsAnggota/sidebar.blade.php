@@ -50,6 +50,12 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a href="{{ url('/anggota/history') }}" class="nav-link {{ ($activeMenu ?? '') == 'jadwal' ? 'active' : '' }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>History Arisan</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="{{ url('/anggota/pembukuan') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Pembukuan</p>
@@ -65,15 +71,15 @@
                 <!-- Submenu for Simpan Pinjam -->
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="{{ url('/menabung') }}" class="nav-link">
+                        <a href="{{ url('/simpan') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Menabung</p>
+                            <p>Status Tabungan</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('/meminjam') }}" class="nav-link">
+                        <a href="{{ url('/pinjaman') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Meminjam</p>
+                            <p>Ajukan Peminjaman</p>
                         </a>
                     </li>
                     <li class="nav-item">

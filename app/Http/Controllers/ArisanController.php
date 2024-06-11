@@ -12,10 +12,32 @@ use App\Models\BendaharaModel;
 
 class ArisanController extends Controller
 {
+
     public function index(ArisanDataTable $dataTable)
     {
         $activeMenu = 'arisan';
         return $dataTable->render('arisan.index', compact('activeMenu'));
+
+    public function index(Request $request)
+    {
+        $activeMenu = 'arisan';
+        $year = $request->input('year');
+        $month = $request->input('month');
+
+        $query = ArisanModel::query();
+
+        if ($year) {
+            $query->whereYear('tgl_arisan', $year);
+        }
+
+        if ($month) {
+            $query->whereMonth('tgl_arisan', $month);
+        }
+
+        $arisans = $query->get();
+
+        return view('arisan.index', compact('arisans', 'activeMenu'));
+
     }
 
     public function create()
@@ -100,4 +122,14 @@ class ArisanController extends Controller
         $pembukuans = PembukuanArisanModel::all();
         return view('PembukuanArisan.pembukuan', compact('pembukuans', 'activeMenu'));
     }
+
+    public function updateStatus(Request $request, $id)
+{
+    $arisan = ArisanModel::find($id);
+    $arisan->status = $request->input('status');
+    $arisan->save();
+
+    return redirect()->route('arisan.index')->with('success', 'Status updated successfully.');
+}
+
 }
