@@ -13,7 +13,8 @@ use App\Http\Controllers\UploadKetuaController;
 use App\Http\Controllers\DataAnggotaController;
 use App\Http\Controllers\PembukuanArisanController;
 use App\Http\Controllers\AuthController;
-
+use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\AboutController;
 //SPK
 use App\Http\Livewire\Alternatif\Index as AlternatifIndex;
 use App\Http\Livewire\Alternatif\Create as AlternatifCreate;
@@ -39,34 +40,14 @@ use App\Http\Livewire\Perhitungan\Index as PerhitunganIndex;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
-// Manage User
-Route::prefix('users')->group(function () { // Grouped user routes
-    Route::get('/create', [UsersController::class, 'create'])->name('users.create');
-    Route::get('/edit/{id}', [UsersController::class, 'edit'])->name('users.edit');
-    Route::get('/', [UsersController::class, 'index'])->name('users.index');
-    Route::post('/', [UsersController::class, 'store'])->name('users.store');
-    Route::put('/{id}', [UsersController::class, 'update'])->name('users.update');
-    Route::delete('/{id}', [UsersController::class, 'destroy'])->name('users.destroy');
-    Route::put('/edit_simpan/{id}', [UsersController::class, 'edit_simpan'])->name('user.edit_simpan'); // Changed from /user/{id}
-    Route::get('/delete/{id}', [UsersController::class, 'delete'])->name('users.delete');
-});
-
-// Manage Users
-// Route::prefix('users')->group(function () { // Grouped user routes
-//     Route::get('/create', [UsersController::class, 'create'])->name('users.create');
-//     Route::get('/edit/{id}', [UsersController::class, 'edit'])->name('users.edit');
-//     Route::get('/', [UsersController::class, 'index'])->name('users.index');
-//     Route::post('/', [UsersController::class, 'store'])->name('users.store');
-//     Route::put('/{id}', [UsersController::class, 'update'])->name('users.update');
-//     Route::delete('/{id}', [UsersController::class, 'destroy'])->name('users.destroy');
-//     Route::put('/edit_simpan/{id}', [UsersController::class, 'edit_simpan'])->name('user.edit_simpan'); // Changed from /user/{id}
-//     Route::get('/delete/{id}', [UsersController::class, 'delete'])->name('users.delete');
+// Route::get('/', function () {
+//     return view('welcome');
 // });
+
+Route::get('/', [WelcomeController::class, 'index']);
+
+Route::get('/about', [AboutController::class, 'index'])->name('about.index');
+Route::delete('/image/destroy', [UploadKetuaController::class, 'destroy'])->name('image.destroy');
 
 // Manage User
 Route::group(['prefix' => 'user'], function () {
@@ -190,16 +171,8 @@ Route::prefix('anggota')->group(function () {
 
 });
 
-// User dashboard
-// Route::prefix('user')->group(function () {
-//     Route::get('/', function () {
-//         return redirect()->route('user.dashboard'); // Corrected redirect route
-//     });
-//     Route::get('/dashboard', [UserController::class, 'dashboard'])->name('user.dashboard');
-// });
 
 // Manage Konten
-
 Route::prefix('konten')->group(function () {
     Route::get('/', [KontenController::class, 'index'])->name('konten.index');
     Route::get('/create', [KontenController::class, 'create'])->name('konten.create');
@@ -208,7 +181,6 @@ Route::prefix('konten')->group(function () {
     Route::put('/{id}', [KontenController::class, 'update'])->name('konten.update');
     Route::delete('/{id}', [KontenController::class, 'destroy'])->name('konten.destroy');
 });
-
 
     Route::prefix('konten')->group(function () {
         Route::get('/', [KontenController::class, 'index'])->name('konten.index');
@@ -221,16 +193,15 @@ Route::prefix('konten')->group(function () {
 
     Route::get('/ketuaPKK/upload', [UploadKetuaController::class, 'index'])->name('ketuaPKK.index');
     Route::post('/ketuaPKK/upload', [UploadKetuaController::class, 'upload'])->name('ketuaPKK.upload');
+
+    Route::get('/konten', [KontenController::class, 'index'])->name('konten.index');
+    Route::get('/konten/create', [KontenController::class, 'create'])->name('konten.create');
+    Route::post('/konten', [KontenController::class, 'store'])->name('konten.store');
+    Route::get('/konten/{id}/edit', [KontenController::class, 'edit'])->name('konten.edit');
+    Route::put('/konten/{id}', [KontenController::class, 'update'])->name('konten.update');
+    Route::delete('/konten/{id}', [KontenController::class, 'destroy'])->name('konten.destroy');
+
     
-
-
-Route::get('/konten', [KontenController::class, 'index'])->name('konten.index');
-Route::get('/konten/create', [KontenController::class, 'create'])->name('konten.create');
-Route::post('/konten', [KontenController::class, 'store'])->name('konten.store');
-Route::get('/konten/{id}/edit', [KontenController::class, 'edit'])->name('konten.edit');
-Route::put('/konten/{id}', [KontenController::class, 'update'])->name('konten.update');
-Route::delete('/konten/{id}', [KontenController::class, 'destroy'])->name('konten.destroy');
-
 // SPK
 // Route::get('/alternatif', AlternatifIndex::class)->name('alternatif.index');
 // 	// route data alternatif 
