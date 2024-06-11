@@ -9,14 +9,13 @@
             <form action="{{ route('ketuaPKK.upload') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="custom-file">
-                    <input type="file" id="file-input" class="custom-file-input" name="file" />
                     <label class="custom-file-label-large" for="file-input">
                         <div class="file-info">
                                 <label for="berkas" class="form-label">Pilih Gambar</label>
-                                <input type="file" class="form-control" id="berkas" name="berkas">
-                        </div>
-                        <div class="custom-file-large">
-                            <input type="file" id="file-input" class="custom-file-input" name="file" />
+                                <input type="file" class="form-control" id="foto_konten" name="foto_konten">
+                                @error('berkas')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                         </div>
                     </label>
                 </div>

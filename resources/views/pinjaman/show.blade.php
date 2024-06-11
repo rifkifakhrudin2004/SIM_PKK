@@ -47,12 +47,16 @@
                 <td>{{ $pinjam->status_persetujuan }}</td>
             </tr>
             <tr>
-                <th>Lama Angsuran |bulan|</th>
+                <th>Lama Angsuran (bulan)</th>
                 <td>{{ $pinjam->lama }}</td>
             </tr>
             <tr>
-                <th>Bunga |persen|</th>
+                <th>Bunga(%)</th>
                 <td>{{ $pinjam->bunga }}</td>
+            </tr>
+            <tr>
+                <th>Jumlah Angsuran</th>
+                <td>{{ $pinjam->angsuran->jumlah_angsuran }}</td>
             </tr>
         </table>
     </div>

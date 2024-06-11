@@ -12,9 +12,10 @@
                     <th>Nama Anggota</th>
                     <th>Tanggal Pengajuan</th>
                     <th>Jumlah Pinjaman</th>
-                    <th>Status Pinjaman</th>
-                    <th>Status Kesehatan</th>
-                    <th>Cicilan</th>
+                    <th>Bunga Pinjaman</th>
+                    <th>Lama Pinjaman</th>
+                    <th>Angsuran</th>
+                    {{-- <th>Cicilan</th> --}}
                     {{-- <th>Verifikasi</th> --}}
                     <th>Aksi</th>
                 </tr>
@@ -22,16 +23,17 @@
             <tbody>
                 @foreach($pinjaman as $data)
                     <tr>
-                        <td>{{ $data->anggota2->nama_anggota}}</td>
+                        <td>{{ $data->anggota2->nama_anggota }}</td>
                         <td>{{ $data->tgl_pengajuan }}</td>
                         <td>{{ $data->jumlah_pinjaman }}</td>
-                        <td>{{ $data->status_pinjaman }}</td>
-                        <td>{{ $data->status_kesehatan }}</td>
-                        <td>{{ $data->cicilan }}</td>
+                        <td>{{ $data->bunga }}</td>
+                        <td>{{ $data->lama }}</td>
+                        <td>{{ $data->angsuran->jumlah_angsuran}}</td>
+                        {{-- <td>{{ $data->cicilan }}</td> --}}
                         {{-- <td>{{ ucfirst($data->verifikasi) }}</td> <!-- Tampilkan status verifikasi --> --}}
                         <td>
                             @if($data->status_persetujuan == 'pending')
-                            <form method="POST" action="{{ url('/anggota/index/' . $data->id_pinjam) }}">
+                            <form method="POST" action="{{ url('/bendaharaPKK/index/' . $data->id_pinjam) }}">
                                 @csrf
                                 @method('PATCH')
                                 <button type="submit" name="status_persetujuan" value="diterima" class="btn btn-success btn-sm">Diterima</button>

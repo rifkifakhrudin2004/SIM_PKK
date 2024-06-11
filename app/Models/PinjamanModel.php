@@ -15,7 +15,7 @@ class PinjamanModel extends Model
 
     protected $fillable = [
         'id_anggota', 'id_bendahara', 'tgl_pengajuan','jumlah_pinjaman',
-        'status_pinjaman','status_kesehatan','cicilan','lama','bunga','status_persetujuan'
+        'status_pinjaman','status_kesehatan','cicilan','lama','bunga','status_persetujuan','status'
     ];
 
     // Relasi dengan arisan jika diperlukan
@@ -27,5 +27,9 @@ class PinjamanModel extends Model
     public function bendahara2()
     {
         return $this->belongsTo(BendaharaModel::class, 'id_bendahara', 'id_bendahara');
+    }
+    public function angsuran()
+    {
+        return $this->hasOne(angsuranModel::class, 'id_pinjam', 'id_pinjam');
     }
 }

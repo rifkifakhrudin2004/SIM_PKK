@@ -29,7 +29,7 @@
                         {{-- <td>{{ ucfirst($data->verifikasi) }}</td> <!-- Tampilkan status verifikasi --> --}}
                         <td>
                             @if($data->verifikasi == 'pending')
-                                <form method="POST" action="{{ url('/bendaharaPKK/index/' . $data->id_anggota) }}">
+                                <form method="POST" action="{{ url('/bendaharaPKK/index2/' . $data->id_anggota) }}">
                                     @csrf
                                     @method('PATCH')
                                     <button type="submit" name="verifikasi" value="diterima" class="btn btn-success btn-sm">Diterima</button>

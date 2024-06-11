@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KontenModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class UploadKetuaController extends Controller
 {
@@ -14,24 +16,23 @@ class UploadKetuaController extends Controller
     public function upload(Request $request)
     {
         $request->validate([
-            // //upload file
-            // 'file' => 'required|max:10240',
-            // 'file.*' => 'mimes:pdf,docx,doc,txt'
-            
-            //upload file gambar
-            'file' => 'required|image|max:10240',
+            //upload file foto_konten
+            'foto_konten' => 'required|image|max:10240',
             'description' => 'required|string',
         ]);
 
-
-
          // Proses penyimpanan file dan deskripsi
-        $file = $request->file('file');
-        $fileName = $file->getClientOriginalName();
-        $filePath = $file->storeAs('uploads', $fileName, 'public');
+         $file = $request->file('foto_konten');
+         $fileName = time() . '_' . $file->getClientOriginalName();
+         $file->move(public_path('storage/uploads'), $fileName);
+         $filePath = 'storage/uploads/' . $fileName;
 
         // 
+        KontenModel::create ([
+            'foto_konten' => $filePath,
+            'deskripsi_konten' => $request->description,
+        ]);
 
         return redirect()->back()->with('success', 'File berhasil diunggah.');
-    }
 }
+    }

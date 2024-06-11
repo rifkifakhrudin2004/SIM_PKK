@@ -81,6 +81,8 @@ class DataAnggotaController extends Controller
         'status_rumah' => 'nullable|string',
     ]);
 
+    $id_users = Auth::user()->id_users;
+
     // Membuat data anggota baru dengan nama pengguna yang sedang login
     $anggota = new DataAnggotaModel([
         'nama_anggota' => Auth::user()->nama, // Mengambil nama pengguna yang sedang login
@@ -92,6 +94,12 @@ class DataAnggotaController extends Controller
 
     $anggota->save();
 
+    $id_anggota = $anggota->id_anggota;
+
+    UserModel::where('id_users', $id_users)->update([
+        'id_anggota' => $id_anggota,
+    ]);
+    
     return redirect('/dataAnggota')->with('success', 'Anggota berhasil ditambahkan');
 }
 

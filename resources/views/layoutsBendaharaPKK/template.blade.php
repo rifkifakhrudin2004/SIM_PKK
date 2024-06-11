@@ -5,7 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ config('app.name', 'PWL Laravel Starter Code') }}</title>
-
+    <style>
+        .sidebar-dark-primary {
+            background-color: rgb(18, 1, 110) !important; 
+        }
+    </style>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Untuk mengirimkan token Laravel CSRF pada setiap request ajax -->
 
@@ -38,7 +42,7 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="{{ url('/') }}" class="brand-link">
-                <img src="{{ asset('adminlte/dist/img/1.svg') }}" alt="AdminLTE Logo" style="width: 100%; height: auto;">
+                <img src="{{ asset('adminlte/dist/img/VENU53.svg') }}" alt="AdminLTE Logo" style="width: 100%; height: auto;">
             </a>
             
 

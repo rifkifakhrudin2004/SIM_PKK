@@ -26,4 +26,9 @@ class SimpanModel extends Model
     {
         return $this->belongsTo(BendaharaModel::class, 'id_bendahara', 'id_bendahara');
     }
+    public function setorans()
+    {
+        return $this->hasMany(SetoranModel::class, 'id_simpan', 'id_simpan');
+    }
+
 }
