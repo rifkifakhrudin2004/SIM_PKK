@@ -45,16 +45,16 @@ Route::get('/', function () {
 
 
 // Manage User
-Route::prefix('users')->group(function () { // Grouped user routes
-    Route::get('/create', [UsersController::class, 'create'])->name('users.create');
-    Route::get('/edit/{id}', [UsersController::class, 'edit'])->name('users.edit');
-    Route::get('/', [UsersController::class, 'index'])->name('users.index');
-    Route::post('/', [UsersController::class, 'store'])->name('users.store');
-    Route::put('/{id}', [UsersController::class, 'update'])->name('users.update');
-    Route::delete('/{id}', [UsersController::class, 'destroy'])->name('users.destroy');
-    Route::put('/edit_simpan/{id}', [UsersController::class, 'edit_simpan'])->name('user.edit_simpan'); // Changed from /user/{id}
-    Route::get('/delete/{id}', [UsersController::class, 'delete'])->name('users.delete');
-});
+// Route::prefix('users')->group(function () { // Grouped user routes
+//     Route::get('/create', [UsersController::class, 'create'])->name('users.create');
+//     Route::get('/edit/{id}', [UsersController::class, 'edit'])->name('users.edit');
+//     Route::get('/', [UsersController::class, 'index'])->name('users.index');
+//     Route::post('/', [UsersController::class, 'store'])->name('users.store');
+//     Route::put('/{id}', [UsersController::class, 'update'])->name('users.update');
+//     Route::delete('/{id}', [UsersController::class, 'destroy'])->name('users.destroy');
+//     Route::put('/edit_simpan/{id}', [UsersController::class, 'edit_simpan'])->name('user.edit_simpan'); // Changed from /user/{id}
+//     Route::get('/delete/{id}', [UsersController::class, 'delete'])->name('users.delete');
+// });
 
 // Manage Users
 // Route::prefix('users')->group(function () { // Grouped user routes
@@ -188,6 +188,9 @@ Route::prefix('anggota')->group(function () {
     // pembukuan
     Route::get('/pembukuan', [AnggotaController::class, 'pembukuan'])->name('anggota.pembukuan');
 
+    Route::get('/dashboard', [AnggotaController::class, 'showDashboard'])->name('dashboard');
+
+
 });
 
 // User dashboard
@@ -251,6 +254,3 @@ Route::delete('/konten/{id}', [KontenController::class, 'destroy'])->name('konte
 	
 // 	Route::get('/ranking', ProsesIndex::class)->name('proses.index');
 // 	Route::get('/perhitungan', PerhitunganIndex::class)->name('perhitungan.index');
-
-
-

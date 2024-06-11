@@ -9,7 +9,8 @@
         <div class="row align-items-center">
             <div class="col-md-3 text-center">
                 <div class="icon-box">
-                    <i class="fas fa-user fa-5x"></i>
+                    <img src="{{ asset('adminlte/dist/img/avatar5.png') }}" alt="User Avatar"
+                    class="img-fluid rounded-circle" style="max-width: 100px;">
                 </div>
             </div>
             <div class="col-md-9">
@@ -19,4 +20,40 @@
         </div>
     </div>
 </div>
+
+{{-- CHART --}}
+<section class="content">
+    <div class="container-fluid">
+        <!-- GOOGLE LOOKER STUDIO REPORT -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">VISUALISI</h3>
+                    </div>
+                    <div class="card-body">
+                        <iframe width="100%" height="400"
+                            src="https://lookerstudio.google.com/embed/reporting/36c2c5de-a043-41c8-846e-620fca8d7757/page/EOc0D"
+                            frameborder="0" style="border:0" allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card card-warning">
+                    <div class="card-header">
+                        <h3 class="card-title">Google Looker Studio Report</h3>
+                    </div>
+                    <div class="card-body">
+                        <iframe width="100%" height="400"
+                            src="https://lookerstudio.google.com/embed/reporting/36c2c5de-a043-41c8-846e-620fca8d7757/page/EOc0D"
+                            frameborder="0" style="border:0" allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 @endsection
