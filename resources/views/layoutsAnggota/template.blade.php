@@ -52,11 +52,8 @@
 
                 <img src="{{ asset('adminlte/dist/img/VENU53.svg') }}" alt="AdminLTE Logo" style="width: 100%; height: auto;">
 
-                <img src="{{ asset('adminlte/dist/img/1.svg') }}" alt="AdminLTE Logo" style="width: 100%; height: auto;">
             </a>
-                <span class="brand-text font-weight-light">SIM PKK RW 5</span>
 
-            </a>
 
             <!-- /.sidebar-menu -->
             @include('layoutsAnggota.sidebar')

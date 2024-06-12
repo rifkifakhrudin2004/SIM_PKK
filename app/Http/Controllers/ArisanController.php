@@ -13,10 +13,10 @@ use App\Models\BendaharaModel;
 class ArisanController extends Controller
 {
 
-    public function index(ArisanDataTable $dataTable)
-    {
-        $activeMenu = 'arisan';
-        return $dataTable->render('arisan.index', compact('activeMenu'));
+    // public function index(ArisanDataTable $dataTable)
+    // {
+    //     $activeMenu = 'arisan';
+    //     return $dataTable->render('arisan.index', compact('activeMenu'));
 
     public function index(Request $request)
     {

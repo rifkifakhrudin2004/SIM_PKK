@@ -75,10 +75,35 @@ Route::get('/profil', [WelcomeController::class, 'profil'])->name('profil');
 Route::get('/about', [AboutController::class, 'index'])->name('about.index');
 Route::delete('/image/destroy', [UploadKetuaController::class, 'destroy'])->name('image.destroy');
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+
+// Manage User
+// Route::prefix('users')->group(function () { // Grouped user routes
+//     Route::get('/create', [UsersController::class, 'create'])->name('users.create');
+//     Route::get('/edit/{id}', [UsersController::class, 'edit'])->name('users.edit');
+//     Route::get('/', [UsersController::class, 'index'])->name('users.index');
+//     Route::post('/', [UsersController::class, 'store'])->name('users.store');
+//     Route::put('/{id}', [UsersController::class, 'update'])->name('users.update');
+//     Route::delete('/{id}', [UsersController::class, 'destroy'])->name('users.destroy');
+//     Route::put('/edit_simpan/{id}', [UsersController::class, 'edit_simpan'])->name('user.edit_simpan'); // Changed from /user/{id}
+//     Route::get('/delete/{id}', [UsersController::class, 'delete'])->name('users.delete');
+// });
+
+// Manage Users
+// Route::prefix('users')->group(function () { // Grouped user routes
+//     Route::get('/create', [UsersController::class, 'create'])->name('users.create');
+//     Route::get('/edit/{id}', [UsersController::class, 'edit'])->name('users.edit');
+//     Route::get('/', [UsersController::class, 'index'])->name('users.index');
+//     Route::post('/', [UsersController::class, 'store'])->name('users.store');
+//     Route::put('/{id}', [UsersController::class, 'update'])->name('users.update');
+//     Route::delete('/{id}', [UsersController::class, 'destroy'])->name('users.destroy');
+//     Route::put('/edit_simpan/{id}', [UsersController::class, 'edit_simpan'])->name('user.edit_simpan'); // Changed from /user/{id}
+//     Route::get('/delete/{id}', [UsersController::class, 'delete'])->name('users.delete');
+// });
 
 
 
@@ -206,6 +231,7 @@ Route::middleware('auth')->group(function () {
     // Routes for Bendahara (level_id: 2)
     Route::middleware('cek_login:2')->group(function () {
         Route::get('bendahara', [BendaharaPKKController::class, 'dashboard']); 
+
         Route::group(['prefix' => 'dataBendahara'], function () {
             Route::get('/', [BendaharaPKKController::class, 'index']); 
             Route::post('/list', [BendaharaPKKController::class, 'list']); 
@@ -230,6 +256,8 @@ Route::middleware('auth')->group(function () {
             Route::get('/', function () {
                 return redirect()->route('bendaharaPKK.dashboard'); // Corrected redirect route
             });
+            Route::get('/index3', [PinjamanController::class, 'indexAngsuran']);
+            Route::put('/b/{id}', [PinjamanController::class, 'bayarAngsuran']);
             Route::get('/dashboard', [BendaharaPKKController::class, 'dashboard'])->name('bendaharaPKK.dashboard');
             Route::get('/index2', [BendaharaPKKController::class, 'indexBendahara']);
             Route::patch('/index2/{id}', [BendaharaPKKController::class, 'updateVerifikasi']);
@@ -367,7 +395,6 @@ Route::prefix('ketuaPKK')->group(function () {
 // Route::resource('/arisan', ArisanController::class)->except(['index', 'show']);
 
 
-
 // Nested groups for Anggota
 
 // Route::prefix('anggota')->group(function () {
@@ -448,8 +475,6 @@ Route::prefix('konten')->group(function () {
     Route::put('/konten/{id}', [KontenController::class, 'update'])->name('konten.update');
     Route::delete('/konten/{id}', [KontenController::class, 'destroy'])->name('konten.destroy');
 
-    
-
 
 
 Route::get('/konten', [KontenController::class, 'index'])->name('konten.index');
@@ -494,13 +519,10 @@ Route::delete('/subkriteria/delete/{id}', [SubkriteriaCreateController::class, '
 	Route::get('/ranking', [ProsesIndexController::class,'render'])->name('proses.index');
 	Route::get('/perhitungan', [PerhitunganIndexController::class, 'render'])->name('perhitungan.index');
 
-
-
     Route::get('/konten', [KontenController::class, 'index'])->name('konten.index');
     Route::get('/konten/create', [KontenController::class, 'create'])->name('konten.create');
     Route::post('/konten', [KontenController::class, 'store'])->name('konten.store');
     Route::get('/konten/{id}/edit', [KontenController::class, 'edit'])->name('konten.edit');
     Route::put('/konten/{id}', [KontenController::class, 'update'])->name('konten.update');
     Route::delete('/konten/{id}', [KontenController::class, 'destroy'])->name('konten.destroy');
-
 

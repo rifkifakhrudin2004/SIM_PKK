@@ -9,14 +9,14 @@
             <div class="row align-items-center">
                 <div class="col-md-2 text-center">
                     <div class="icon-box">
-                        <img src="{{ asset('adminlte/dist/img/avatar5.png') }}" alt="User Avatar"
+                        <img src="{{ asset('adminlte/dist/img/avatar2.png') }}" alt="User Avatar"
                             class="img-fluid rounded-circle" style="max-width: 100px;">
                     </div>
                 </div>
 
                 <div class="col-md-10">
-                    <h4>NAMA: {{ Auth::user()->nama }}</h4>
-                    <p>STATUS: {{ Auth::user()->status }}</p>
+                    <h4>NAMA : {{ Auth::user()->nama }}</h4>
+                    <p>STATUS : {{ Auth::user()->status }}</p>
 
                 </div>
             </div>
@@ -26,7 +26,7 @@
         <div class="row">
             <!-- Kalender -->
             <div class="col-md-6 mb-4">
-                <div class="card">
+                <div class="card card-olive">
                     <div class="card-header">
                         <h3 class="card-title">Kalender</h3>
                     </div>
@@ -38,7 +38,7 @@
 
             <!-- Denah -->
             <div class="col-md-6 mb-4">
-                <div class="card">
+                <div class="card card-orange">
                     <div class="card-header">
                         <h3 class="card-title">Denah Kelurahan Tlogomas</h3>
                     </div>
@@ -66,7 +66,7 @@
             }
         </style>
 
-        <script>
+        {{-- <script>
             $(document).ready(function() {
                 var calendarEl = document.getElementById('dashboard-calendar');
                 var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -96,5 +96,5 @@
                 });
                 calendar.render();
             });
-        </script>
+        </script> --}}
     @endsection

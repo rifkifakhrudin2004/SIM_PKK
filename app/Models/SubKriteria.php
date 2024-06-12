@@ -18,8 +18,8 @@ class SubKriteria extends Model
     }
 
     // Relasi ke DataAnggotaModel
-    public function anggota()
-    {
-        return $this->belongsTo(DataAnggotaModel::class, 'id_anggota', 'id_anggota');
-    }
+    // public function anggota()
+    // {
+    //     return $this->belongsTo(DataAnggotaModel::class, 'id_anggota', 'id_anggota');
+    // }
 }

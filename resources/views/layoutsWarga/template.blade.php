@@ -253,7 +253,8 @@
                 </div>
                 <div class="font-extrabold sm:text-6xl text-[38px] sm:mb-4">
                     SIM PKK RW 5 <BR>
-                    KEC. LOWO <BR>
+                    KEL. TLOGOMAS <BR>
+                    KEC. LOWOKWARU <BR>
                     KOTA MALANG
                 </div>
 
@@ -315,10 +316,6 @@
 
     </div>
 
-    <!-- Dokumentasi -->
-  
-            
-
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
@@ -338,9 +335,8 @@
             }
         });
     </script>
-    <script defer src="https://sirawa.diy-projects.my.id/assets/js/bundle.js"></script>
+    {{-- <script defer src="https://sirawa.diy-projects.my.id/assets/js/bundle.js"></script> --}}
 </body>
-{{-- <div class=" border-t lg:flex-row"> --}}
 <footer class="pt-16 w-full" style="background: linear-gradient(to bottom, #0196d1, #00171f)" style="fo">
     <div style="display: flex; justify-content: space-between; margin: 0 auto; max-width: 90%; padding: 20px;">
         <div class="col-span-2 text-center lg:text-left">

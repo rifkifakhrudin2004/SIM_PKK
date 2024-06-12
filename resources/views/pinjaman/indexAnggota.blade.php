@@ -56,11 +56,11 @@
                 @endforeach
             </tbody>
         </table>
-    </div>
+    </div>r
 
                         <td>{{ $data->bunga }}</td>
                         <td>{{ $data->lama }}</td>
-                        <td>{{ $data->angsuran->jumlah_angsuran}}</td>
+                        <td>{{ $data->angsuran->jumlah_angsuran }}</td>
                         {{-- <td>{{ $data->cicilan }}</td> --}}
                         {{-- <td>{{ ucfirst($data->verifikasi) }}</td> <!-- Tampilkan status verifikasi --> --}}
                         <td>

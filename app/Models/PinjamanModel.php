@@ -21,7 +21,7 @@ class PinjamanModel extends Model
     // Relasi dengan arisan jika diperlukan
     public function anggota2()
     {
-        return $this->belongsTo(Alternatif::class, 'id_anggota', 'id_anggota');
+        return $this->belongsTo(DataAnggotaModel::class, 'id_anggota', 'id_anggota');
 
     }
     public function bendahara2()

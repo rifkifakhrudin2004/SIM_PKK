@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('m_angsuran', function (Blueprint $table) {
-            $table->renameColumn('no_angsuran', 'jumlah_angsuran');
+            $table->decimal('total_bayar',15,2)->after('sisa_pinjaman');
         });
     }
 

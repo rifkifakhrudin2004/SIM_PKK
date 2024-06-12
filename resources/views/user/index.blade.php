@@ -10,10 +10,20 @@
     </div>
     <div class="card-body">
         @if(session('success'))
-        <div class="alert alert-success"> {{ session('success') }} </div>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check-circle"></i> {{ session('success') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
         @endif
         @if(session('error'))
-        <div class="alert alert-danger"> {{ session('error') }} </div>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fas fa-exclamation-triangle"></i> {{ session('error') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
         @endif
         <div class="row">
             <div class="col-md-12">
@@ -39,7 +49,7 @@
                 </div>
             </div>
         </div>
-        <table class="table table-bordered table-striped table-hover table-sm" id="table_user">
+        <table class="table table-bordered table-striped table-hover table-sm rounded-table" id="table_user">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -56,6 +66,18 @@
 @endsection
 
 @push('css')
+<style>
+    .rounded-table {
+        border-radius: 15px;
+        overflow: hidden;
+    }
+    .rounded-table thead {
+        border-radius: 15px 15px 0 0;
+    }
+    .rounded-table tbody tr:last-child {
+        border-radius: 0 0 15px 15px;
+    }
+</style>
 @endpush
 
 @push('js')
@@ -115,7 +137,6 @@
         $('#level_id, #status').on('change', function() {
             dataUser.ajax.reload();
         });
-        
     });
 </script>
 @endpush
