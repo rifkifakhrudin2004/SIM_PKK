@@ -13,6 +13,10 @@ use App\Models\LevelModel;
 
 class UserController extends Controller
 {
+    public function dashboard()
+    {
+        return view('user.dashboard', ['activeMenu' => 'dashboard']);
+    }
     public function index() 
     {
         $breadcrumb = (object) [

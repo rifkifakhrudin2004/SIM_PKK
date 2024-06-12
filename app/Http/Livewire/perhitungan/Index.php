@@ -17,14 +17,6 @@ class Index extends Component
 		return view('livewire.perhitungan.index', compact('alternatifs', 'kriterias'));
 	}
 
-	// public function print()
-	// {
-	// 	// abaikan garis error di bawah 'Pdf' jika ada.
-	// 	$pdf = Pdf::loadView('laporan.cetak', ['data' => $this->proses()])->output();
-	// 	// return $pdf->download('Laporan.pdf');
-	// 	return response()->streamDownload(fn () => print($pdf), 'Laporan.pdf');
-	// }
-
 	// proses metode PSI
 	public function proses()
 	{

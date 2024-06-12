@@ -23,7 +23,7 @@
     <div class="login-box" style="width: 100%; max-width: 1000px; background-color: #485499; border-radius: 10px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);">
         <div class="login-logo" style="color: #fff;">
             <a href="{{ route('login') }}" style="color: inherit;">
-                <b>Sistem Informasi Manajemen Keuangan</b>
+                <b>Sistem Informasi Manajemen PKK</b>
             </a>
         </div>
         <div class="row">

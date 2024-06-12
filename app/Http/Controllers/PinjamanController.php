@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StorePinjamanRequest;
 use App\Models\PinjamanModel;
 use App\Models\DataAnggotaModel;
 use App\Models\BendaharaModel;
+
+use App\Models\Alternatif;
+
 use App\Models\angsuranModel; // Tambahkan ini
+
 use Illuminate\Support\Facades\Auth;
 
 class PinjamanController extends Controller
@@ -25,9 +30,10 @@ class PinjamanController extends Controller
 
         $activeMenu = 'verifikasi_pengajuan';
 
-        $pinjaman = PinjamanModel::all();
+        // Mengambil semua pinjaman dengan anggota dan subkriterias
+        $pinjaman = PinjamanModel::with(['anggota2.subKriterias', 'bendahara2'])->get();
 
-        return view('pinjaman.indexAnggota',compact('breadcrumb', 'page', 'activeMenu', 'pinjaman'));
+        return view('pinjaman.indexAnggota', compact('breadcrumb', 'page', 'activeMenu', 'pinjaman'));
     }
 
     public function updateVerifikasi(Request $request, $id)
@@ -44,6 +50,7 @@ class PinjamanController extends Controller
 
         return redirect('/bendaharaPKK/index')->with('success', 'Status verifikasi berhasil diperbarui');
     }
+
     public function index()
     {
         $breadcrumb = (object) [
@@ -79,13 +86,30 @@ class PinjamanController extends Controller
     public function create()
     {
         $breadcrumb = (object) [
-            'title' => 'Tambah Pinjaman',
-            'list' => ['Home', 'Pinjaman', 'Tambah']
+            'title' => 'Ajukan Pinjaman',
+            'list' => ['Home', 'Pinjaman', 'Ajukan']
         ];
 
         $page = (object) [
-            'title' => 'Tambah Pinjaman'
+            'title' => 'Ajukan Pinjaman'
         ];
+
+
+        $activeMenu = 'pinjaman';
+
+        $anggota = Alternatif::all();
+        $bendahara = BendaharaModel::all();
+
+        return view('pinjaman.create', compact('breadcrumb', 'page', 'activeMenu', 'anggota', 'bendahara'));
+    }
+
+    // Store a newly created resource in storage.
+    public function store(StorePinjamanRequest $request)
+    {
+        $data = $request->validated();
+        PinjamanModel::create($data);
+
+        return redirect()->route('pinjaman.index')->with('success', 'Pengajuan pinjaman berhasil disimpan.');
 
         $user = Auth::user();
         $id_anggota = $user->id_anggota;
@@ -128,6 +152,7 @@ class PinjamanController extends Controller
     // Periksa status verifikasi anggota
     if ($anggota->verifikasi != 'diterima') {
         return redirect()->back()->with('error', 'Maaf, Anda tidak dapat membuat pinjaman karena verifikasi anggota belum diterima.');
+
     }
 
     // Hitung jumlah angsuran
@@ -205,9 +230,15 @@ class PinjamanController extends Controller
             'title' => 'Edit Pinjaman'
         ];
 
+
+    $anggota = Alternatif::all(); // Fetch all anggota
+    $bendahara = BendaharaModel::all(); // Fetch all bendahara
+    $activeMenu = 'pinjaman';
+
         $anggota = DataAnggotaModel::all(); // Fetch all anggota
         $bendahara = BendaharaModel::all(); // Fetch all bendahara
         $activeMenu = 'pinjaman';
+
 
         return view('pinjaman.edit', [
             'breadcrumb' => $breadcrumb,

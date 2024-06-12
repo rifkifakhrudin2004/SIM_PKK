@@ -1,15 +1,4 @@
 <div class="sidebar">
-    <!-- SidebarSearch Form -->
-    <div class="form-inline mt-3">
-        <div class="input-group" data-widget="sidebar-search">
-            <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-            <div class="input-group-append">
-                <button class="btn btn-sidebar">
-                    <i class="fas fa-search fa-fw"></i>
-                </button>
-            </div>
-        </div>
-    </div>
     <!-- Sidebar Menu -->
     <nav class="mt-3">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -21,21 +10,18 @@
             </li>
             <li class="nav-header">Data Pengguna</li>
             <li class="nav-item">
-
                 <a href="{{ url('/dataAnggota') }}" class="nav-link {{ $activeMenu == 'user' ? 'active' : '' }}">
-                    <i class="nav-icon far fa-user"></i>
-                    <p>Input Data Diri <i class=""></i></p>
+                    <i class="nav-icon fas fa-user-edit"></i>
+                    <p>Input Data Diri</p>
                 </a>
+            </li>
             <li class="nav-item">
-
-
                 <a href="{{ url('/p') }}" class="nav-link {{ $activeMenu == 'level' ? 'active' : '' }}">
-                    <i class="nav-icon fas fa-layer-group"></i>
+                    <i class="nav-icon fas fa-piggy-bank"></i>
                     <p>Arisan <i class="fas fa-angle-left right"></i></p>
                 </a>
                 
                 <!-- Submenu for Arisan -->
-                
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
                         <a href="{{ url('/anggota/data-arisan') }}" class="nav-link {{ ($activeMenu ?? '') == 'arisans' ? 'active' : '' }}">
@@ -50,7 +36,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('/anggota/history') }}" class="nav-link {{ ($activeMenu ?? '') == 'jadwal' ? 'active' : '' }}">
+                        <a href="{{ url('/anggota/history') }}" class="nav-link {{ ($activeMenu ?? '') == 'arisan' ? 'active' : '' }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>History Arisan</p>
                         </a>
@@ -65,7 +51,7 @@
             </li>
             <li class="nav-item">
                 <a href="{{ url('/p') }}" class="nav-link {{ $activeMenu == 'user' ? 'active' : '' }}">
-                    <i class="nav-icon far fa-user"></i>
+                    <i class="nav-icon fas fa-coins"></i>
                     <p>Simpan Pinjam <i class="fas fa-angle-left right"></i></p>
                 </a>
                 <!-- Submenu for Simpan Pinjam -->
@@ -90,6 +76,7 @@
                     </li>
                 </ul>
             </li>
+
             <li class="nav-item">
                 <a href="{{ url('/logout') }}" class="nav-link {{ ($activeMenu ?? '') == 'penjualan' ? 'active' : '' }}">
                     <i class="nav-icon fas fa-sign-out-alt"></i>
@@ -97,8 +84,5 @@
                 </a>
             </li>
         </ul>
-
- </nav>
+    </nav>
 </div>
-
-
