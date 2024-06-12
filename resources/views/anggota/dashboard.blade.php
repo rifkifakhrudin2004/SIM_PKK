@@ -66,7 +66,7 @@
             }
         </style>
 
-        <script>
+        {{-- <script>
             $(document).ready(function() {
                 var calendarEl = document.getElementById('dashboard-calendar');
                 var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -96,5 +96,5 @@
                 });
                 calendar.render();
             });
-        </script>
+        </script> --}}
     @endsection

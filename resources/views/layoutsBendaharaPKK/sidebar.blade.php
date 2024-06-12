@@ -98,9 +98,9 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('/angsuran') }}" class="nav-link">
+                        <a href="{{ url('/bendaharaPKK/index3') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Data Angsuran</p>
+                            <p>Bayar Angsuran</p>
                         </a>
                     </li>
                 </ul>

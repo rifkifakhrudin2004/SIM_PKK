@@ -28,7 +28,7 @@
                         <td>{{ $data->jumlah_pinjaman }}</td>
                         <td>{{ $data->bunga }}</td>
                         <td>{{ $data->lama }}</td>
-                        <td>{{ $data->angsuran->jumlah_angsuran}}</td>
+                        <td>{{ $data->angsuran->jumlah_angsuran }}</td>
                         {{-- <td>{{ $data->cicilan }}</td> --}}
                         {{-- <td>{{ ucfirst($data->verifikasi) }}</td> <!-- Tampilkan status verifikasi --> --}}
                         <td>

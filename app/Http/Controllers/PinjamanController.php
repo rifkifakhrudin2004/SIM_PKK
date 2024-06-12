@@ -136,6 +136,7 @@ class PinjamanController extends Controller
     $lama = $request->lama;
 
     $jumlah_angsuran = round(($jumlah_pinjaman + ($jumlah_pinjaman * $bunga / 100)) / $lama);
+    
 
     // Buat data pinjaman
     $pinjaman = new PinjamanModel([
@@ -157,6 +158,7 @@ class PinjamanController extends Controller
     $angsuran = new AngsuranModel([
         'id_pinjam' => $pinjaman->id_pinjam,
         'jumlah_angsuran' => $jumlah_angsuran,
+        'total_bayar' => '0',
         'tanggal' => now()->addMonths($lama),
     ]);
     $angsuran->save();
@@ -294,4 +296,85 @@ class PinjamanController extends Controller
             return redirect('/pinjaman')->with('error', 'Data pinjaman gagal dihapus karena masih terdapat tabel lain yang terkait dengan data ini: ' . $e->getMessage());
         }
     }
+    public function indexAngsuran()
+    {
+        $breadcrumb = (object) [
+            'title' => 'Verifikasi Pembayaran Peminjaman',
+            'list' => ['Home', 'Pembayaran Peminjaman']
+        ];
+
+        $page = (object) [
+            'title' => 'Pembayaran Angsuran'
+        ];
+
+        $activeMenu = 'verifikasi_pembayaran';
+
+        $pinjaman = PinjamanModel::all();
+
+        return view('pinjaman.angsuran',compact('breadcrumb', 'page', 'activeMenu', 'pinjaman'));
+    }
+
+    public function bayarAngsuran(Request $request, $id)
+{
+    $pinjaman = PinjamanModel::with(['anggota2', 'bendahara2', 'angsuran'])->find($id);
+
+    if (!$pinjaman) {
+        return redirect('/pinjaman')->with('error', 'Data pinjaman tidak ditemukan');
+    }
+
+    // Check if the loan approval status is pending
+    if ($pinjaman->status_persetujuan === 'pending') {
+        return redirect('/bendaharaPKK/index3')->with('error', 'Pembayaran angsuran tidak dapat dilakukan karena status persetujuan masih pending');
+    }
+
+    $request->validate([
+        'jumlah_setoran' => 'required|numeric|min:0',
+    ]);
+
+    // Calculate total amount to be paid
+    $totalPinjaman = $pinjaman->jumlah_pinjaman + ($pinjaman->jumlah_pinjaman * $pinjaman->bunga / 100);
+
+    // Calculate monthly installment amount
+    $jumlahAngsuranPerBulan = $totalPinjaman / $pinjaman->lama;
+
+    // Calculate total setoran
+    $totalSetoranSebelumnya = AngsuranModel::where('id_pinjam', $pinjaman->id_pinjam)->sum('total_bayar');
+    
+    // Ensure that the payment being made matches the monthly installment
+    if ($request->jumlah_setoran != $jumlahAngsuranPerBulan) {
+        return redirect('/bendaharaPKK/index3')->with('error', 'Jumlah setoran harus sesuai dengan angsuran per bulan.');
+    }
+    // Calculate remaining loan amount
+    $sisaPinjaman = $totalPinjaman - $totalSetoranSebelumnya - $request->jumlah_setoran;
+
+    $pinjaman->angsuran->sisa_pinjaman = $sisaPinjaman;
+    $pinjaman->save();
+    // Create new setoran
+    $setoran = new AngsuranModel([
+        'id_pinjam' => $pinjaman->id_pinjam,
+        'tanggal' => now(),
+        'jumlah_angsuran' => $request->jumlah_setoran,
+        'total_bayar' => $request->jumlah_setoran,
+        'sisa_pinjaman' => $sisaPinjaman,
+    ]);
+    
+    $setoran->save();
+
+    // Calculate total setoran after the new setoran
+    $totalSetoran = $totalSetoranSebelumnya + $request->jumlah_setoran;
+
+    // Check if the loan is paid off
+    if ($totalSetoran >= $totalPinjaman) {
+        $pinjaman->status = 'Lunas';
+    } else {
+        $pinjaman->status = 'Belum Lunas'; // Optional: Add a status for unpaid loans
+    }
+
+    $pinjaman->save();
+
+    return redirect('/bendaharaPKK/index3')->with('success', 'Pembayaran angsuran berhasil dilakukan');
+}
+
+
+
 }

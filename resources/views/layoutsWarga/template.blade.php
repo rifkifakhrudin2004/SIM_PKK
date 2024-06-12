@@ -337,6 +337,7 @@
                             <div class="hujanbahasa">
                                 <div class="hujan">
                                     <a href="http://localhost/SIM_PKK/public/login">Login</a>
+                                    <a href="http://127.0.0.1:8000/login">Login</a>
                                 </div>
                             </div>
 

@@ -58,6 +58,10 @@
                 <th>Jumlah Angsuran</th>
                 <td>{{ $pinjam->angsuran->jumlah_angsuran }}</td>
             </tr>
+            <tr>
+                <th>Status Peminjaman</th>
+                <td>{{ $pinjam->status }}</td>
+            </tr>
         </table>
     </div>
 </div>
