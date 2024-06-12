@@ -9,6 +9,15 @@ use Illuminate\Support\Facades\Auth;
 
 class ArisanController extends Controller
 {
+<<<<<<< HEAD
+=======
+
+    // public function index(ArisanDataTable $dataTable)
+    // {
+    //     $activeMenu = 'arisan';
+    //     return $dataTable->render('arisan.index', compact('activeMenu'));
+
+>>>>>>> b30a3f4b25926f075167e76f3cd64ae85ed14377
     public function index(Request $request)
     {
         $activeMenu = 'arisan';

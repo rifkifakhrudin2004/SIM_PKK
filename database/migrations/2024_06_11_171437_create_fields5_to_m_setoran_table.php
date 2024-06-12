@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('m_pinjam', function (Blueprint $table) {
-            $table->string('status')->default('Belum Bayar')->after('bunga');
+        Schema::table('m_angsuran', function (Blueprint $table) {
+            $table->decimal('sisa_pinjaman',15,2)->default('0')->after('jumlah_angsuran');
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('m_pinjam', function (Blueprint $table) {
-            $table->string('status');
+        Schema::table('m_angsuran', function (Blueprint $table) {
+            //
         });
     }
 };

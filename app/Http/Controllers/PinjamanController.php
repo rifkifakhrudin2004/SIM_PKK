@@ -31,7 +31,7 @@ class PinjamanController extends Controller
         $activeMenu = 'verifikasi_pengajuan';
 
         // Mengambil semua pinjaman dengan anggota dan subkriterias
-        $pinjaman = PinjamanModel::with(['anggota2.subKriterias', 'bendahara2'])->get();
+        $pinjaman = PinjamanModel::with(['anggota2', 'bendahara2','angsuran'])->get();
 
         return view('pinjaman.indexAnggota', compact('breadcrumb', 'page', 'activeMenu', 'pinjaman'));
     }
@@ -66,7 +66,7 @@ class PinjamanController extends Controller
         $user = Auth::user();
     
         // Fetch all pinjaman with associated anggota and bendahara
-        $pinjaman = PinjamanModel::with(['anggota2', 'bendahara2', 'angsuran'])->get();
+        // $pinjaman = PinjamanModel::with(['anggota2', 'bendahara2', 'angsuran'])->get();
     
         // Fetch pinjaman specific to the authenticated user
         $pinjamanTampil = PinjamanModel::whereHas('anggota2', function ($query) use ($user) {
@@ -76,7 +76,7 @@ class PinjamanController extends Controller
         return view('pinjaman.index', [
             'breadcrumb' => $breadcrumb,
             'page' => $page,
-            'pinjaman' => $pinjaman,
+            // 'pinjaman' => $pinjaman,
             'pinjamanTampil' => $pinjamanTampil,
             'activeMenu' => $activeMenu
         ]);
@@ -97,42 +97,42 @@ class PinjamanController extends Controller
 
         $activeMenu = 'pinjaman';
 
-        $anggota = Alternatif::all();
+        $anggota = DataAnggotaModel::all();
         $bendahara = BendaharaModel::all();
 
         return view('pinjaman.create', compact('breadcrumb', 'page', 'activeMenu', 'anggota', 'bendahara'));
     }
 
     // Store a newly created resource in storage.
-    public function store(StorePinjamanRequest $request)
-    {
-        $data = $request->validated();
-        PinjamanModel::create($data);
+    // public function store(StorePinjamanRequest $request)
+    // {
+    //     $data = $request->validated();
+    //     PinjamanModel::create($data);
 
-        return redirect()->route('pinjaman.index')->with('success', 'Pengajuan pinjaman berhasil disimpan.');
+    //     return redirect()->route('pinjaman.index')->with('success', 'Pengajuan pinjaman berhasil disimpan.');
 
-        $user = Auth::user();
-        $id_anggota = $user->id_anggota;
-        // dd($user->id_anggota);
+    //     $user = Auth::user();
+    //     $id_anggota = $user->id_anggota;
+    //     // dd($user->id_anggota);
 
-        $anggota = DataAnggotaModel::all(); // Fetch all anggota
-        $bendahara = BendaharaModel::all(); // Fetch all bendahara
+    //     $anggota = DataAnggotaModel::all(); // Fetch all anggota
+    //     $bendahara = BendaharaModel::all(); // Fetch all bendahara
         
-        $activeMenu = 'pinjaman';
+    //     $activeMenu = 'pinjaman';
 
-        return view('pinjaman.create', [
-            'breadcrumb' => $breadcrumb,
-            'page' => $page,
-            'anggota' => $anggota,
-            'bendahara' => $bendahara,
-            'activeMenu' => $activeMenu,
-            'id_anggota' => $id_anggota
-        ]);
-    }
+    //     return view('pinjaman.create', [
+    //         'breadcrumb' => $breadcrumb,
+    //         'page' => $page,
+    //         'anggota' => $anggota,
+    //         'bendahara' => $bendahara,
+    //         'activeMenu' => $activeMenu,
+    //         'id_anggota' => $id_anggota
+    //     ]);
+    // }
 
     // Store a newly created resource in storage.
     public function store(Request $request)
-{
+    {
     // Validasi input
     $request->validate([
         'id_anggota' => 'required|exists:m_anggota,id_anggota',
@@ -161,6 +161,7 @@ class PinjamanController extends Controller
     $lama = $request->lama;
 
     $jumlah_angsuran = round(($jumlah_pinjaman + ($jumlah_pinjaman * $bunga / 100)) / $lama);
+    
 
     // Buat data pinjaman
     $pinjaman = new PinjamanModel([
@@ -182,14 +183,13 @@ class PinjamanController extends Controller
     $angsuran = new AngsuranModel([
         'id_pinjam' => $pinjaman->id_pinjam,
         'jumlah_angsuran' => $jumlah_angsuran,
+        'total_bayar' => '0',
         'tanggal' => now()->addMonths($lama),
     ]);
     $angsuran->save();
 
     return redirect('/pinjaman')->with('success', 'Pinjaman berhasil ditambahkan');
 }
-
-
     // Display the specified resource.
     public function show($id)
     {
@@ -325,4 +325,82 @@ class PinjamanController extends Controller
             return redirect('/pinjaman')->with('error', 'Data pinjaman gagal dihapus karena masih terdapat tabel lain yang terkait dengan data ini: ' . $e->getMessage());
         }
     }
+    public function indexAngsuran()
+    {
+        $breadcrumb = (object) [
+            'title' => 'Verifikasi Pembayaran Peminjaman',
+            'list' => ['Home', 'Pembayaran Peminjaman']
+        ];
+
+        $page = (object) [
+            'title' => 'Pembayaran Angsuran'
+        ];
+
+        $activeMenu = 'verifikasi_pembayaran';
+
+        $pinjaman = PinjamanModel::all();
+
+        return view('pinjaman.angsuran',compact('breadcrumb', 'page', 'activeMenu', 'pinjaman'));
+    }
+
+    public function bayarAngsuran(Request $request, $id)
+{
+    $pinjaman = PinjamanModel::with(['anggota2', 'bendahara2', 'angsuran'])->find($id);
+
+    if (!$pinjaman) {
+        return redirect('/pinjaman')->with('error', 'Data pinjaman tidak ditemukan');
+    }
+
+    // Check if the loan approval status is pending
+    if ($pinjaman->status_persetujuan === 'pending') {
+        return redirect('/bendaharaPKK/index3')->with('error', 'Pembayaran angsuran tidak dapat dilakukan karena status persetujuan masih pending');
+    }
+
+    $request->validate([
+        'jumlah_setoran' => 'required|numeric|min:0',
+    ]);
+
+    // Calculate total amount to be paid
+    $totalPinjaman = $pinjaman->jumlah_pinjaman + ($pinjaman->jumlah_pinjaman * $pinjaman->bunga / 100);
+
+    // Calculate monthly installment amount
+    $jumlahAngsuranPerBulan = $totalPinjaman / $pinjaman->lama;
+
+    // Calculate total setoran
+    $totalSetoranSebelumnya = AngsuranModel::where('id_pinjam', $pinjaman->id_pinjam)->sum('total_bayar');
+    
+    // Ensure that the payment being made matches the monthly installment
+    if ($request->jumlah_setoran != $jumlahAngsuranPerBulan) {
+        return redirect('/bendaharaPKK/index3')->with('error', 'Jumlah setoran harus sesuai dengan angsuran per bulan.');
+    }
+    // Calculate remaining loan amount
+    $sisaPinjaman = $totalPinjaman - $totalSetoranSebelumnya - $request->jumlah_setoran;
+
+    $pinjaman->angsuran->sisa_pinjaman = $sisaPinjaman;
+    $pinjaman->save();
+    // Create new setoran
+    $setoran = new AngsuranModel([
+        'id_pinjam' => $pinjaman->id_pinjam,
+        'tanggal' => now(),
+        'jumlah_angsuran' => $request->jumlah_setoran,
+        'total_bayar' => $request->jumlah_setoran,
+        'sisa_pinjaman' => $sisaPinjaman,
+    ]);
+    
+    $setoran->save();
+
+    // Calculate total setoran after the new setoran
+    $totalSetoran = $totalSetoranSebelumnya + $request->jumlah_setoran;
+
+    // Check if the loan is paid off
+    if ($totalSetoran >= $totalPinjaman) {
+        $pinjaman->status = 'Lunas';
+    } else {
+        $pinjaman->status = 'Belum Lunas'; // Optional: Add a status for unpaid loans
+    }
+
+    $pinjaman->save();
+
+    return redirect('/bendaharaPKK/index3')->with('success', 'Pembayaran angsuran berhasil dilakukan');
+}
 }
