@@ -1,74 +1,64 @@
-<div id="ranking">
-	
-	@if ($alternatifs->count() > 0)
-		
-	{{-- tabel data alternatif --}}
-	<div class="container mx-auto px-4 sm:px-8">
-		<div class="py-8">
-			<div class="flex items-center justify-between">
-				<h2 class="text-2xl font-semibold leading-tight">Hasil Perankingan</h2>
-				{{-- <x-jet-button class="button" wire:click="print">Cetak</x-jet-button> --}}
-			</div>
-			{{-- <p>Data berikut diurutkan berdasarkan nilai tertinggi.</p> --}}
-			<div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-				<div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
-					<table class="min-w-full leading-normal">
-						<thead>
+@extends('layoutsBendaharaPKK.template')
+
+@section('content')
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">SPK/Ranking</h3>
+    </div>
+    <div class="card card-outline card-primary">
+		<div id="perankingan">
+			@if ($alternatifs->count() > 0)
+			{{-- tabel data alternatif --}}
+			<div class="card-body">
+				<h3 class="text-1,5xl font-semibold leading-tight">Ranking</h3>
+				<div class="table-responsive">
+					<table class="table table-bordered table-striped">
+						<thead class="custom-thead">
 							<tr>
-								<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-900 text-white text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-									No
-								</th>
-								<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-900 text-white text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
-									Kode
-								</th>
-								<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-900 text-white text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
-									Nama
-								</th>
-								<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-900 text-white text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
-									Nilai
-								</th>
-								<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-900 text-white text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
-									Ranking
-								</th>
+								<th class="text-center">No</th>
+								<th class="text-center">Kode</th>
+								<th class="text-center">Nama</th>
+								<th class="text-center">Nilai</th>
+								<th class="text-center">Ranking</th>
 							</tr>
 						</thead>
 						<tbody>
 							@php $no = 1 @endphp
 							@forelse ($alternatifs->sortByDesc('nilai') as $index => $alt)
-							
 							<tr>
-								<td class="px-5 py-5 border-b border-gray-200 bg-white text-left text-sm">
-									{{-- {{ $no++ }} --}}
-									{{ $no }}
-								</td>
-								<td class="px-5 py-5 border-b border-gray-200 bg-white text-center text-sm">
-									{{ $alt->kode }}
-								</td>
-								<td class="px-5 py-5 border-b border-gray-200 bg-white text-center text-sm">
-									{{ $alt->name }}
-								</td>
-								<td class="px-5 py-5 border-b border-gray-200 bg-white text-center text-sm">
-									{{ $alt->nilai }}
-								</td>
-								<td class="px-5 py-5 border-b border-gray-200 bg-white text-center text-sm">
-									{{ $no++ }}
-								</td>
+								<td class="text-center">{{ $no }}</td>
+								<td class="text-center">{{ $alt->kode }}</td>
+								<td class="text-center">{{ $alt->name }}</td>
+								<td class="text-center">{{ $alt->nilai }}</td>
+								<td class="text-center">{{ $no++ }}</td>
 							</tr>
-							
-
 							@empty
-
 							<tr>
-								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm" colspan="{{ $kriterias->count() + 4 }}">Belum ada data alternatif.</td>
+								<td class="text-center" colspan="5">Belum ada data alternatif.</td>
 							</tr>
-							
 							@endforelse
 						</tbody>
 					</table>
 				</div>
 			</div>
+			@endif
 		</div>
 	</div>
-
-	@endif
+    
+    
 </div>
+@endsection
+
+<style>
+    .custom-thead {
+        background-color: #010050; /* Ubah kode warna sesuai kebutuhan */
+        color: white;
+		border-radius: 10px; /* Sesuaikan angka radius dengan keinginan Anda */
+    	overflow: hidden; /* Ubah warna teks jika diperlukan */
+    }
+	.table {
+    border-radius: 10px; /* Sesuaikan angka radius dengan keinginan Anda */
+    overflow: hidden;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	}
+</style>

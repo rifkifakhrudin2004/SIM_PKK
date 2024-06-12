@@ -1,65 +1,82 @@
-<div>
-	
-	{{-- tabel data alternatif --}}
-	<div class="container mx-auto px-4 sm:px-8">
-		<div class="py-8">
-			<div class="flex items-center justify-between">
-				<h2 class="text-2xl font-semibold leading-tight">Data Alternatif</h2>
-				<x-button-link href="{{ route('alternatif.create') }}">Tambah Alternatif</x-button-link>
-			</div>
-			<div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-				<div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
-					<table class="min-w-full leading-normal">
-						<thead>
-							<tr>
-								<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-900 text-white text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
-									No
-								</th>
-								<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-900 text-white text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
-									Kode Alternatif
-								</th>
-								<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-900 text-white text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
-									Nama Alternatif
-								</th>
-								<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-900 text-white  text-xs font-semibold text-gray-600 uppercase tracking-wider">
-									Aksi
-								</th>
-							</tr>
-						</thead>
-						<tbody>
-							@forelse ($alternatifs as $index => $alt)
-									
-							<tr>
-								<td class="px-5 py-5 border-b border-gray-200 bg-white text-center text-sm">
-									{{ $index + 1 }}
-								</td>
-								<td class="px-5 py-5 border-b border-gray-200 bg-white text-center text-sm">
-									{{ $alt->kode }}
-								</td>
-								<td class="px-5 py-5 border-b border-gray-200 bg-white text-center text-sm">
-									{{ $alt->name }}
-								</td>
-								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
-									<div class="flex items-center justify-center gap-4">
-										<a href="{{ route('alternatif.edit', $alt->id) }}" class="uppercase font-medium text-xs text-gray-700">Ubah</a>
-										<x-jet-button wire:click="delete({{ $alt->id }})">Hapus</x-jet-button>
-									</div>
-								</td>
-							</tr>
+@extends('layoutsBendaharaPKK.template')
 
-							@empty
+@section('content')
+<div class="card card-outline card-primary">
+    <div class="card-header">
+        <h3 class="card-title">SPK/Alternatif</h3>
+    </div>
+    <div class="container mx-auto px-4 sm:px-8">
+        <div class="py-8">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="h2 font-weight-semibold">Data Alternatif</h2>
+                <a href="{{ route('alternatif.create') }}" class="btn btn-primary">Tambah Alternatif</a>
+            </div>
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
 
-							<tr>
-								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm" colspan="6">
-									Data alternatif masih kosong.
-								</td>
-							</tr>
-
-							@endforelse
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-	</div>
+            @if(session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
+            <script>
+                // Function to remove notification after a few seconds
+                setTimeout(function(){
+                    document.querySelectorAll('.alert').forEach(function(alert) {
+                        alert.remove();
+                    });
+                }, 2500); // Adjust the time (in milliseconds) as needed
+            </script>
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered">
+                    <thead class="custom-thead">
+                        <tr>
+                            <th class="text-center">No</th>
+                            <th class="text-center">Kode Alternatif</th>
+                            <th class="text-center">Nama Alternatif</th>
+                            <th class="text-center">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($alternatifs as $index => $alt)
+                            <tr>
+                                <td class="text-center">{{ $index + 1 }}</td>
+                                <td class="text-center">{{ $alt->kode }}</td>
+                                <td class="text-center">{{ $alt->name }}</td>
+                                <td class="text-center">
+                                    <a href="{{ route('alternatif.edit', $alt->id) }}" class="btn btn-warning btn-sm">Ubah</a>
+                                    <form action="{{ route('alternatif.destroy', $alt->id) }}" method="POST" style="display: inline-block;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td class="text-center" colspan="4">Data alternatif masih kosong.</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
+@endsection
+<style>
+    .custom-thead {
+        background-color: #010050; /* Ubah kode warna sesuai kebutuhan */
+        color: white;
+		border-radius: 10px; /* Sesuaikan angka radius dengan keinginan Anda */
+    	overflow: hidden; /* Ubah warna teks jika diperlukan */
+    }
+	.table {
+    border-radius: 10px; /* Sesuaikan angka radius dengan keinginan Anda */
+    overflow: hidden;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	}
+</style>
