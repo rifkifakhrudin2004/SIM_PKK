@@ -8,9 +8,11 @@
     </div>
     <div class="card-body">
         @empty($user)
-            <div class="alert alert-danger alert-dismissible">
-                <h5><i class="icon fas fa-ban"></i> Kesalahan!</h5>
-                Data yang Anda cari tidak ditemukan.
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <i class="fas fa-exclamation-triangle"></i> Data yang Anda cari tidak ditemukan.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <a href="{{ url('user') }}" class="btn btn-sm btn-default mt-2">Kembali</a>
         @else

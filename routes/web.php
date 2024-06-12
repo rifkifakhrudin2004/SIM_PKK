@@ -58,23 +58,6 @@ Route::get('/', [WelcomeController::class, 'index']);
 Route::get('/about', [AboutController::class, 'index'])->name('about.index');
 Route::delete('/image/destroy', [UploadKetuaController::class, 'destroy'])->name('image.destroy');
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
-// Manage User
-// Route::prefix('users')->group(function () { // Grouped user routes
-//     Route::get('/create', [UsersController::class, 'create'])->name('users.create');
-//     Route::get('/edit/{id}', [UsersController::class, 'edit'])->name('users.edit');
-//     Route::get('/', [UsersController::class, 'index'])->name('users.index');
-//     Route::post('/', [UsersController::class, 'store'])->name('users.store');
-//     Route::put('/{id}', [UsersController::class, 'update'])->name('users.update');
-//     Route::delete('/{id}', [UsersController::class, 'destroy'])->name('users.destroy');
-//     Route::put('/edit_simpan/{id}', [UsersController::class, 'edit_simpan'])->name('user.edit_simpan'); // Changed from /user/{id}
-//     Route::get('/delete/{id}', [UsersController::class, 'delete'])->name('users.delete');
-// });
-
 // Manage Users
 // Route::prefix('users')->group(function () { // Grouped user routes
 //     Route::get('/create', [UsersController::class, 'create'])->name('users.create');
@@ -291,61 +274,6 @@ Route::prefix('ketuaPKK')->group(function () {
     Route::get('/dashboard', [KetuaPKKController::class, 'dashboard'])->name('ketua.dashboard');
 });
 
-// Nested groups for BendaharaPKK
-// Route::prefix('bendaharaPKK')->group(function () {
-//     Route::get('/', function () {
-//         return redirect()->route('bendaharaPKK.dashboard'); // Corrected redirect route
-//     });
-//     Route::get('/dashboard', [BendaharaPKKController::class, 'dashboard'])->name('bendaharaPKK.dashboard');
-//     Route::get('/index', [BendaharaPKKController::class, 'indexBendahara']);
-//     Route::patch('/index/{id}', [BendaharaPKKController::class, 'updateVerifikasi']);
-
-//     // Jadwal routes
-//     Route::get('/jadwal', [JadwalController::class, 'index'])->name('jadwals.index');
-//     Route::get('/jadwal/create', [JadwalController::class, 'create'])->name('jadwals.create');
-//     Route::post('/jadwal', [JadwalController::class, 'store'])->name('jadwals.store');
-//     Route::get('jadwal/{id}', [JadwalController::class, 'show'])->name('jadwals.show');
-//     Route::get('/jadwal/{id}/edit', [JadwalController::class, 'edit'])->name('jadwals.edit');
-//     Route::put('/jadwal/{id}', [JadwalController::class, 'update'])->name('jadwals.update');
-//     Route::delete('/jadwal/{id}', [JadwalController::class, 'destroy'])->name('jadwals.destroy');
-    
-//     // Data Arisan
-//         Route::get('/data-arisan', [ArisanController::class, 'index'])->name('arisan.index');
-//         Route::get('/data-arisan/create', [ArisanController::class, 'create'])->name('arisan.create');
-//         Route::post('/data-arisan', [ArisanController::class, 'store'])->name('arisan.store');
-//         Route::get('/data-arisan/{id}', [ArisanController::class, 'show'])->name('arisan.show');
-//         Route::get('/data-arisan{id}/edit', [ArisanController::class, 'edit'])->name('arisan.edit');
-//         Route::put('/data-arisan/{id}', [ArisanController::class, 'update'])->name('arisan.update');
-//         Route::delete('/data-arisan/{id}', [ArisanController::class, 'destroy'])->name('arisan.destroy');
-
-//     // Pembukuan Arisan
-//     Route::get('/pembukuan', [PembukuanArisanController::class, 'index'])->name('pembukuan.index');
-//     Route::get('/pembukuan/create', [PembukuanArisanController::class, 'create'])->name('pembukuan.create');
-//     Route::post('/pembukuan', [PembukuanArisanController::class, 'store'])->name('pembukuan.store');
-//     Route::get('pembukuan/{id}', [PembukuanArisanController::class, 'show'])->name('pembukuan.show');
-//     Route::get('/pembukuan/{id}/edit', [PembukuanArisanController::class, 'edit'])->name('pembukuan.edit');
-//     Route::put('/pembukuan/{id}', [PembukuanArisanController::class, 'update'])->name('pembukuan.update');
-//     Route::delete('/pembukuan/{id}', [PembukuanArisanController::class, 'destroy'])->name('pembukuan.destroy');
-
-//     Route::patch('arisan/{id}/update-status', [ArisanController::class, 'updateStatus'])->name('arisan.updateStatus');
-
-//     // history
-//     Route::resource('history', HistoryController::class);
-
-//     // kocok
-//     Route::get('/kocok', [KocokController::class, 'kocok'])->name('kocok');
-//     Route::get('/hasil', [KocokController::class, 'hasil'])->name('hasil');
-//     Route::get('/clear', [KocokController::class, 'delete'])->name('delete');
-//     Route::get('/random-picker', [KocokController::class, 'randomPicker'])->name('random-picker');
-// });
-
-
-// Route::get('/data-arisan', [ArisanController::class, 'dataArisan'])->name('arisan.data');
-// Route::get('/jadwal', [ArisanController::class, 'jadwal'])->name('arisan.jadwal');
-// Route::get('/pembukuan', [ArisanController::class, 'pembukuan'])->name('arisan.pembukuan');
-// Route::resource('/arisan', ArisanController::class)->except(['index', 'show']);
-
-
 
 // Nested groups for Anggota
 
@@ -423,29 +351,6 @@ Route::prefix('konten')->group(function () {
     Route::get('/konten/{id}/edit', [KontenController::class, 'edit'])->name('konten.edit');
     Route::put('/konten/{id}', [KontenController::class, 'update'])->name('konten.update');
     Route::delete('/konten/{id}', [KontenController::class, 'destroy'])->name('konten.destroy');
-
-    
-// SPK
-// Route::get('/alternatif', AlternatifIndex::class)->name('alternatif.index');
-// 	// route data alternatif 
-// 	Route::get('/alternatif/create', AlternatifCreate::class)->name('alternatif.create');
-// 	Route::get('/alternatif/{id}/edit', AlternatifEdit::class)->name('alternatif.edit');
-
-// 	// route data kriteria
-// 	Route::get('/kriteria', KriteriaIndex::class)->name('kriteria.index');
-// 	Route::get('/kriteria/create', KriteriaCreate::class)->name('kriteria.create');
-// 	Route::get('/kriteria/{id}/edit', KriteriaEdit::class)->name('kriteria.edit');
-
-// 	// route data sub kriteria
-// 	Route::get('/subkriteria/{kriteria}/create', SubkriteriaCreate::class)->name('subkriteria.create');
-
-// 	// route penilaian
-// 	Route::get('/penilaian', PenilaianIndex::class)->name('penilaian.index');
-// 	Route::get('/penilaian/{altId}/edit', PenilaianEdit::class)->name('penilaian.edit');
-	
-// 	Route::get('/ranking', ProsesIndex::class)->name('proses.index');
-// 	Route::get('/perhitungan', PerhitunganIndex::class)->name('perhitungan.index');
-
 
 
     Route::get('/konten', [KontenController::class, 'index'])->name('konten.index');
