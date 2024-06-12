@@ -14,15 +14,6 @@
 </head>
 
 <body x-data="{'loaded': true}" class="bg-white dark:bg-[#30373F]">
-    {{-- <div x-show="loaded" x-init="window.addEventListener('DOMContentLoaded', () => {setTimeout(() => loaded = false, 500)})" class="fixed left-0 top-0 z-[9999999] flex h-screen w-screen items-center justify-center bg-white dark:bg-[#2F363E]">
-        <div class="flex items-center justify-center h-screen">
-            <div class="relative">
-                <div class="h-24 w-24 rounded-full border-t-8 border-b-8 border-gray-200"></div>
-                <div class="absolute top-0 left-0 h-24 w-24 rounded-full border-t-8 border-b-8 border-[#57BA47] animate-spin">
-                </div>
-            </div>
-        </div>
-    </div> --}}
     <nav class="sticky top-0 z-[99] bg-white border-gray-200 dark:border-gray-600 dark:bg-[#2F363E] border-b-2 h-fit" id="navbar" style="transition: all 0.5s">
     <div class="w-full flex flex-wrap items-center justify-between lg:px-12 sm:px-10 px-5 py-4">
         <a href="https://sirawa.diy-projects.my.id" class="flex items-center space-x-3">
@@ -41,13 +32,11 @@
                 
             </div>
 
-
             <!-- dark mode -->
             <div class="lg:h-11 lg:w-11 h-13 w-13 flex justify-center items-center cursor-pointer rounded-full p-2" id="darkMode"></div>
 
-                        <a href="https://sirawa.diy-projects.my.id/login" class="py-1 px-5 bg-[#34662C] shadow-lg rounded-2xl text-lg font-semibold text-white hover:bg-white hover:text-[#34662C] border-2 border-transparent hover:border-[#34662C] transition ease-in-out duration-200">Masuk</a>
+                        <a href="http://localhost/SIM_PKK/public/login" class="py-1 px-5 bg-[#34662C] shadow-lg rounded-2xl text-lg font-semibold text-white hover:bg-white hover:text-[#34662C] border-2 border-transparent hover:border-[#34662C] transition ease-in-out duration-200">LOGIN</a>
             
-
             <button data-collapse-toggle="navbar-user" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-user" aria-expanded="false">
                 <span class="sr-only">Open main menu</span>
                 <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
@@ -141,17 +130,15 @@
         }
 </style>
 
-
                                         </ul>
                                     </div>
                                 </div>
 
 
-
                             </div>
                         </div>
 
-                        <div class="menu__right">
+                        {{-- <div class="menu__right">
 
                             <div class="hujanbahasa">
                                 <div class="hujan">
@@ -165,9 +152,8 @@
                                 </div>
 
 
-
                             </div>
-                        </div>
+                        </div> --}}
 
                     </nav>
                 </div>
@@ -176,62 +162,6 @@
                 <div class="mainwrap">
                     <div class="sectionrow">
                         <div class="bagidua">
-
-                            <div class="bagidua__col">
-                                <div class="kalender" id="kalender">
-                                    <div class="xsection__header">
-                                        <h2 class="xsection__title"> Kalender </h2>
-
-                                    </div>
-                                    <div class="kalender__body">
-
-                                        <div class="kalendarnav-outer">
-                                            <script src="https://www.bandung.go.id/assets/plugins/fullcalendar.io/lib/main.js"></script>
-                                            <script src="https://www.bandung.go.id/assets/plugins/fullcalendar.io/lib/locales/id.js"></script>
-                                            <script>
-                                                document.addEventListener('DOMContentLoaded', function() {
-                                                    var calendarEl = document.getElementById('calendar');
-                                                    var calendar = new FullCalendar.Calendar(calendarEl, {
-                                                        locale: 'id',
-                                                        headerToolbar: {
-                                                            center: false,
-                                                            right: 'prev,next today',
-                                                            left: 'title',
-                                                        },
-                                                        eventClick: function(event) {
-                                                            if (event.event.url) {
-                                                                event.jsEvent.preventDefault();
-                                                                window.open(event.event.url, "_blank");
-                                                            }
-                                                        },
-                                                        initialDate: "2024-04-30",
-                                                        aspectRatio: 3.5,
-                                                        navLinks: false, // can click day/week names to navigate views
-                                                        selectable: true,
-                                                        selectMirror: true,
-                                                        fixedWeekCount: false,
-                                                        editable: false,
-                                                        dayMaxEvents: true, // allow "more" link when too many events
-                                                        events: {
-                                                            url: "https://www.bandung.go.id/calendar_data",
-                                                            // method: 'POST',
-                                                            failure: function() {
-                                                                alert('there was an error while fetching events!');
-                                                            },
-                                                        }
-                                                    });
-
-                                                    calendar.render();
-
-                                                });
-                                            </script>
-                                            <div class="kalendar-overflow">
-                                                <div id='calendar'></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
                             <div class="bagidua__col" id="kolomsosial">
                                 <div class="sosial">
@@ -251,7 +181,7 @@
 
                 <div class="bg-yellow etalase-section" id="etalase">
                     <div class="wrapper">
-                        <div class="sectionrow">
+                        {{-- <div class="sectionrow">
                             <div class="xsection__header">
                                 <h2 class="xsection__title">Dokumentasi Kegiatan</h2>
                             </div>
@@ -280,7 +210,7 @@
                                 @if (session('success'))
                                     <div class="alert alert-success">
                                     {{ session('success') }}</div>
-                                @endif
+                                @endif --}}
 
 <!-- UMKM -->
 <div class="lg:h-[90vh] h-fit w-[84vw] mt-[13vh] lg:py-[5vh] mx-auto relative" data-aos="fade-right" data-aos-duration="1000" data-aos-easing="ease-in-sine">
@@ -290,15 +220,19 @@
             <div class="swiper-wrapper !w-full !sm:py-20 !py-12">
                 <div class="swiper-slide relative bg-white dark:bg-[#30373F] rounded-2xl shadow-lg flex flex-col overflow-hidden hover:shadow-2xl transition ease-in-out duration-500 group cursor-pointer" onclick="window.location='https://sirawa.diy-projects.my.id/umkm/detail/8'">
                     <div class="image-container">
-                        <img src="{{ asset('adminlte/dist/img/VENU53.svg') }}" alt="" class="group-hover:brightness-[0.4] transition ease-in-out duration-500 group-hover:scale-110">
-                    </div>
-                    <div class="h-[30%] w-full flex flex-col justify-center items-center gap-1 text-[#1C4F0F] dark:text-white">
-                        <p class="font-bold text-lg">Health Haven Apotek</p>
-                        <hr class="text-black">
-                        <div class="text-sm flex justify-center items-center gap-3">
-                            <i class="fa-regular fa-clock"></i>
-                            <p class="">09:30 - 21:00</p>
-                        </div>
+
+                        @foreach ($upload as $up)
+                                            <div class="element">
+                                                <a class="thumboverlay"
+                                                    onclick="openPopup('{{ asset($up->foto_konten) }}', '{{ $up->deskripsi_konten }}')">
+                                                    <div class="thumboverlay__inner">
+                                                        <div class="thumboverlay__img">
+                                                            <img src="{{ asset($up->foto_konten) }}" alt="img">
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        @endforeach
                     </div>
                 </div>
                 <!-- Tambahkan lebih banyak swiper-slide di sini -->
@@ -336,15 +270,12 @@
     </div>
 </div>
 
-
 <footer>
     <div class="pt-16 w-full ">
         <div class="grid sm:gap-10 gap-5 row-gap-6 mb-6 grid-cols-2 lg:grid-cols-4 mx-auto sm:w-[80%] w-[90%]">
         <div class="col-span-2 text-center lg:text-left">
         <a href="/" aria-label="Go home" title="Company" class="inline-flex items-center gap-4">
-        <!-- <img src="https://sirawa.diy-projects.my.id/assets/images/logo.png" alt="" class="size-13 object-cover"> -->
-        <img src="https://sirawa.diy-projects.my.id/assets/images/logoText.png" alt="" class="sm:h-13 h-9 block dark:hidden !ml-0">
-        <img src="https://sirawa.diy-projects.my.id/assets/images/logoText-dark.png" alt="" class="sm:h-13 h-9 dark:block hidden !ml-0">
+        <img src="{{ asset('vendor/adminlte/dist/img/VENU53.svg') }}" alt="Login Image" class="img-fluid" style="width: 100%; height: auto;">
         </a>
         <div class="mt-6 lg:max-w-sm">
         <p class="text-sm text-gray-800 dark:text-white">
@@ -356,17 +287,15 @@
         <p class="text-base font-bold tracking-wide text-gray-900 dark:text-white">Hubungi</p>
         <div class="flex lg:justify-start justify-end">
         <p class="mr-1 text-gray-800 dark:text-white hidden sm:inline-flex">Telepon :</p>
-        <a href="tel:850-123-5021" aria-label="Our phone" title="Our phone" class="transition-colors duration-300 text-deep-purple-accent-400 dark:text-white hover:text-deep-purple-800">850-123-5021</a>
+        <a href="tel:850-123-5021" aria-label="Our phone" title="Our phone" class="transition-colors duration-300 text-deep-purple-accent-400 dark:text-white hover:text-deep-purple-800">812-345-6789</a>
         </div>
         <div class="flex lg:justify-start justify-end">
         <p class="mr-1 text-gray-800 dark:text-white hidden sm:inline-flex">Email :</p>
-        <a href="mailto:info@lorem.mail" aria-label="Our email" title="Our email" class="transition-colors duration-300 text-deep-purple-accent-400 dark:text-white hover:text-deep-purple-800">info@lorem.mail</a>
+        <a href="mailto:info@lorem.mail" aria-label="Our email" title="Our email" class="transition-colors duration-300 text-deep-purple-accent-400 dark:text-white hover:text-deep-purple-800">venus@lorem.mail</a>
         </div>
         <div class="flex lg:justify-start justify-end">
         <p class="mr-1 text-gray-800 dark:text-white hidden sm:inline-flex">Alamat :</p>
-        <a href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer" aria-label="Our address" title="Our address" class="transition-colors duration-300 text-deep-purple-accent-400 dark:text-white hover:text-deep-purple-800">
-        312 Lovely Street, NY
-        </a>
+        <a href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer" aria-label="Our address" title="Our address" class="transition-colors duration-300 text-deep-purple-accent-400 dark:text-white hover:text-deep-purple-800">RW 05 Tlogomas</a>
         </div>
         </div>
         <div class="sm:pl-5 pl-0 lg:pl-0">
@@ -401,7 +330,6 @@
         
 </footer>
 <!-- footer -->
-
 
 <!-- text animation -->
 {{-- <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
@@ -439,10 +367,11 @@ const swiper = new Swiper('.mySwiper', {
 
 
 
-
 </script>
 <script defer src="https://sirawa.diy-projects.my.id/assets/js/bundle.js"></script>
 
 </body>
 
+
 </html>
+

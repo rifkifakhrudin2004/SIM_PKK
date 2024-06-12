@@ -4,6 +4,13 @@
 <div class="container">
     <h1 class="text-center">Upload Konten</h1>
 
+    <!-- Alert for success message -->
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <div class="d-flex justify-content-center">
         <div class="upload-container">
             <form action="{{ route('ketuaPKK.upload') }}" method="POST" enctype="multipart/form-data">
@@ -11,11 +18,11 @@
                 <div class="custom-file">
                     <label class="custom-file-label-large" for="file-input">
                         <div class="file-info">
-                                <label for="berkas" class="form-label">Pilih Gambar</label>
-                                <input type="file" class="form-control" id="foto_konten" name="foto_konten">
-                                @error('berkas')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
+                            <label for="berkas" class="form-label">Pilih Gambar</label>
+                            <input type="file" class="form-control" id="foto_konten" name="foto_konten">
+                            @error('berkas')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </label>
                 </div>

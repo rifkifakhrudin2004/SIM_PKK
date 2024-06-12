@@ -10,7 +10,7 @@
       </li>
       <li class="nav-header">Data Pengguna</li>
       <li class="nav-item">
-        <a href="{{ route('ketuaPKK.history') }}" class="nav-link {{ ($activeMenu == 'history') ? 'active' : '' }}" id="history-link" onclick="activate('history-link')">
+        <a href="{{ url('/ketuaPKK/history') }}" class="nav-link {{ ($activeMenu == 'history') ? 'active' : '' }}" onclick="loadContent('{{ route('ketuaPKK.history') }}')">
           <i class="nav-icon fas fa-layer-group"></i>
           <p>History Arisan</p>
         </a>

@@ -75,12 +75,6 @@ Route::get('/profil', [WelcomeController::class, 'profil'])->name('profil');
 Route::get('/about', [AboutController::class, 'index'])->name('about.index');
 Route::delete('/image/destroy', [UploadKetuaController::class, 'destroy'])->name('image.destroy');
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-
-
 
 
 // Manage Users
@@ -257,8 +251,11 @@ Route::prefix('ketuaPKK')->group(function () {
         return redirect()->route('ketua.dashboard'); // Corrected redirect route
     });
     Route::get('/dashboard', [KetuaPKKController::class, 'dashboard'])->name('ketua.dashboard');
+    Route::get('/history', [KetuaPKKController::class, 'history'])->name('ketuaPKK.history');
+    Route::get('/upload', [UploadKetuaController::class, 'index'])->name('ketuaPKK.index');
+    Route::post('/upload', [UploadKetuaController::class, 'upload'])->name('ketuaPKK.upload');
+    
 });
-
 
 // Nested groups for BendaharaPKK
 // Route::prefix('bendaharaPKK')->group(function () {
@@ -396,9 +393,7 @@ Route::prefix('konten')->group(function () {
         Route::delete('/{id}', [KontenController::class, 'destroy'])->name('konten.destroy');
     });
 
-    Route::get('/ketuaPKK/upload', [UploadKetuaController::class, 'index'])->name('ketuaPKK.index');
-    Route::post('/ketuaPKK/upload', [UploadKetuaController::class, 'upload'])->name('ketuaPKK.upload');
-    Route::get('ketuaPKK/history', [HistoryController::class, 'history'])->name('ketuaPKK.history');
+    
 
     Route::get('/konten', [KontenController::class, 'index'])->name('konten.index');
     Route::get('/konten/create', [KontenController::class, 'create'])->name('konten.create');

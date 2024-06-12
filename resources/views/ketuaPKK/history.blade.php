@@ -1,14 +1,11 @@
 @extends('layoutsKetuaPKK.template')
 
 @section('content')
-@php
-    $activeMenu = 'history';
-@endphp
 <div class="card card-outline card-primary">
 <div class="container">
     <h1>Arisan History</h1>
 
-    <form method="GET" action="{{ route('history.index') }}">
+    <form method="GET" action="{{ route('ketuaPKK.history') }}">
         <div class="row">
             <div class="col-md-4">
                 <select name="year" class="form-control">
