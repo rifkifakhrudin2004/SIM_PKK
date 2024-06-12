@@ -29,7 +29,14 @@
     @stack('css') <!-- Digunakan untuk memanggil custom css dari perintah push('css') pada masing-masing view -->
 </head>
 
-
+<style>
+    .brand-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none; /* Optional: remove underline from the link */
+        }
+</style>
 <body class="hold-transition sidebar-mini">
     <!-- Site wrapper -->
     <div class="wrapper">
@@ -42,7 +49,7 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="{{ url('/') }}" class="brand-link">
-                <img src="{{ asset('adminlte/dist/img/VENU53.svg') }}" alt="AdminLTE Logo" style="width: 100%; height: auto;">
+                <img src="{{ asset('adminlte/dist/img/VENU53.svg') }}" class="sm:h-12 h-9 sm:hidden block center " alt="Logo" />
             </a>
             
 

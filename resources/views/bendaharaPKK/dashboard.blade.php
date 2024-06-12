@@ -21,7 +21,10 @@
     </div>
 </div>
 
+
+
 {{-- CHART --}}
+
 <section class="content">
     <div class="container-fluid">
         <!-- GOOGLE LOOKER STUDIO REPORT -->

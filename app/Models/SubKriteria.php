@@ -11,9 +11,15 @@ class SubKriteria extends Model
 
     protected $guarded = [];
 
-	// relasi ke kriteria (parent model)
-	public function kriteria()
-	{
-		return $this->belongsTo(Kriteria::class);
-	}
+    // Relasi ke kriteria (parent model)
+    public function kriteria()
+    {
+        return $this->belongsTo(Kriteria::class);
+    }
+
+    // Relasi ke DataAnggotaModel
+    public function anggota()
+    {
+        return $this->belongsTo(DataAnggotaModel::class, 'id_anggota', 'id_anggota');
+    }
 }
