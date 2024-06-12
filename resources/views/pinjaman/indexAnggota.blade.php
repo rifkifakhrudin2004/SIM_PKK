@@ -56,7 +56,7 @@
                 @endforeach
             </tbody>
         </table>
-    </div>
+    </div>r
 
                         <td>{{ $data->bunga }}</td>
                         <td>{{ $data->lama }}</td>

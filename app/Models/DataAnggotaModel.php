@@ -16,8 +16,8 @@ class DataAnggotaModel extends Model
         'jumlah_tanggungan', 'status_rumah', 'verifikasi'
     ];
 
-    public function subKriterias()
-    {
-        return $this->hasMany(SubKriteria::class, 'id_anggota', 'id_anggota');
-    }
+    // public function subKriterias()
+    // {
+    //     return $this->hasMany(SubKriteria::class, 'id_anggota', 'id_anggota');
+    // }
 }

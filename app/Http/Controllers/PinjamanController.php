@@ -31,7 +31,7 @@ class PinjamanController extends Controller
         $activeMenu = 'verifikasi_pengajuan';
 
         // Mengambil semua pinjaman dengan anggota dan subkriterias
-        $pinjaman = PinjamanModel::with(['anggota2.subKriterias', 'bendahara2'])->get();
+        $pinjaman = PinjamanModel::with(['anggota2', 'bendahara2','angsuran'])->get();
 
         return view('pinjaman.indexAnggota', compact('breadcrumb', 'page', 'activeMenu', 'pinjaman'));
     }
@@ -66,7 +66,7 @@ class PinjamanController extends Controller
         $user = Auth::user();
     
         // Fetch all pinjaman with associated anggota and bendahara
-        $pinjaman = PinjamanModel::with(['anggota2', 'bendahara2', 'angsuran'])->get();
+        // $pinjaman = PinjamanModel::with(['anggota2', 'bendahara2', 'angsuran'])->get();
     
         // Fetch pinjaman specific to the authenticated user
         $pinjamanTampil = PinjamanModel::whereHas('anggota2', function ($query) use ($user) {
@@ -76,7 +76,7 @@ class PinjamanController extends Controller
         return view('pinjaman.index', [
             'breadcrumb' => $breadcrumb,
             'page' => $page,
-            'pinjaman' => $pinjaman,
+            // 'pinjaman' => $pinjaman,
             'pinjamanTampil' => $pinjamanTampil,
             'activeMenu' => $activeMenu
         ]);
@@ -97,42 +97,42 @@ class PinjamanController extends Controller
 
         $activeMenu = 'pinjaman';
 
-        $anggota = Alternatif::all();
+        $anggota = DataAnggotaModel::all();
         $bendahara = BendaharaModel::all();
 
         return view('pinjaman.create', compact('breadcrumb', 'page', 'activeMenu', 'anggota', 'bendahara'));
     }
 
     // Store a newly created resource in storage.
-    public function store(StorePinjamanRequest $request)
-    {
-        $data = $request->validated();
-        PinjamanModel::create($data);
+    // public function store(StorePinjamanRequest $request)
+    // {
+    //     $data = $request->validated();
+    //     PinjamanModel::create($data);
 
-        return redirect()->route('pinjaman.index')->with('success', 'Pengajuan pinjaman berhasil disimpan.');
+    //     return redirect()->route('pinjaman.index')->with('success', 'Pengajuan pinjaman berhasil disimpan.');
 
-        $user = Auth::user();
-        $id_anggota = $user->id_anggota;
-        // dd($user->id_anggota);
+    //     $user = Auth::user();
+    //     $id_anggota = $user->id_anggota;
+    //     // dd($user->id_anggota);
 
-        $anggota = DataAnggotaModel::all(); // Fetch all anggota
-        $bendahara = BendaharaModel::all(); // Fetch all bendahara
+    //     $anggota = DataAnggotaModel::all(); // Fetch all anggota
+    //     $bendahara = BendaharaModel::all(); // Fetch all bendahara
         
-        $activeMenu = 'pinjaman';
+    //     $activeMenu = 'pinjaman';
 
-        return view('pinjaman.create', [
-            'breadcrumb' => $breadcrumb,
-            'page' => $page,
-            'anggota' => $anggota,
-            'bendahara' => $bendahara,
-            'activeMenu' => $activeMenu,
-            'id_anggota' => $id_anggota
-        ]);
-    }
+    //     return view('pinjaman.create', [
+    //         'breadcrumb' => $breadcrumb,
+    //         'page' => $page,
+    //         'anggota' => $anggota,
+    //         'bendahara' => $bendahara,
+    //         'activeMenu' => $activeMenu,
+    //         'id_anggota' => $id_anggota
+    //     ]);
+    // }
 
     // Store a newly created resource in storage.
     public function store(Request $request)
-{
+    {
     // Validasi input
     $request->validate([
         'id_anggota' => 'required|exists:m_anggota,id_anggota',
@@ -190,8 +190,6 @@ class PinjamanController extends Controller
 
     return redirect('/pinjaman')->with('success', 'Pinjaman berhasil ditambahkan');
 }
-
-
     // Display the specified resource.
     public function show($id)
     {
