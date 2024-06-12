@@ -405,7 +405,4 @@ class PinjamanController extends Controller
 
     return redirect('/bendaharaPKK/index3')->with('success', 'Pembayaran angsuran berhasil dilakukan');
 }
-
-
-
 }
