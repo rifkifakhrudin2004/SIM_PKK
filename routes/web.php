@@ -75,7 +75,6 @@ Route::get('/profil', [WelcomeController::class, 'profil'])->name('profil');
 Route::get('/about', [AboutController::class, 'index'])->name('about.index');
 Route::delete('/image/destroy', [UploadKetuaController::class, 'destroy'])->name('image.destroy');
 
-
 // Route::get('/', function () {
 //     return view('welcome');
 // });
@@ -107,7 +106,6 @@ Route::delete('/image/destroy', [UploadKetuaController::class, 'destroy'])->name
 
 
 
-
 // Manage Users
 // Route::prefix('users')->group(function () { // Grouped user routes
 //     Route::get('/create', [UsersController::class, 'create'])->name('users.create');
@@ -134,48 +132,7 @@ Route::group(['prefix' => 'user'], function () {
     Route::put('/{id}', [UserController::class, 'update']); //menyimpan perubahan data user
     Route::delete('/{id}', [UserController::class, 'destroy']); //menghapus data user
 });
-// Route::group(['prefix' => 'dataAnggota'], function () {
-//     Route::get('/', [DataAnggotaController::class, 'index']); //menampilkan halaman awal user
-//     Route::post('/list', [DataAnggotaController::class, 'list']); //menampilkan data user dalam bentuk json untuk database
-//     Route::get('create', [DataAnggotaController::class, 'create']); //menampilkan halaman form tambah user
-//     Route::post('/', [DataAnggotaController::class, 'store']); //menyimpan data user baru
-//     Route::get('/{id}', [DataAnggotaController::class, 'show']); //menampilkan detail user
-//     Route::get('/{id}/edit', [DataAnggotaController::class, 'edit']); //menampilkan halaman form edit user
-//     Route::put('/{id}', [DataAnggotaController::class, 'update']); //menyimpan perubahan data user
-//     Route::delete('/{id}', [DataAnggotaController::class, 'destroy']); //menghapus data user
-// });
-// Route::group(['prefix' => 'dataBendahara'], function () {
-//     Route::get('/', [BendaharaPKKController::class, 'index']); 
-//     Route::post('/list', [BendaharaPKKController::class, 'list']); 
-//     Route::get('create', [BendaharaPKKController::class, 'create']); 
-//     Route::post('/', [BendaharaPKKController::class, 'store']); 
-//     Route::get('/{id}', [BendaharaPKKController::class, 'show']); 
-//     Route::get('/{id}/edit', [BendaharaPKKController::class, 'edit']); 
-//     Route::put('/{id}', [BendaharaPKKController::class, 'update']); 
-//     Route::delete('/{id}', [BendaharaPKKController::class, 'destroy']); 
-// });
-// Route::group(['prefix' => 'simpanan'], function () {
-//     Route::get('/', [SimpanController::class, 'index']); 
-//     Route::post('/list', [SimpanController::class, 'list']); 
-//     Route::get('create', [SimpanController::class, 'create']); 
-//     Route::post('/', [SimpanController::class, 'store']); 
-//     Route::get('/{id}', [SimpanController::class, 'show']); 
-//     Route::get('/{id}/edit', [SimpanController::class, 'edit']); 
-//     Route::put('/{id}', [SimpanController::class, 'update']); 
-//     Route::delete('/{id}', [SimpanController::class, 'destroy']); 
-// });
-// Route::group(['prefix' => 'pinjaman'], function () {
-//     Route::get('/', [PinjamanController::class, 'index']); 
-//     Route::post('/list', [PinjamanController::class, 'list']); 
-//     Route::get('create', [PinjamanController::class, 'create']); 
-//     Route::post('/', [PinjamanController::class, 'store']); 
-//     Route::get('/{id}', [PinjamanController::class, 'show']); 
-//     Route::get('/{id}/edit', [PinjamanController::class, 'edit']); 
-//     Route::put('/{id}', [PinjamanController::class, 'update']); 
-//     Route::delete('/{id}', [PinjamanController::class, 'destroy']); 
-//     Route::post('/pinjaman/{id}/bayar', [PinjamanController::class, 'bayarAngsuran'])->name('pinjaman.bayar');
 
-// });
 // Manage Login
 Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::get('register', [AuthController::class, 'register'])->name('register');
@@ -424,7 +381,6 @@ Route::prefix('anggota')->group(function () {
 });
 
 
-
 // User dashboard
 // Route::prefix('user')->group(function () {
 //     Route::get('/', function () {
@@ -468,8 +424,10 @@ Route::prefix('konten')->group(function () {
     Route::delete('/{id}', [KontenController::class, 'destroy'])->name('konten.destroy');
 });
 
+
 Route::get('/ketuaPKK/upload', [UploadKetuaController::class, 'index'])->name('ketuaPKK.index');
 Route::post('/ketuaPKK/upload', [UploadKetuaController::class, 'upload'])->name('ketuaPKK.upload');
+
 
 Route::get('/konten', [KontenController::class, 'index'])->name('konten.index');
 Route::get('/konten/create', [KontenController::class, 'create'])->name('konten.create');

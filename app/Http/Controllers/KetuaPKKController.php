@@ -33,5 +33,4 @@ class KetuaPKKController extends Controller
 
         return view('ketuaPKK.history', compact('histories', 'activeMenu'));
     }
-
 }

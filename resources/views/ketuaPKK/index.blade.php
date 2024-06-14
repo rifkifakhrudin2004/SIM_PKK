@@ -10,7 +10,6 @@
             {{ session('success') }}
         </div>
     @endif
-
     <div class="row justify-content-center mt-4">
         <div class="col-md-8">
             <div class="card">
@@ -23,6 +22,16 @@
                             <label for="foto_konten" class="form-label">Pilih Gambar</label>
                             <input type="file" class="form-control" id="foto_konten" name="foto_konten">
                             @error('foto_konten')
+    <div class="d-flex justify-content-center">
+        <div class="upload-container">
+            <form action="{{ route('ketuaPKK.upload') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="custom-file">
+                    <label class="custom-file-label-large" for="file-input">
+                        <div class="file-info">
+                            <label for="berkas" class="form-label">Pilih Gambar</label>
+                            <input type="file" class="form-control" id="foto_konten" name="foto_konten">
+                            @error('berkas')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>

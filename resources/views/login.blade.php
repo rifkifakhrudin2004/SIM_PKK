@@ -6,7 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>AdminLTE 3</title>
+
+    <title>VENUS</title>
 
     <link rel="stylesheet" href="{{ asset('vendor/icheck-bootstrap/icheck-bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/custom-login.css') }}">
@@ -108,14 +111,16 @@
                         SIGN IN
                     </h3>
                 </div>
-
-                <div class="card-body login-card-body">
                     <br>
                     <form action="{{ route('proses_login') }}" method="post">
                         @csrf
                         <div class="input-group mb-3">
                             <input type="text" name="username" class="form-control" value=""
                                 placeholder="Username" autofocus>
+                    <form action="{{ route('proses_login') }}" method="post">
+                        @csrf
+                        <div class="input-group mb-3">
+                            <input type="text" name="username" class="form-control" value="" placeholder="Username" autofocus>
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-envelope" style="color: black"></span>
@@ -124,18 +129,38 @@
                         </div>
 
                         <div class="input-group mb-3">
+<<<<<<< HEAD
                             <input type="password" name="password" id="password" class="form-control"
                                 placeholder="Password">
+=======
+                            <input type="password" name="password" id="password" class="form-control" placeholder="Password">
+>>>>>>> 1e2a1d3c30d420acbcf4117e3befc3cc5fab601c
                             <div class="input-group-append">
                                 <div class="input-group-text" onclick="togglePassword()">
                                     <span class="fas fa-eye" id="togglePasswordIcon" style="color: black"></span>
                                 </div>
                             </div>
                         </div>
+<<<<<<< HEAD
                         <div class="row">
                             <div class="col-7">
                                 <div class="icheck-primary"
                                     title="Keep me authenticated indefinitely or until I manually logout">
+=======
+
+                        <div class="input-group mb-3">
+                            <select name="role" class="form-control">
+                                <option value="">Pilih Jenis Login</option>
+                                <option value="1">Anggota</option>
+                                <option value="2">Bendahara</option>
+                                <option value="3">Ketua</option>
+                            </select>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-7">
+                                <div class="icheck-primary" title="Keep me authenticated indefinitely or until I manually logout">
+>>>>>>> 1e2a1d3c30d420acbcf4117e3befc3cc5fab601c
                                     <input type="checkbox" name="remember" id="remember">
                                     <label for="remember">
                                         Remember Me
@@ -149,12 +174,15 @@
                                 </button>
                             </div>
                         </div>
+<<<<<<< HEAD
                         <br>
                         <div class="card-footer">
                             <h3 class="card-title float-none text-center" style="font-size: 10px">
                                 Copyright © 2024 SIM PKK RW 05 TLOGOMAS. All rights reserved.
                             </h3>
                         </div>
+=======
+>>>>>>> 1e2a1d3c30d420acbcf4117e3befc3cc5fab601c
                     </form>
                 </div>
             </div>
