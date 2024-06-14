@@ -46,11 +46,12 @@
                     @enderror
                 </div>
             </div>
+            <!-- Tambahkan input untuk setoran -->
             <div class="form-group row">
-                <label class="col-2 control-label col-form-label">Jumlah Simpanan</label>
+                <label class="col-2 control-label col-form-label">Tabungan</label>
                 <div class="col-10">
-                    <input type="number" class="form-control" id="jumlah_simpan" name="jumlah_simpan" value="{{ old('jumlah_simpan') }}">
-                    @error('jumlah_simpan')
+                    <input type="number" class="form-control" id="jumlah_setoran" name="jumlah_setoran" value="{{ old('jumlah_setoran') }}">
+                    @error('jumlah_setoran')
                         <small class="form-text text-danger">{{ $message }}</small>
                     @enderror
                 </div>

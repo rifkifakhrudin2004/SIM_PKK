@@ -23,12 +23,11 @@
                 </div>
             @endif
             <script>
-                // Function to remove notification after a few seconds
                 setTimeout(function(){
                     document.querySelectorAll('.alert').forEach(function(alert) {
                         alert.remove();
                     });
-                }, 2500); // Adjust the time (in milliseconds) as needed
+                }, 2500); 
             </script>
             <div class="table-responsive">
                 <table class="table table-striped table-bordered">
@@ -69,13 +68,13 @@
 @endsection
 <style>
     .custom-thead {
-        background-color: #010050; /* Ubah kode warna sesuai kebutuhan */
+        background-color: #010050; 
         color: white;
-		border-radius: 10px; /* Sesuaikan angka radius dengan keinginan Anda */
-    	overflow: hidden; /* Ubah warna teks jika diperlukan */
+		border-radius: 10px; 
+    	overflow: hidden;
     }
 	.table {
-    border-radius: 10px; /* Sesuaikan angka radius dengan keinginan Anda */
+    border-radius: 10px; 
     overflow: hidden;
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 	}

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Jadwal;
@@ -11,26 +10,25 @@ class AnggotaController extends Controller
 {
     public function dashboard()
     {
-        return view('anggota.dashboard', ['activeMenu' => 'dashboard']);
+        $activeMenu = 'dashboard';
+        $jadwals = Jadwal::all(); // Ambil semua acara dari model Jadwal
+        return view('anggota.dashboard', compact('jadwals', 'activeMenu'));
     }
+
     public function jadwal()
     {
         $activeMenu = 'jadwal';
         $jadwals = Jadwal::all();
         return view('anggota.jadwal', compact('jadwals', 'activeMenu'));
     }
-    public function showDashboard()
-    {
-        $activeMenu = 'dashboard';
-        $jadwals = Jadwal::all(); // Fetch all events from the Jadwal model
-        return view('anggota.dashboard', compact('jadwals', 'activeMenu'));
-    }
+
     public function dataArisan()
     {
         $activeMenu = 'data-arisan';
         $arisans = ArisanModel::all();
         return view('anggota.data-arisan', compact('arisans', 'activeMenu'));
     }
+
     public function pembukuan()
     {
         $activeMenu = 'pembukuan';

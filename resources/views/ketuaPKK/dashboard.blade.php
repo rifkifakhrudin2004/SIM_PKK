@@ -7,12 +7,13 @@
         </div>
         <div class="card-body">
             <div class="row align-items-center">
-                <div class="col-md-3 text-center">
+                <div class="col-md-2 text-center">
                     <div class="icon-box">
-                        <i class="fas fa-user fa-5x"></i>
+                        <img src="{{ asset('adminlte/dist/img/avatar2.png') }}" alt="User Avatar"
+                        class="img-fluid rounded-circle" style="max-width: 100px;">
                     </div>
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-10">
                     <h4>NAMA : {{ Auth::user()->nama }}</h4>
                     <p>STATUS : {{ Auth::user()->status }}</p>
                 </div>

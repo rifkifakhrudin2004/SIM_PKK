@@ -28,13 +28,6 @@ class AlternatitEditController extends Controller
 		return view('livewire.alternatif.edit');
 	}
 
-	// public function update(Request $request)
-	// {
-	// 	$request->alternatif->update();
-	// 	$request->emit('saved');
-	// 	// jika ingin pindah halaman ke index
-	// 	// return redirect()->route('alternatif.index');
-	// }
 	public function update(Request $request, $id)
     {
         // Retrieve the kriteria instance by ID

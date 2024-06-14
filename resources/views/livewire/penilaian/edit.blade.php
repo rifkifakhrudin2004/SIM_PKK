@@ -44,19 +44,19 @@
 
 <style>
     .p-cust {
-        display: inline-block; /* Membuat elemen p menyesuaikan ukuran dengan teks di dalamnya */
-        border-radius: 5px; /* Memperbulat sudut border */
-        padding: 10px; /* Memberi jarak antara teks dan border */
-        font-weight: bold; /* Memperkuat teks */
+        display: inline-block; 
+        border-radius: 5px; 
+        padding: 10px; 
+        font-weight: bold;
         background-color: rgb(0, 122, 96); 
-        color: white;/* Mengisi border dengan warna abu-abu muda */
+        color: white;
     }
     .card-title-cust {
-        display: inline-block; /* Membuat elemen p menyesuaikan ukuran dengan teks di dalamnya */
-        border-radius: 5px; /* Memperbulat sudut border */
-        padding: 10px; /* Memberi jarak antara teks dan border */
-        font-weight: bold; /* Memperkuat teks */
+        display: inline-block; 
+        border-radius: 5px; 
+        padding: 10px;
+        font-weight: bold;
         background-color: rgb(0, 95, 75); 
-        color: white;/* Mengisi border dengan warna abu-abu muda */
+        color: white;
     }
 </style>

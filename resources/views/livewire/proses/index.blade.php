@@ -51,13 +51,13 @@
 
 <style>
     .custom-thead {
-        background-color: #010050; /* Ubah kode warna sesuai kebutuhan */
+        background-color: #010050; 
         color: white;
-		border-radius: 10px; /* Sesuaikan angka radius dengan keinginan Anda */
-    	overflow: hidden; /* Ubah warna teks jika diperlukan */
+		border-radius: 10px;
+    	overflow: hidden; 
     }
 	.table {
-    border-radius: 10px; /* Sesuaikan angka radius dengan keinginan Anda */
+    border-radius: 10px; 
     overflow: hidden;
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 	}

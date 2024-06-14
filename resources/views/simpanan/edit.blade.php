@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layoutsBendaharaPKK.template')
 
 @section('content')
 <div class="container">
@@ -8,28 +8,34 @@
                 <div class="card-header">Edit Simpanan</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('/simpanan/'.$simpan->id_simpan) }}">
+                    <form method="POST" action="{{ url('/simpanan/'.$simpan->id_simpan) }}" class="form-horizontal">
                         @csrf
                         @method('PUT')
 
                         <div class="form-group row">
-                            <label for="id_anggota" class="col-md-4 col-form-label text-md-right">ID Anggota</label>
-
+                            <label for="id_anggota" class="col-md-4 col-form-label text-md-right">Nama Anggota</label>
+                        
                             <div class="col-md-6">
-                                <select id="id_anggota" class="form-control @error('id_anggota') is-invalid @enderror" name="id_anggota" required autofocus>
+                                <select id="id_anggota" class="form-control" name="id_anggota" disabled>
                                     @foreach($anggota as $item)
-                                        <option value="{{ $item->id_anggota }}" {{ $item->id_anggota == $simpan->id_anggota ? 'selected' : '' }}>{{ $item->id_anggota }}</option>
+                                        <option value="{{ $item->id_anggota }}" {{ $item->id_anggota == $simpan->id_anggota ? 'selected' : '' }}>{{ $item->nama_anggota }}</option>
                                     @endforeach
                                 </select>
-
-                                @error('id_anggota')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="id_bendahara" class="col-md-4 col-form-label text-md-right">Nama Bendahara PKK</label>
+                            
+                            <div class="col-md-6">
+                                <select id="id_bendahara" class="form-control" name="id_bendahara" disabled>
+                                    @foreach($bendahara as $item)
+                                        <option value="{{ $item->id_bendahara }}" {{ $item->id_bendahara == $simpan->id_bendahara ? 'selected' : '' }}>{{ $item->nama_bendahara_pkk }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        
                         <div class="form-group row">
                             <label for="tgl_simpan" class="col-md-4 col-form-label text-md-right">Tanggal Simpan</label>
 

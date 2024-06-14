@@ -28,7 +28,7 @@ class Cek_login
         $user = Auth::user();
 
         // Jika user memiliki level sesuai pada kolom pada lanjutkan request
-        if ($user->level_id == $roles) { // Perbaiki penulisan level_id
+        if ($user->level_id) { // Perbaiki penulisan level_id
             return $next($request);
         }
         // Jika tidak memiliki akses maka kembalikan ke halaman login

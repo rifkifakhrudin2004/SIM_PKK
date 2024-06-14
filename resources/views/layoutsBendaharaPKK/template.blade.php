@@ -49,7 +49,9 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="{{ url('/') }}" class="brand-link">
-                <img src="{{ asset('adminlte/dist/img/VENU53.svg') }}" class="sm:h-12 h-9 sm:hidden block center " alt="Logo" />
+
+                <img src="{{ asset('adminlte/dist/img/VENU53.svg') }}" alt="AdminLTE Logo" style="width: 100%; height: auto;">
+
             </a>
             
 

@@ -38,37 +38,37 @@ class SubkriteriaCreateController extends Controller
         return back()->withErrors(['kriteria_id' => 'Kriteria tidak ditemukan']);
     }
     public function edit($id)
-{
-    $subkriteria = SubKriteria::find($id);
-    if (!$subkriteria) {
-        return redirect()->route('kriteria.index')->withErrors(['subkriteria' => 'SubKriteria tidak ditemukan']);
+    {
+        $subkriteria = SubKriteria::find($id);
+        if (!$subkriteria) {
+            return redirect()->route('kriteria.index')->withErrors(['subkriteria' => 'SubKriteria tidak ditemukan']);
+        }
+        return view('livewire.subkriteria.edit', compact('subkriteria'));
     }
-    return view('livewire.subkriteria.edit', compact('subkriteria'));
-}
-public function update(Request $request, $id)
-{
-    // Validate request data
-    $request->validate([
-        'name' => 'required|string|max:255',
-        'bobot' => 'required|numeric',
-    ]);
-
-    // Find the SubKriteria
-    $subkriteria = SubKriteria::find($id);
-    if ($subkriteria) {
-        // Update SubKriteria
-        $subkriteria->update([
-            'name' => $request->name,
-            'bobot' => $request->bobot,
+    public function update(Request $request, $id)
+    {
+        // Validate request data
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'bobot' => 'required|numeric',
         ]);
 
-        // Redirect with success message
-        return redirect()->route('subkriteria.create', $subkriteria->kriteria_id)->with('success', 'SubKriteria berhasil ditambahkan');
-    }
+        // Find the SubKriteria
+        $subkriteria = SubKriteria::find($id);
+        if ($subkriteria) {
+            // Update SubKriteria
+            $subkriteria->update([
+                'name' => $request->name,
+                'bobot' => $request->bobot,
+            ]);
 
-    // Redirect back with error if SubKriteria not found
-    return back()->withErrors(['subkriteria' => 'SubKriteria tidak ditemukan']);
-}
+            // Redirect with success message
+            return redirect()->route('subkriteria.create', $subkriteria->kriteria_id)->with('success', 'SubKriteria berhasil ditambahkan');
+        }
+
+        // Redirect back with error if SubKriteria not found
+        return back()->withErrors(['subkriteria' => 'SubKriteria tidak ditemukan']);
+    }
 
     public function showCreateForm($kriteria)
     {

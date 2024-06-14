@@ -12,7 +12,7 @@ class AlternatifIndexController extends Controller
 		$alternatifs = Alternatif::orderBy('id')->get();
 
 		return view('livewire.alternatif.index', compact('alternatifs'));
-		// jangan lupa ketik "npm run build" di Windows PowerShell
+		
 	}
 
 	public function delete($id)

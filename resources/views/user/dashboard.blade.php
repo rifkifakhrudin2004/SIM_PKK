@@ -15,8 +15,8 @@
                 </div>
 
                 <div class="col-md-10">
-                    <h4>NAMA : </h4>
-                    <p>STATUS : </p>
+                    <h4>NAMA : {{ Auth::user()->nama }}</h4>
+                    <p>STATUS : {{ Auth::user()->status }}</p>
 
                 </div>
             </div>

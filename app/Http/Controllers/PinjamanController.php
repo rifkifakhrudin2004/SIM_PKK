@@ -102,35 +102,6 @@ class PinjamanController extends Controller
 
         return view('pinjaman.create', compact('breadcrumb', 'page', 'activeMenu', 'anggota', 'bendahara'));
     }
-
-    // Store a newly created resource in storage.
-    // public function store(StorePinjamanRequest $request)
-    // {
-    //     $data = $request->validated();
-    //     PinjamanModel::create($data);
-
-    //     return redirect()->route('pinjaman.index')->with('success', 'Pengajuan pinjaman berhasil disimpan.');
-
-    //     $user = Auth::user();
-    //     $id_anggota = $user->id_anggota;
-    //     // dd($user->id_anggota);
-
-    //     $anggota = DataAnggotaModel::all(); // Fetch all anggota
-    //     $bendahara = BendaharaModel::all(); // Fetch all bendahara
-        
-    //     $activeMenu = 'pinjaman';
-
-    //     return view('pinjaman.create', [
-    //         'breadcrumb' => $breadcrumb,
-    //         'page' => $page,
-    //         'anggota' => $anggota,
-    //         'bendahara' => $bendahara,
-    //         'activeMenu' => $activeMenu,
-    //         'id_anggota' => $id_anggota
-    //     ]);
-    // }
-
-    // Store a newly created resource in storage.
     public function store(Request $request)
     {
     // Validasi input
@@ -154,7 +125,6 @@ class PinjamanController extends Controller
         return redirect()->back()->with('error', 'Maaf, Anda tidak dapat membuat pinjaman karena verifikasi anggota belum diterima.');
 
     }
-
     // Hitung jumlah angsuran
     $jumlah_pinjaman = $request->jumlah_pinjaman;
     $bunga = $request->bunga;

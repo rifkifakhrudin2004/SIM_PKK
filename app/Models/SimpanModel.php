@@ -18,9 +18,9 @@ class SimpanModel extends Model
         'tgl_simpan',
         'jumlah_simpan', 
     ];
-    public function alternatif()
+    public function anggota()
     {
-        return $this->belongsTo(Alternatif::class, 'id_anggota', 'id_anggota');
+        return $this->belongsTo(DataAnggotaModel::class, 'id_anggota', 'id_anggota');
     }
     public function bendahara()
     {

@@ -1,12 +1,12 @@
-@extends('layoutsAnggota.template')
+@extends('layoutsKetuaPKK.template')
 
 @section('content')
 <div class="card card-outline card-primary">
-    <div class="container">
-        <h1>Arisan History</h1>
+    <div class="container mt-4 mb-4">
+        <h3 class="text mb-4">Arisan History</h3>
 
-        <form method="GET" action="{{ route('history.index') }}">
-            <div class="row">
+        <form method="GET" action="{{ route('ketuaPKK.history') }}">
+            <div class="row justify-content-center mb-4">
                 <div class="col-md-4">
                     <select name="year" class="form-control">
                         <option value="">Select Year</option>
@@ -33,7 +33,7 @@
             </div>
         </form>
 
-        <table class="table mt-4 table-striped table-hover table-sm">
+        <table class="table table-striped table-hover table-sm">
             <thead>
                 <tr>
                     <th>ID Pembukuan</th>
@@ -45,15 +45,18 @@
                 </tr>
             </thead>
             <tbody>
+                @php
+                    $counter = 1;
+                @endphp
                 @foreach($histories as $history)
-                <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $history->nama_pemenang }}</td>
-                    <td>{{ $history->tanggal }}</td>
-                    <td>{{ $history->nominal }}</td>
-                    <td>{{ $history->bendahara ? $history->bendahara->nama_bendahara_pkk : 'N/A' }}</td>
-                    <td>{{ $history->total_uang }}</td>
-                </tr>
+                    <tr>
+                        <td>{{ $counter++ }}</td>
+                        <td>{{ $history->nama_pemenang }}</td>
+                        <td>{{ $history->tanggal }}</td>
+                        <td>{{ $history->nominal }}</td>
+                        <td>{{ $history->bendahara ? $history->bendahara->nama_bendahara_pkk : 'N/A' }}</td>
+                        <td>{{ $history->total_uang }}</td>
+                    </tr>
                 @endforeach
             </tbody>
         </table>

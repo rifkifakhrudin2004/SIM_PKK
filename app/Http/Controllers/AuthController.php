@@ -33,7 +33,7 @@ class AuthController extends Controller
         $request->validate([
             'username' => 'required',
             'password' => 'required',
-            'role' => 'required|in:1,2,3,4',
+            // 'role' => 'required|in:1,2,3,4',
         ]);
 
         // Ambil data username, password, dan role dari form
@@ -45,7 +45,7 @@ class AuthController extends Controller
             $user = Auth::user();
 
             // Periksa apakah status pengguna aktif dan level_id sesuai dengan role yang dipilih
-            if ($user->status === 'aktif' && $user->level_id == $request->role) {
+            if ($user->status === 'aktif' && $user->level_id) {
                 // Arahkan sesuai dengan levelnya
                 if ($user->level_id == '1') {
                     return redirect()->intended('anggotaPKK');

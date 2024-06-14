@@ -17,7 +17,6 @@
                 <div class="col-md-10">
                     <h4>NAMA : {{ Auth::user()->nama }}</h4>
                     <p>STATUS : {{ Auth::user()->status }}</p>
-
                 </div>
             </div>
         </div>
@@ -66,7 +65,7 @@
             }
         </style>
 
-        {{-- <script>
+        <script>
             $(document).ready(function() {
                 var calendarEl = document.getElementById('dashboard-calendar');
                 var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -84,9 +83,9 @@
                             }
                         }
                     },
-                    events: @json($jadwals), // Fetch events from the controller
+                    events: @json($jadwals), // Ambil acara dari controller
                     eventClick: function(info) {
-                        // Handle event click
+                        // Tangani klik acara
                         alert('Event: ' + info.event.title + '\n' +
                             'Start: ' + info.event.start.toLocaleString() + '\n' +
                             'End: ' + (info.event.end ? info.event.end.toLocaleString() : 'N/A') +
@@ -96,5 +95,5 @@
                 });
                 calendar.render();
             });
-        </script> --}}
-    @endsection
+        </script>
+@endsection

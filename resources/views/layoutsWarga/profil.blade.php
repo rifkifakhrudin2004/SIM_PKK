@@ -133,9 +133,16 @@
     </header>
     <section id="company-info">
         <h2>VENUS</h2>
-        <p>TAMPOL atau Tata Tertib Mahasiswa Polinema adalah sebuah website yang digunakan untuk mendigitalisasikan pemberian dan pelaksanaan sanksi pelanggaran yang
-            dilakukan oleh Mahasiswa Polinema. Website ini diciptakan untuk memudahkan proses penginputan pelanggaran oleh dosen serta pemantauan dan rekapan DPA terhadap mahasiswanya
-            yang melakukan pelanggaran dan juga untuk memudahkan mahasiswa dalam mengecek dan menyelesaikan sanksi apabila mempunyai pelanggaran. 
+        <p>SIM PKK VENUS adalah sebuah website yang digunakan untuk mendigitalisasikan kegiatan PKK 
+            yang dilakukan oleh ibu-ibu PKK RW 05 Tlogomas ,
+            Kec Lowokwaru tepatnya di Jl.Venus.
+            Website ini diciptakan untuk memperkenalkan sistem 
+            yang otomatis dan terpusat untuk mengelola administrasi dan 
+            pengelolaan kegiatan PKK, sehingga dapat menghemat waktu dan 
+            tenaga. Selain itu disediakannya fitur 
+            pemantauan dan laporan yang memungkinkan pengurus PKK untuk 
+            melakukan pemantauan dan evaluasi kegiatan PKK secara efektif, 
+            efisien, dan transparan.
         </p>
     </section>
     <section id="team">
@@ -173,7 +180,6 @@
             </div>
         </div>
     </section>
-    <!-- Tambahkan bagian lain sesuai kebutuhan -->
     <footer>
         <H4>&copy; 2024 VENUS BY KELOMPOK 1.</H4>
     </footer>

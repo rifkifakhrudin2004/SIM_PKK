@@ -3,21 +3,20 @@
 @section('content')
 <div class="card card-outline card-primary">
     <div class="card-header">
-        <h3 class="card-title">LP</h3>
+        <h3 class="card-title">SPK/Perhitungan</h3>
     </div>
     <div id="Penilaian Alternatif">
 	
 		@if ($alternatifs->count() > 0)
 			
-		{{-- tabel data alternatif --}}
+		 
 		<div class="container mx-auto px-4 sm:px-8">
 			<div class="py-8">
 				<div class="flex items-center justify-between">
 					<h2 class="text-2xl font-semibold leading-tight">Perhitungan Metode PSI </h2>
-					{{-- <x-jet-button class="button" wire:click="print">Cetak</x-jet-button> --}}
+					
 				</div>
 				<h3 class="text-1,5xl font-semibold leading-tight">1. Penilaian Alternatif </h3>
-				{{-- <p>Data berikut diurutkan berdasarkan nilai tertinggi.</p> --}}
 				<div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
 					<div class="card">
 						<div class="card-body p-0">
@@ -53,10 +52,6 @@
 									</tr>
 		
 									@empty
-		
-									{{-- <tr>
-										<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm" colspan="{{ $kriterias->count() + 4 }}">Belum ada data alternatif untuk dinilai.</td>
-									</tr> --}}
 									
 									@endforelse
 								</tbody>
@@ -73,8 +68,7 @@
 	<div id="Matriks Keputusan">
 		
 		@if ($alternatifs->count() > 0)
-			
-		{{-- tabel data alternatif --}}
+
 		<div class="container mx-auto px-4 sm:px-8">
 			
 				<h3 class="text-1xl font-semibold leading-tight">2. Matriks Keputusan </h3>
@@ -147,7 +141,7 @@
 	<div class="card card-outline card-primary">
 		<div id="Normalisasi Matriks">
 			@if ($alternatifs->count() > 0)
-			{{-- tabel data alternatif --}}
+			 
 			<div class="card-body">
 				<h3 class="text-1,5xl font-semibold leading-tight">3. Normalisasi Matriks</h3>
 				<div class="table-responsive">
@@ -234,7 +228,7 @@
 		
 		<div id="Nilai Rata-Rata Kinerja">
 			@if (isset($alternatifs) && count($alternatifs) > 0)
-			{{-- tabel data alternatif --}}
+			 
 			<div class="card-body">
 				<h3 class="text-1,5xl font-semibold leading-tight">4. Nilai Rata-Rata Kinerja</h3>
 				<div class="table-responsive">
@@ -267,7 +261,7 @@
 	<div class="card card-outline card-primary">
 		<div id="Nilai Variasi Preferensi">
 			@if ($alternatifs->count() > 0)
-			{{-- tabel data alternatif --}}
+			 
 			<div class="card-body">
 				<h3 class="text-1,5xl font-semibold leading-tight">5. Nilai Variasi Preferensi</h3>
 				<div class="table-responsive">
@@ -309,7 +303,7 @@
 		
 		<div id="Deviasi Nilai Preferensi">
 			@if ($alternatifs->count() > 0)
-			{{-- tabel data alternatif --}}
+			 
 			<div class="card-body">
 				<h3 class="text-1,5xl font-semibold leading-tight">6. Deviasi Nilai Preferensi</h3>
 				<div class="table-responsive">
@@ -342,7 +336,7 @@
 	<div class="card card-outline card-primary">
 		<div id="Bobot Kriteria">
 			@if ($alternatifs->count() > 0)
-			{{-- tabel data alternatif --}}
+			 
 			<div class="card-body">
 				<h3 class="text-1,5xl font-semibold leading-tight">7. Bobot Kriteria</h3>
 				<div class="table-responsive">
@@ -373,7 +367,7 @@
 	
 		<div id="Perhitungan">
 			@if ($alternatifs->count() > 0)
-			{{-- tabel data alternatif --}}
+			 
 			<div class="card-body">
 				<h3 class="text-1,5xl font-semibold leading-tight">8. Hitung Nilai PSI</h3>
 				<div class="table-responsive">
@@ -410,7 +404,7 @@
 	<div class="card card-outline card-primary">
 		<div id="perankingan">
 			@if ($alternatifs->count() > 0)
-			{{-- tabel data alternatif --}}
+			 
 			<div class="card-body">
 				<h3 class="text-1,5xl font-semibold leading-tight">9. Ranking</h3>
 				<div class="table-responsive">
@@ -454,13 +448,13 @@
 
 <style>
     .custom-thead,.custom-tfoot {
-        background-color: #010050; /* Ubah kode warna sesuai kebutuhan */
+        background-color: #010050; 
         color: white;
-		border-radius: 10px; /* Sesuaikan angka radius dengan keinginan Anda */
-    	overflow: hidden; /* Ubah warna teks jika diperlukan */
+		border-radius: 10px; 
+    	overflow: hidden; 
     }
 	.table {
-    border-radius: 10px; /* Sesuaikan angka radius dengan keinginan Anda */
+    border-radius: 10px; 
     overflow: hidden;
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 	}
